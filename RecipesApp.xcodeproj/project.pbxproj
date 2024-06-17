@@ -13,6 +13,8 @@
 		2F8B9DE22C20A9AE005969CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8B9DE02C20A9AE005969CE /* Main.storyboard */; };
 		2F8B9DE42C20A9B0005969CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2F8B9DE32C20A9B0005969CE /* Assets.xcassets */; };
 		2F8B9DE72C20A9B0005969CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2F8B9DE52C20A9B0005969CE /* LaunchScreen.storyboard */; };
+		2F8B9DF12C20AB3E005969CE /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9DF02C20AB3E005969CE /* Recipe.swift */; };
+		2F8B9DF32C20AC4B005969CE /* ShopItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9DF22C20AC4B005969CE /* ShopItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +26,8 @@
 		2F8B9DE32C20A9B0005969CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2F8B9DE62C20A9B0005969CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2F8B9DE82C20A9B0005969CE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2F8B9DF02C20AB3E005969CE /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		2F8B9DF22C20AC4B005969CE /* ShopItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +63,8 @@
 				2F8B9DDA2C20A9AE005969CE /* AppDelegate.swift */,
 				2F8B9DDC2C20A9AE005969CE /* SceneDelegate.swift */,
 				2F8B9DDE2C20A9AE005969CE /* ViewController.swift */,
+				2F8B9DF02C20AB3E005969CE /* Recipe.swift */,
+				2F8B9DF22C20AC4B005969CE /* ShopItem.swift */,
 				2F8B9DE02C20A9AE005969CE /* Main.storyboard */,
 				2F8B9DE32C20A9B0005969CE /* Assets.xcassets */,
 				2F8B9DE52C20A9B0005969CE /* LaunchScreen.storyboard */,
@@ -140,7 +146,9 @@
 			files = (
 				2F8B9DDF2C20A9AE005969CE /* ViewController.swift in Sources */,
 				2F8B9DDB2C20A9AE005969CE /* AppDelegate.swift in Sources */,
+				2F8B9DF32C20AC4B005969CE /* ShopItem.swift in Sources */,
 				2F8B9DDD2C20A9AE005969CE /* SceneDelegate.swift in Sources */,
+				2F8B9DF12C20AB3E005969CE /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
