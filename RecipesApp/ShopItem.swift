@@ -9,7 +9,7 @@ import Foundation
 
 struct ShopItem {
     let name: String
-    let amount: Int
+    let quantity: Int
     
     // need any other data? prob not
 }
