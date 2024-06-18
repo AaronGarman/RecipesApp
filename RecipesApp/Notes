@@ -8,3 +8,25 @@ reload after add item
 finish all crud then pictures fig
 
 extension for table view methods?
+
+
+
+- style tableviews w/ mock data - fig image, download nuke steps path 2? aspect fill try image view, also adjust row height, font sizes + placement, make varied mock data
+- swipe delete
+- unit 7 tab bar
+- unit 6 nav n detail, upper nav bar w/ add button
+- unit 3 detail screen + add screen
+-----
+- update functionality - on detail view, turn + button into edit
+- unit 1 pictures
+-----
+- login
+- database
+- maybe filter by type w/ selection button or tabs? prob dropdown button?
+-----
+- ui background or colors
+- splash screen + app logo
+- comments in + out, organize code at end
+- physical device test
+
+see warnings

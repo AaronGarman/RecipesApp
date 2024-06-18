@@ -17,7 +17,7 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
         let recipe = recipes[indexPath.row]
         
         cell.nameLabel.text = recipe.name
-        cell.prepTimeLabel.text = recipe.prepTime
+        cell.prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
         
         return cell
     }
@@ -32,7 +32,21 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
         
         recipesTableView.dataSource = self
         
-        // recipes.append(Recipe(name: "Recipe", prepTime: "60 mins"))
+        addMockData()
+    }
+    
+    func addMockData() {
+        recipes.append(Recipe(name: "Recipe That is More Than 2 Lines Long Test Ellipsis", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
+        recipes.append(Recipe(name: "Recipe", prepTime: 60))
     }
 }
 

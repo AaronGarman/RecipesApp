@@ -9,7 +9,9 @@ import Foundation
 
 struct Recipe {
     var name: String
-    var prepTime: String
+    var prepTime: Int
+    // var imagePath: String // make optional?
+    // var directions
     
     // add/delete more data items as need
 }

@@ -32,8 +32,21 @@ class ShoppingViewController: UIViewController, UITableViewDataSource {
         
         shoppingTableView.dataSource = self
         
-        // shopItems.append(ShopItem(name: "bread", quantity: 1))
-
-        // Do any additional setup after loading the view.
+        addMockDate()
+        
+    }
+    
+    func addMockDate() {
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
     }
 }
