@@ -9,8 +9,7 @@ import Foundation
 
 struct Recipe {
     var name: String
-    var description: String
     var prepTime: String
     
-    // add more data items as need
+    // add/delete more data items as need
 }
