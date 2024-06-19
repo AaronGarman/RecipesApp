@@ -22,7 +22,6 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-
     @IBOutlet weak var recipesTableView: UITableView!
     
     private var recipes: [Recipe] = []
@@ -32,7 +31,24 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
         
         recipesTableView.dataSource = self
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         addMockData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let selectedIndexPath = recipesTableView.indexPathForSelectedRow {
+            recipesTableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let selectedIndexPath = recipesTableView.indexPathForSelectedRow else {return}
+        let selectedRecipe = recipes[selectedIndexPath.row]
+        guard let recipeDetailViewController = segue.destination as? RecipeDetailViewController else {return}
+        recipeDetailViewController.recipe = selectedRecipe
     }
     
     func addMockData() {
