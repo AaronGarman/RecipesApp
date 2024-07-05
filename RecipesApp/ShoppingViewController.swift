@@ -22,7 +22,10 @@ class ShoppingViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        return nil // Prevent row selection
+    }
+    
     @IBOutlet weak var shoppingTableView: UITableView!
     
     private var shopItems: [ShopItem] = []
@@ -32,11 +35,18 @@ class ShoppingViewController: UIViewController, UITableViewDataSource {
         
         shoppingTableView.dataSource = self
         
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         addMockDate()
         
     }
     
     func addMockDate() {
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))

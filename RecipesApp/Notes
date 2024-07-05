@@ -1,39 +1,36 @@
-comments in + out
 
-check if vc comment is there in test proj
+HIGH
+- check if view controller comment is in test proj
+- check tableview setup - unit 5 lab
+- check nav setup and to detail screen - unit 6 lab
+- tab bar: check unit 7, title custom v nav stack, red icon highlight?
+- org code + comments
+- fill in varied custom data - add pic into proj assets to test - need Nuke for image?
+- adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc.
+- top nav bar buttons, "+" button for add modal display
+- detail screen - constraints, mostly stack view. form or align center? Maybe no nav title or image put on top? name label on top of image or maybe even take out?
+- add screen + functionality and constraints - in viewWillAppear(), do tableview.reloaddata()
+- swipe delete - on both tableviews
 
-delete all options or checkmarks or both on shopping list?
-reload after add item
+MEDIUM
+- extension for table view methods?
+- keyboard down after type?
+- decide if check button on shopping list, maybe also delete all button? how reload data? Just call reload data?
+- decide if do filter button for list (all, food, drink, dessert)
+- aspect fill all images
+- fonts bold + sizes - mainly detail view?
 
-finish all crud then pictures fig
+LOW
+- fig update functionality - on detail view, turn "+" button into "edit"
+- fig add user pictures + Nuke setup - unit 1 lab ios 102
+- fig user login - unit 2 lab ios 102
+- fig parse database - unit 3 lab ios 102
 
-extension for table view methods?
-recipe details maybe no nav title or image put on top? name label on top of image or maybe even take out?
-
-aspect fill both image views table n detail
-adjust UI elements if can't see nav titles?
-detail view fonts bold n sizes any
-
-print logs?
-
-
-
-- style tableviews w/ mock data - fig image, download nuke steps path 2? aspect fill try image view, also adjust row height, font sizes + placement, make varied mock data
-- swipe delete
-- unit 7 tab bar
-- unit 6 nav n detail, upper nav bar w/ add button
-- unit 3 detail screen + add screen
------
-- update functionality - on detail view, turn + button into edit
-- unit 1 pictures
------
-- login
-- database
-- maybe filter by type w/ selection button or tabs? prob dropdown button?
------
-- ui background or colors
-- splash screen + app logo
-- comments in + out, organize code at end
+GENERAL
+- comments in + out
+- print out data? print v logs?
+- fix constraint warnings
 - physical device test
-
-see warnings
+- splash screen + app logo
+- ui background + colors
+- org code at end

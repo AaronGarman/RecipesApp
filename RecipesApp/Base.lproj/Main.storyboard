@@ -141,7 +141,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ShopItemCell" rowHeight="60" id="ZMJ-Ej-kYu" customClass="ShopItemCell" customModule="RecipesApp" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShopItemCell" rowHeight="60" id="ZMJ-Ej-kYu" customClass="ShopItemCell" customModule="RecipesApp" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZMJ-Ej-kYu" id="E6k-jK-ooR">
@@ -175,14 +175,14 @@
                         <viewLayoutGuide key="safeArea" id="fWQ-ZH-3S8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Shopping" image="list.bullet.rectangle.portrait" catalog="system" id="LtG-iU-bcc"/>
+                    <navigationItem key="navigationItem" title="Shopping" id="8zE-IU-UKn"/>
                     <connections>
                         <outlet property="shoppingTableView" destination="deX-lM-32D" id="9pe-LE-al4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sgr-lb-Zdi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="55.725190839694655" y="736.61971830985919"/>
+            <point key="canvasLocation" x="1912" y="732"/>
         </scene>
         <!--Recipes-->
         <scene sceneID="zJR-Fb-u46">
@@ -215,12 +215,31 @@
                     </tabBar>
                     <connections>
                         <segue destination="Mb7-fD-DTJ" kind="relationship" relationship="viewControllers" id="IBy-HG-nLo"/>
-                        <segue destination="Kia-kO-sE7" kind="relationship" relationship="viewControllers" id="qAy-aa-Lw3"/>
+                        <segue destination="Wu5-PK-OAU" kind="relationship" relationship="viewControllers" id="WEc-WD-aDz"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wDP-4h-emb" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="57.251908396946561" y="-2.1126760563380285"/>
+        </scene>
+        <!--Shopping-->
+        <scene sceneID="eOZ-L2-LEm">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wu5-PK-OAU" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Shopping" image="list.bullet.rectangle.portrait" catalog="system" id="LtG-iU-bcc"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="szW-jx-aU2">
+                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Kia-kO-sE7" kind="relationship" relationship="rootViewController" id="CYO-Hn-atD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bsj-wv-0qT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="984" y="732"/>
         </scene>
     </scenes>
     <resources>
