@@ -26,6 +26,18 @@ class ShoppingViewController: UIViewController, UITableViewDataSource {
         return nil // Prevent row selection
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                // Update the data model
+                shopItems.remove(at: indexPath.row)
+                
+                // Delete the row from the table view
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                print(shopItems.count)
+            }
+    }
+    
     @IBOutlet weak var shoppingTableView: UITableView!
     
     private var shopItems: [ShopItem] = []
@@ -42,6 +54,7 @@ class ShoppingViewController: UIViewController, UITableViewDataSource {
     }
     
     func addMockDate() {
+        shopItems.append(ShopItem(name: "first", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
@@ -49,14 +62,13 @@ class ShoppingViewController: UIViewController, UITableViewDataSource {
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "middle", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
         shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "last", quantity: 1))
     }
 }

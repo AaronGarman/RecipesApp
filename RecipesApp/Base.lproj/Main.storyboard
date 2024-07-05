@@ -61,7 +61,9 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Recipes" id="pU6-QX-6bk"/>
+                    <navigationItem key="navigationItem" title="Recipes" id="pU6-QX-6bk">
+                        <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="R3l-5r-ALD"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="recipesTableView" destination="u5P-hs-pnA" id="0EH-Xb-NU3"/>
                     </connections>
@@ -175,7 +177,9 @@
                         <viewLayoutGuide key="safeArea" id="fWQ-ZH-3S8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Shopping" id="8zE-IU-UKn"/>
+                    <navigationItem key="navigationItem" title="Shopping" id="8zE-IU-UKn">
+                        <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="vXO-3O-1eb"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="shoppingTableView" destination="deX-lM-32D" id="9pe-LE-al4"/>
                     </connections>
@@ -245,6 +249,7 @@
     <resources>
         <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
         <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -3,14 +3,13 @@ HIGH
 - check if view controller comment is in test proj
 - check tableview setup - unit 5 lab
 - check nav setup and to detail screen - unit 6 lab
-- tab bar: check unit 7, title custom v nav stack, red icon highlight?
+- tab bar: check unit 7, red icon highlight?
 - org code + comments
 - fill in varied custom data - add pic into proj assets to test - need Nuke for image?
 - adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc.
 - top nav bar buttons, "+" button for add modal display
 - detail screen - constraints, mostly stack view. form or align center? Maybe no nav title or image put on top? name label on top of image or maybe even take out?
 - add screen + functionality and constraints - in viewWillAppear(), do tableview.reloaddata()
-- swipe delete - on both tableviews
 
 MEDIUM
 - extension for table view methods?
@@ -19,12 +18,14 @@ MEDIUM
 - decide if do filter button for list (all, food, drink, dessert)
 - aspect fill all images
 - fonts bold + sizes - mainly detail view?
+- background colors or images any?
 
 LOW
 - fig update functionality - on detail view, turn "+" button into "edit"
 - fig add user pictures + Nuke setup - unit 1 lab ios 102
 - fig user login - unit 2 lab ios 102
-- fig parse database - unit 3 lab ios 102
+- fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too
+- user defaults here v just parse?
 
 GENERAL
 - comments in + out

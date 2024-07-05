@@ -22,6 +22,18 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete {
+                // Update the data model
+                recipes.remove(at: indexPath.row)
+                
+                // Delete the row from the table view
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                
+                print(recipes.count)
+            }
+    }
+    
     @IBOutlet weak var recipesTableView: UITableView!
     
     private var recipes: [Recipe] = []
