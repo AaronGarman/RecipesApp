@@ -7,9 +7,8 @@ HIGH
 - org code + comments
 - fill in varied custom data - add pic into proj assets to test - need Nuke for image?
 - adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc.
-- top nav bar buttons, "+" button for add modal display
 - detail screen - constraints, mostly stack view. form or align center? Maybe no nav title or image put on top? name label on top of image or maybe even take out?
-- add screen + functionality and constraints - in viewWillAppear(), do tableview.reloaddata()
+- add screen (modal) + functionality and constraints - in viewWillAppear(), do tableview.reloaddata()
 
 MEDIUM
 - extension for table view methods?

@@ -19,6 +19,18 @@ class RecipesViewController: UIViewController, UITableViewDataSource {
         cell.nameLabel.text = recipe.name
         cell.prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
         
+        // will take this out, just for testing
+        let randNum = Int.random(in: 0...2)
+        if randNum == 0 {
+            cell.recipeImageView.image = UIImage(named: "chicken marsala image")
+        }
+        else if randNum == 1 {
+            cell.recipeImageView.image = UIImage(named: "pasta image")
+        }
+        else {
+            cell.recipeImageView.image = UIImage(named: "pizza image")
+        }
+        
         return cell
     }
     
