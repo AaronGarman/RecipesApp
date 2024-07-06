@@ -4,15 +4,16 @@ HIGH
 - check tableview setup - unit 5 lab
 - check nav setup and to detail screen - unit 6 lab
 - tab bar: check unit 7, red icon highlight?
-- org code + comments
+- org code + comments in/out
 - fill in varied custom data - add pic into proj assets to test - need Nuke for image?
 - adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc.
+
 - detail screen - constraints, mostly stack view. form or align center? Maybe no nav title or image put on top? name label on top of image or maybe even take out?
-- add screen (modal) + functionality and constraints - in viewWillAppear(), do tableview.reloaddata()
+- add screen (modal) + functionality and constraints - in viewWillAppear(), do tableview.reloaddata() - also look into 3 ways pass data back
 
 MEDIUM
-- extension for table view methods?
 - keyboard down after type?
+- keep extensions for protocol methods?
 - decide if check button on shopping list, maybe also delete all button? how reload data? Just call reload data?
 - decide if do filter button for list (all, food, drink, dessert)
 - aspect fill all images

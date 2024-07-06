@@ -7,7 +7,43 @@
 
 import UIKit
 
-class ShoppingViewController: UIViewController, UITableViewDataSource {
+class ShoppingViewController: UIViewController {
+
+    @IBOutlet weak var shoppingTableView: UITableView!
+    
+    private var shopItems: [ShopItem] = []
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        shoppingTableView.dataSource = self
+        navigationController?.navigationBar.prefersLargeTitles = true
+        addMockDate()
+    }
+    
+    func addMockDate() {
+        shopItems.append(ShopItem(name: "first", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "middle", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "bread", quantity: 1))
+        shopItems.append(ShopItem(name: "last", quantity: 1))
+    }
+}
+
+// conformance to Table View Protocol
+
+extension ShoppingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shopItems.count
     }
@@ -36,39 +72,5 @@ class ShoppingViewController: UIViewController, UITableViewDataSource {
                 
                 print(shopItems.count)
             }
-    }
-    
-    @IBOutlet weak var shoppingTableView: UITableView!
-    
-    private var shopItems: [ShopItem] = []
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        shoppingTableView.dataSource = self
-        
-        navigationController?.navigationBar.prefersLargeTitles = true
-        
-        addMockDate()
-        
-    }
-    
-    func addMockDate() {
-        shopItems.append(ShopItem(name: "first", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "middle", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "last", quantity: 1))
     }
 }
