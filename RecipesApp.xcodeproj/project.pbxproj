@@ -19,6 +19,8 @@
 		2F8B9DF72C20F851005969CE /* Notes in Resources */ = {isa = PBXBuildFile; fileRef = 2F8B9DF62C20F851005969CE /* Notes */; };
 		2F8B9DF92C210E5C005969CE /* ShoppingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9DF82C210E5C005969CE /* ShoppingViewController.swift */; };
 		2F8B9DFD2C213AAE005969CE /* ShopItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F8B9DFC2C213AAE005969CE /* ShopItemCell.swift */; };
+		2FBFF9892C3DE911000490C6 /* AddRecipeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBFF9882C3DE911000490C6 /* AddRecipeViewController.swift */; };
+		2FBFF98B2C3DEA55000490C6 /* AddShopItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FBFF98A2C3DEA55000490C6 /* AddShopItemViewController.swift */; };
 		2FD433602C225AD0004E86B3 /* RecipeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2FD4335F2C225AD0004E86B3 /* RecipeDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,8 @@
 		2F8B9DF62C20F851005969CE /* Notes */ = {isa = PBXFileReference; lastKnownFileType = text; path = Notes; sourceTree = "<group>"; };
 		2F8B9DF82C210E5C005969CE /* ShoppingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingViewController.swift; sourceTree = "<group>"; };
 		2F8B9DFC2C213AAE005969CE /* ShopItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShopItemCell.swift; sourceTree = "<group>"; };
+		2FBFF9882C3DE911000490C6 /* AddRecipeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeViewController.swift; sourceTree = "<group>"; };
+		2FBFF98A2C3DEA55000490C6 /* AddShopItemViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddShopItemViewController.swift; sourceTree = "<group>"; };
 		2FD4335F2C225AD0004E86B3 /* RecipeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +78,8 @@
 				2F8B9DDC2C20A9AE005969CE /* SceneDelegate.swift */,
 				2F8B9DDE2C20A9AE005969CE /* RecipesViewController.swift */,
 				2F8B9DF82C210E5C005969CE /* ShoppingViewController.swift */,
+				2FBFF9882C3DE911000490C6 /* AddRecipeViewController.swift */,
+				2FBFF98A2C3DEA55000490C6 /* AddShopItemViewController.swift */,
 				2FD4335F2C225AD0004E86B3 /* RecipeDetailViewController.swift */,
 				2F8B9DF42C20F3F4005969CE /* RecipeCell.swift */,
 				2F8B9DFC2C213AAE005969CE /* ShopItemCell.swift */,
@@ -162,9 +168,11 @@
 			files = (
 				2F8B9DDF2C20A9AE005969CE /* RecipesViewController.swift in Sources */,
 				2FD433602C225AD0004E86B3 /* RecipeDetailViewController.swift in Sources */,
+				2FBFF9892C3DE911000490C6 /* AddRecipeViewController.swift in Sources */,
 				2F8B9DDB2C20A9AE005969CE /* AppDelegate.swift in Sources */,
 				2F8B9DF92C210E5C005969CE /* ShoppingViewController.swift in Sources */,
 				2F8B9DF32C20AC4B005969CE /* ShopItem.swift in Sources */,
+				2FBFF98B2C3DEA55000490C6 /* AddShopItemViewController.swift in Sources */,
 				2F8B9DF52C20F3F4005969CE /* RecipeCell.swift in Sources */,
 				2F8B9DDD2C20A9AE005969CE /* SceneDelegate.swift in Sources */,
 				2F8B9DFD2C213AAE005969CE /* ShopItemCell.swift in Sources */,

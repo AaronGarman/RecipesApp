@@ -62,7 +62,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Recipes" id="pU6-QX-6bk">
-                        <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="R3l-5r-ALD"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="R3l-5r-ALD">
+                            <connections>
+                                <segue destination="EDz-SF-wIo" kind="presentation" id="Sbe-H5-4xo"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="recipesTableView" destination="u5P-hs-pnA" id="0EH-Xb-NU3"/>
@@ -71,6 +75,29 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1912.2137404580151" y="-2.1126760563380285"/>
+        </scene>
+        <!--New Recipe-->
+        <scene sceneID="m9b-Tk-tlI">
+            <objects>
+                <viewController id="kGt-Ik-ASz" customClass="AddRecipeViewController" customModule="RecipesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q4D-Nt-4pm">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="fMj-ij-sak"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="New Recipe" id="6Od-MK-FUX">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Qe3-wi-6la">
+                            <connections>
+                                <action selector="didTapCancelButton:" destination="kGt-Ik-ASz" id="tkM-XV-3kh"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="SIT-F7-kMC"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9dU-cx-4NX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2844" y="-730"/>
         </scene>
         <!--Recipe Details-->
         <scene sceneID="lev-rR-oud">
@@ -118,7 +145,9 @@
                         <viewLayoutGuide key="safeArea" id="8dw-W0-gT0"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Recipe Details" id="Zf3-Ys-99c"/>
+                    <navigationItem key="navigationItem" title="Recipe Details" id="Zf3-Ys-99c">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="nIn-R7-ZOl"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="directionsTextView" destination="TU7-EX-oAW" id="x41-sz-okf"/>
                         <outlet property="nameLabel" destination="00O-qd-Dnk" id="8Gc-d7-r5i"/>
@@ -128,7 +157,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HF1-Eb-HYa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2843.5114503816794" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="2844" y="-2"/>
         </scene>
         <!--Shopping-->
         <scene sceneID="Ugy-8E-nNI">
@@ -178,7 +207,11 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" title="Shopping" id="8zE-IU-UKn">
-                        <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="vXO-3O-1eb"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="vXO-3O-1eb">
+                            <connections>
+                                <segue destination="1aY-Ou-5Qt" kind="presentation" id="zNt-ih-UZe"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="shoppingTableView" destination="deX-lM-32D" id="9pe-LE-al4"/>
@@ -187,6 +220,29 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sgr-lb-Zdi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1912" y="732"/>
+        </scene>
+        <!--Add Item-->
+        <scene sceneID="QGt-5Q-59a">
+            <objects>
+                <viewController id="83L-cT-3Ob" customClass="AddShopItemViewController" customModule="RecipesApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Qxg-ao-ETt">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="5hl-jx-Uc9"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Add Item" id="IJJ-aZ-qaR">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="UGV-Io-XJq">
+                            <connections>
+                                <action selector="didTapCancelButton:" destination="83L-cT-3Ob" id="TGq-49-e3F"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="cIS-ep-iyi"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Rs-eE-2kf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2844" y="1489"/>
         </scene>
         <!--Recipes-->
         <scene sceneID="zJR-Fb-u46">
@@ -244,6 +300,42 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bsj-wv-0qT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="984" y="732"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="8pL-Io-Mi9">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EDz-SF-wIo" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7um-c7-dfR">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="kGt-Ik-ASz" kind="relationship" relationship="rootViewController" id="Inc-zg-OTX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Obj-kd-VpG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1911" y="-730"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="XQf-1F-iDs">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="1aY-Ou-5Qt" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hFM-o5-VSJ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="83L-cT-3Ob" kind="relationship" relationship="rootViewController" id="FjE-iu-EhD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JqZ-Xm-Ba1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1911" y="1489"/>
         </scene>
     </scenes>
     <resources>
