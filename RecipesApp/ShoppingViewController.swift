@@ -18,26 +18,7 @@ class ShoppingViewController: UIViewController {
         
         shoppingTableView.dataSource = self
         navigationController?.navigationBar.prefersLargeTitles = true
-        addMockDate()
-    }
-    
-    func addMockDate() {
-        shopItems.append(ShopItem(name: "first", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "middle", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "bread", quantity: 1))
-        shopItems.append(ShopItem(name: "last", quantity: 1))
+        shopItems = ShopItem.mockedShopItems
     }
 }
 

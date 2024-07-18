@@ -18,7 +18,7 @@ class RecipesViewController: UIViewController {
         
         recipesTableView.dataSource = self
         navigationController?.navigationBar.prefersLargeTitles = true
-        addMockData()
+        recipes = Recipe.mockedRecipes
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -35,25 +35,11 @@ class RecipesViewController: UIViewController {
         guard let recipeDetailViewController = segue.destination as? RecipeDetailViewController else {return}
         recipeDetailViewController.recipe = selectedRecipe
     }
-    
-    func addMockData() {
-        recipes.append(Recipe(name: "Recipe That is More Than 2 Lines Long Test Ellipsis", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-        recipes.append(Recipe(name: "Recipe", prepTime: 60))
-    }
 }
 
 // move funcs to extension? or back up top? do same in shopping view controller
 
-// conformance to Table View Protocol
+// Methods for conformance to Table View Protocol
 
 extension RecipesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,21 +52,7 @@ extension RecipesViewController: UITableViewDataSource {
         
         cell.nameLabel.text = recipe.name
         cell.prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
-        
-        // will take this out, just for testing
-        let randNum = Int.random(in: 0...2)
-        if randNum == 0 {
-            cell.recipeImageView.image = UIImage(named: "chicken marsala image")
-            cell.nameLabel.text = "Chicken Marsala"
-        }
-        else if randNum == 1 {
-            cell.recipeImageView.image = UIImage(named: "pasta image")
-            cell.nameLabel.text = "Aaron's World Famous Pasta"
-        }
-        else {
-            cell.recipeImageView.image = UIImage(named: "pizza image")
-            cell.nameLabel.text = "Pizza"
-        }
+        cell.recipeImageView.image = recipe.image
         
         return cell
     }

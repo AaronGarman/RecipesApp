@@ -12,6 +12,8 @@ class ShopItemCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var quantityLabel: UILabel!
     
+    // take any funcs out? maybe do configure func?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

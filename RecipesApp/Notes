@@ -19,6 +19,8 @@ MEDIUM
 - aspect fill all images
 - fonts bold + sizes - mainly detail view?
 - background colors or images any?
+- make input more like forms w/ placeholder images
+- empty holder text on both tableviews
 
 LOW
 - fig update functionality - on detail view, turn "+" button into "edit"
@@ -35,3 +37,4 @@ GENERAL
 - splash screen + app logo
 - ui background + colors
 - org code at end
+- folders for files?

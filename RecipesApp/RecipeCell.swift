@@ -13,6 +13,8 @@ class RecipeCell: UITableViewCell {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var prepTimeLabel: UILabel!
     
+    // take any funcs out? maybe do configure func?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

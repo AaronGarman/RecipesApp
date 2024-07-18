@@ -11,5 +11,33 @@ struct ShopItem {
     let name: String
     let quantity: Int
     
-    // need any other data? prob not
+    // add/delete more data items as need
+    
+    // need init or set?
 }
+
+// make all mock data unique
+
+extension ShopItem {
+    static var mockedShopItems: [ShopItem] {
+        return [
+            ShopItem(name: "first", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "middle", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "bread", quantity: 1),
+            ShopItem(name: "last", quantity: 1)
+        ]
+    }
+}
+
