@@ -1,34 +1,37 @@
-
-HIGH
-- delete functionality not working after finished add functionality n others?
+RECHECK
 - check if view controller comment is in test proj
 - check tableview setup - unit 5 lab
 - check nav setup and to detail screen - unit 6 lab
-- tab bar: check unit 7, red icon highlight?
-- org code + comments in/out
-- fill in varied custom data - add pic into proj assets to test - need Nuke for image? nuke only if url, so not here
-- adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc.
-
+- tab bar: check unit 7
 - detail screen - constraints, mostly stack view. form or align center? Maybe no nav title or image put on top? name label on top of image or maybe even take out?
 - add screen (modal) + functionality and constraints - in viewWillAppear(), do tableview.reloaddata() - also look into 3 ways pass data back. make add screens more like forms w/ placeholder text over titles. also add empty placeholder texts for both add screens
+- fig add user pictures - unit 1 lab ios 102, make force square photo?
+
+HIGH
+- delete functionality not working after finished add functionality n others?
+- add functionality for shopping + update add UI
+- try camera functionality - pop up button?
+- org code + comments in/out - more extensions?
+- fill in varied custom data - add pic into proj assets to test
+- adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc. fonts bold + sizes? make input more like forms. corner radius image view on add recipe? numeric keyboard mins? default n/a pic
 
 MEDIUM
-- keyboard down after type?
-- keep extensions for protocol methods?
+- keyboard down after type + no block entry - scrollview or diff?
+- fig user login - unit 2 lab ios 102
+
+LOW
+- fig update functionality - do after db?
+- fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too
+- fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions?
+- fig UI constraints
+
+OPTIONAL/SMALL
+- red tab bar highlight
 - decide if check button on shopping list, maybe also delete all button? how reload data? Just call reload data?
 - decide if do filter button for list (all, food, drink, dessert)
 - aspect fill all images
-- fonts bold + sizes - mainly detail view?
-- background colors or images any?
-- make input more like forms w/ placeholder images
 - empty holder text on both tableviews
-
-LOW
-- fig update functionality - on detail view, turn "+" button into "edit"
-- fig add user pictures - unit 1 lab ios 102, make force square photo?
-- fig user login - unit 2 lab ios 102
-- fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too
-- user defaults here v just parse?
+- ui background + colors, images any?
 
 GENERAL
 - comments in + out
@@ -36,6 +39,5 @@ GENERAL
 - fix constraint warnings
 - physical device test
 - splash screen + app logo
-- ui background + colors
 - org code at end
 - folders for files?

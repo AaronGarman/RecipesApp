@@ -9,6 +9,12 @@ import UIKit
 
 class AddShopItemViewController: UIViewController {
 
+    @IBOutlet weak var quantityLabel: UILabel!
+    
+    
+    @IBAction func didTapQuantityStepper(_ sender: UIStepper) {
+        quantityLabel.text = "\(Int(sender.value))"
+    }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
         dismiss(animated: true)
@@ -19,6 +25,8 @@ class AddShopItemViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
+    // on add check value stepper > 0 (cast to int) and text input ok
     
 
     /*

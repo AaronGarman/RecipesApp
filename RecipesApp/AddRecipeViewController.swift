@@ -13,6 +13,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var prepTimeTextField: UITextField!
     @IBOutlet weak var attachPhotoButton: UIButton!
+    @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var directionsTextView: UITextView!
     
     var onAddRecipe: ((Recipe) -> Void)? = nil
@@ -21,8 +22,10 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        recipeImageView.layer.cornerRadius = 5.0 // decide value?
+        
         // Add border to the UITextView - keep v make as rules in storyboard? sends warning in console?
-        directionsTextView.layer.borderColor = UIColor.black.cgColor
+        directionsTextView.layer.borderColor = UIColor.lightGray.cgColor
         directionsTextView.layer.borderWidth = 1.0
         directionsTextView.layer.cornerRadius = 5.0 // Optional, for rounded corners
 
@@ -199,6 +202,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate {
             DispatchQueue.main.async { [weak self] in
                 self?.recipeImage = image   // need "?" after image?
                 self?.attachPhotoButton.tintColor = .green
+                self?.recipeImageView.image = image
 /*               // Set the picked image and location on the task
                 self?.task.set(image, with: location)
                 // Update the UI since we've updated the task
