@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import PhotosUI
 
 class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
@@ -14,6 +15,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var directionsTextView: UITextView!
     
     var onAddRecipe: ((Recipe) -> Void)? = nil
+    var recipeImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,31 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         view.endEditing(true)
     }
     
+    @IBAction func didTapAttachImageButton(_ sender: Any) {
+        if PHPhotoLibrary.authorizationStatus(for: .readWrite) != .authorized {
+            // Request photo library access
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
+                switch status {
+                case .authorized:
+                    // The user authorized access to their photo library
+                    // show picker (on main thread)
+                    DispatchQueue.main.async {
+                        self?.showImagePicker()
+                    }
+                default:
+                    // show settings alert (on main thread)
+                    DispatchQueue.main.async {
+                        // Helper method to show settings alert
+                        self?.showGoToSettingsAlert()
+                    }
+                }
+            }
+        } else {
+            // Show photo picker
+            showImagePicker()
+        }
+    }
+    
     @IBAction func didTapCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
@@ -83,9 +110,16 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             return
         }
         
+        var newImage: UIImage? // do this diff?
         // change to pic once get - helper func for pic get?
+        if let image = recipeImage {
+            newImage = image
+        }
+        else {
+            newImage = UIImage(named: "pizza image") // make default image for no picture found - put in proj. also take out stock ones?
+        }
 
-        let recipe = Recipe(name: name, prepTime: prepTimeNum, image: UIImage(named: "pizza image"), directions: directions)
+        let recipe = Recipe(name: name, prepTime: prepTimeNum, image: newImage, directions: directions)
         onAddRecipe?(recipe)
         dismiss(animated: true)
     }
@@ -127,3 +161,85 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     */
 
 }
+
+// photo picker methods + conformance to PHPicker delegate
+
+extension AddRecipeViewController: PHPickerViewControllerDelegate {
+    
+    private func showImagePicker() {
+        var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        config.filter = .images
+        config.preferredAssetRepresentationMode = .current
+        config.selectionLimit = 1
+
+        let picker = PHPickerViewController(configuration: config)
+        picker.delegate = self
+        present(picker, animated: true)
+    }
+    
+    func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
+        picker.dismiss(animated: true)
+        
+        let result = results.first
+        
+        guard let provider = result?.itemProvider,
+              provider.canLoadObject(ofClass: UIImage.self) else { return }
+        
+        provider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
+            
+            if let error = error {
+                DispatchQueue.main.async { [weak self] in self?.showAlert(for:error) }
+            }
+            
+            guard let image = object as? UIImage else { return }
+            
+            print("🌉 We have an image!")
+            
+            DispatchQueue.main.async { [weak self] in
+                self?.recipeImage = image   // need "?" after image?
+/*               // Set the picked image and location on the task
+                self?.task.set(image, with: location)
+                // Update the UI since we've updated the task
+                self?.updateUI()
+*/
+            }
+        }
+    }
+    
+    func showGoToSettingsAlert() {
+        let alertController = UIAlertController (
+            title: "Photo Access Required",
+            message: "In order to upload a photo for a recipe, we need access to your photo library. You can allow access in Settings",
+            preferredStyle: .alert)
+
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
+
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl)
+            }
+        }
+
+        alertController.addAction(settingsAction)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        alertController.addAction(cancelAction)
+
+        present(alertController, animated: true, completion: nil)
+    } // need 2nd alert func? change anything?
+    
+    private func showAlert(for error: Error? = nil) {
+        let alertController = UIAlertController(
+            title: "Error",
+            message: "\(error?.localizedDescription ?? "Please try again...")",
+            preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+
+        present(alertController, animated: true)
+    }
+}
+
+
+// put all photos stuff as extension? maybe show photo after pick?
+// feedback for after user uploads photo?
