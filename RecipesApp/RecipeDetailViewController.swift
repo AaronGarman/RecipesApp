@@ -21,8 +21,30 @@ class RecipeDetailViewController: UIViewController {
         
         navigationItem.largeTitleDisplayMode = .never // no need if take out nav title?
         
+        // make image bigger n text smaller?
+        // more room for directions?
+        // font size and bold vs no?
+        
+// try border?
+        //recipeImageView.layer.borderColor = UIColor.black.cgColor
+        //recipeImageView.layer.borderWidth = 1.0
+        recipeImageView.layer.cornerRadius = 5.0 // decide value?
+
+/* try shadow effect?
+        recipeImageView.layer.shadowColor = UIColor.black.cgColor
+        recipeImageView.layer.shadowOpacity = 0.5
+        recipeImageView.layer.shadowOffset = CGSize(width: 4, height: 4)
+        recipeImageView.layer.shadowRadius = 4
+        //recipeImageView.layer.masksToBounds = false
+
+        // Optional: Add a border to the image view
+        recipeImageView.layer.borderWidth = 1.0
+        recipeImageView.layer.borderColor = UIColor.lightGray.cgColor
+ */
+        recipeImageView.image = recipe.image
         nameLabel.text = recipe.name
         prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
+        directionsTextView.text = recipe.directions
 
     }
 }
