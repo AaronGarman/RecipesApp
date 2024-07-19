@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddRecipeViewController: UIViewController {
+class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var prepTimeTextField: UITextField!
@@ -22,8 +22,39 @@ class AddRecipeViewController: UIViewController {
         directionsTextView.layer.borderColor = UIColor.black.cgColor
         directionsTextView.layer.borderWidth = 1.0
         directionsTextView.layer.cornerRadius = 5.0 // Optional, for rounded corners
+
+        nameTextField.delegate = self
+        prepTimeTextField.delegate = self
+        directionsTextView.delegate = self
+    /*
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        directionsTextView.addGestureRecognizer(tapGesture)
+    } */
          
         // Do any additional setup after loading the view.
+    }
+    
+    
+    // do these as extension? and do conformance inheritance in it too
+    
+    // Implement the delegate method to handle the Return key press
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // Implement the delegate method to handle the Return key press
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+    
+    // Dismiss the keyboard when the tap gesture is recognized
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {

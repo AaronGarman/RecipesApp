@@ -6,11 +6,11 @@ HIGH
 - check nav setup and to detail screen - unit 6 lab
 - tab bar: check unit 7, red icon highlight?
 - org code + comments in/out
-- fill in varied custom data - add pic into proj assets to test - need Nuke for image?
+- fill in varied custom data - add pic into proj assets to test - need Nuke for image? nuke only if url, so not here
 - adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc.
 
 - detail screen - constraints, mostly stack view. form or align center? Maybe no nav title or image put on top? name label on top of image or maybe even take out?
-- add screen (modal) + functionality and constraints - in viewWillAppear(), do tableview.reloaddata() - also look into 3 ways pass data back
+- add screen (modal) + functionality and constraints - in viewWillAppear(), do tableview.reloaddata() - also look into 3 ways pass data back. make add screens more like forms w/ placeholder text over titles. also add empty placeholder texts for both add screens
 
 MEDIUM
 - keyboard down after type?
@@ -25,7 +25,7 @@ MEDIUM
 
 LOW
 - fig update functionality - on detail view, turn "+" button into "edit"
-- fig add user pictures + Nuke setup - unit 1 lab ios 102
+- fig add user pictures - unit 1 lab ios 102, make force square photo?
 - fig user login - unit 2 lab ios 102
 - fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too
 - user defaults here v just parse?
