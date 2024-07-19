@@ -11,14 +11,22 @@ class RecipesViewController: UIViewController {
 
     @IBOutlet weak var recipesTableView: UITableView!
     
-    private var recipes: [Recipe] = []
+    private var recipes: [Recipe] = [] {
+        didSet {
+            //emptyStateLabel.isHidden = !recipes.isEmpty // add in
+            recipesTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recipesTableView.dataSource = self
-        navigationController?.navigationBar.prefersLargeTitles = true
         recipes = Recipe.mockedRecipes
+        
+        //recipesTableView.tableHeaderView = UIView()
+        recipesTableView.dataSource = self
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -27,17 +35,27 @@ class RecipesViewController: UIViewController {
         if let selectedIndexPath = recipesTableView.indexPathForSelectedRow {
             recipesTableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
+        
+        recipesTableView.reloadData() // still need after db load?
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let selectedIndexPath = recipesTableView.indexPathForSelectedRow else {return}
-        let selectedRecipe = recipes[selectedIndexPath.row]
-        guard let recipeDetailViewController = segue.destination as? RecipeDetailViewController else {return}
-        recipeDetailViewController.recipe = selectedRecipe
+        if segue.identifier == "AddRecipeSegue" {
+            if let addRecipeNavController = segue.destination as? UINavigationController,
+               let addRecipeViewController = addRecipeNavController.topViewController as? AddRecipeViewController {
+                addRecipeViewController.onAddRecipe = { [weak self] recipe in
+                    self?.recipes.append(recipe)
+                }
+            }
+        } 
+        else if segue.identifier == "RecipeDetailSegue" { // keep if else style same line or put above?
+            guard let selectedIndexPath = recipesTableView.indexPathForSelectedRow else {return}
+            let selectedRecipe = recipes[selectedIndexPath.row]
+            guard let recipeDetailViewController = segue.destination as? RecipeDetailViewController else {return}
+            recipeDetailViewController.recipe = selectedRecipe
+        }
     }
 }
-
-// move funcs to extension? or back up top? do same in shopping view controller
 
 // Methods for conformance to Table View Protocol
 

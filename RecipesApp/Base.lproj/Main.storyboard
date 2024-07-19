@@ -52,7 +52,7 @@
                                             <outlet property="nameLabel" destination="sz8-3d-Xka" id="vEf-D6-iIK"/>
                                             <outlet property="prepTimeLabel" destination="BVH-JN-pAT" id="nYc-HS-k9N"/>
                                             <outlet property="recipeImageView" destination="GCC-ag-WNT" id="3yY-db-pZ0"/>
-                                            <segue destination="7Wl-lo-SxO" kind="show" id="co3-2w-Tun"/>
+                                            <segue destination="7Wl-lo-SxO" kind="show" identifier="RecipeDetailSegue" id="co3-2w-Tun"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -64,7 +64,7 @@
                     <navigationItem key="navigationItem" title="Recipes" id="pU6-QX-6bk">
                         <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="R3l-5r-ALD">
                             <connections>
-                                <segue destination="EDz-SF-wIo" kind="presentation" id="Sbe-H5-4xo"/>
+                                <segue destination="EDz-SF-wIo" kind="presentation" identifier="AddRecipeSegue" id="Sbe-H5-4xo"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -157,10 +157,16 @@
                                 <action selector="didTapCancelButton:" destination="kGt-Ik-ASz" id="tkM-XV-3kh"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="SIT-F7-kMC"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="SIT-F7-kMC">
+                            <connections>
+                                <action selector="didTapAddButton:" destination="kGt-Ik-ASz" id="7ww-gf-cRI"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="directionsTextView" destination="fhQ-ll-bTg" id="r3o-an-hkV"/>
+                        <outlet property="nameTextField" destination="Vxj-bx-vED" id="g0Z-6l-R8S"/>
+                        <outlet property="prepTimeTextField" destination="mQf-ER-LKH" id="6fs-PI-4vY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dU-cx-4NX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

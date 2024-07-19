@@ -9,11 +9,12 @@ import UIKit
 
 class AddRecipeViewController: UIViewController {
 
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var prepTimeTextField: UITextField!
     @IBOutlet weak var directionsTextView: UITextView!
     
-    @IBAction func didTapCancelButton(_ sender: Any) {
-        dismiss(animated: true)
-    }
+    var onAddRecipe: ((Recipe) -> Void)? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,6 +25,64 @@ class AddRecipeViewController: UIViewController {
          
         // Do any additional setup after loading the view.
     }
+    
+    @IBAction func didTapCancelButton(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+    // 2 print errors seen when clicking on input fields?
+    
+    @IBAction func didTapAddButton(_ sender: Any) {
+        
+        // still as int for time? numeric keyboard? work ok here?
+
+        guard let name = nameTextField.text,
+              let prepTime = prepTimeTextField.text,
+              let directions = directionsTextView.text,
+              !name.isEmpty,
+              !prepTime.isEmpty,
+              !directions.isEmpty else {
+            showEmptyFieldsAlert()
+            return
+        }
+        
+        // maybe numeric later so no need this?
+        guard let prepTimeNum = Int(prepTime) else {
+            showNotNumberAlert()
+            return
+        }
+        
+        // change to pic once get - helper func for pic get?
+
+        let recipe = Recipe(name: name, prepTime: prepTimeNum, image: UIImage(named: "pizza image"), directions: directions)
+        onAddRecipe?(recipe)
+        dismiss(animated: true)
+    }
+    
+    private func showEmptyFieldsAlert() {
+        let alertController = UIAlertController(
+            title: "Error",
+            message: "Name, Prep Time, and Directions fields must be filled out",
+            preferredStyle: .alert) // caps need?
+
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true)
+    }
+
+    private func showNotNumberAlert() {
+        let alertController = UIAlertController(
+            title: "Error",
+            message: "Prep Time value must be a number",
+            preferredStyle: .alert) // caps need? diff wording? or even need if numerical input force?
+
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true)
+    }
+
     
 
     /*

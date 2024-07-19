@@ -11,18 +11,26 @@ class ShoppingViewController: UIViewController {
 
     @IBOutlet weak var shoppingTableView: UITableView!
     
-    private var shopItems: [ShopItem] = []
+    private var shopItems: [ShopItem] = [] {
+        didSet {
+            //emptyStateLabel.isHidden = !shopItems.isEmpty // add in
+            shoppingTableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shoppingTableView.dataSource = self
-        navigationController?.navigationBar.prefersLargeTitles = true
         shopItems = ShopItem.mockedShopItems
+        
+        //shoppingTableView.tableHeaderView = UIView()
+        shoppingTableView.dataSource = self
+        
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
 
-// conformance to Table View Protocol
+// Methods for conformance to Table View Protocol
 
 extension ShoppingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
