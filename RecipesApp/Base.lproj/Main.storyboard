@@ -167,6 +167,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="attachPhotoButton" destination="Y8t-Ow-sf5" id="CEQ-d0-LDh"/>
                         <outlet property="directionsTextView" destination="fhQ-ll-bTg" id="r3o-an-hkV"/>
                         <outlet property="nameTextField" destination="Vxj-bx-vED" id="g0Z-6l-R8S"/>
                         <outlet property="prepTimeTextField" destination="mQf-ER-LKH" id="6fs-PI-4vY"/>

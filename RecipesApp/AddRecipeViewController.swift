@@ -12,6 +12,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
 
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var prepTimeTextField: UITextField!
+    @IBOutlet weak var attachPhotoButton: UIButton!
     @IBOutlet weak var directionsTextView: UITextView!
     
     var onAddRecipe: ((Recipe) -> Void)? = nil
@@ -197,6 +198,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate {
             
             DispatchQueue.main.async { [weak self] in
                 self?.recipeImage = image   // need "?" after image?
+                self?.attachPhotoButton.tintColor = .green
 /*               // Set the picked image and location on the task
                 self?.task.set(image, with: location)
                 // Update the UI since we've updated the task
