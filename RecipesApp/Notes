@@ -16,12 +16,12 @@ HIGH
 - adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc. fonts bold + sizes? make input more like forms. corner radius image view on add recipe? numeric keyboard mins? default n/a pic
 
 MEDIUM
-- keyboard down after type + no block entry - scrollview or diff?
+- keyboard down after type + no block entry - scrollview or diff? also tap out of box keyboard down too?
 - fig user login - unit 2 lab ios 102
 
 LOW
 - fig update functionality - do after db?
-- fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too
+- fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too. can do user defaults or firebase if need
 - fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions?
 - fig UI constraints
 

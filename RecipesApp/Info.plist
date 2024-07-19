@@ -2,8 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSCameraUsageDescription</key>
+	<string>We need to access your camera to upload a picture for a recipe.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need to access to your photos to upload a picture for a recipe.</string>
+	<string>We need to access your photos to upload a picture for a recipe.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
