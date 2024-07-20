@@ -24,6 +24,7 @@ class RecipesViewController: UIViewController {
         
         //recipesTableView.tableHeaderView = UIView()
         recipesTableView.dataSource = self
+        recipesTableView.delegate = self
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -59,7 +60,7 @@ class RecipesViewController: UIViewController {
 
 // Methods for conformance to Table View Protocol
 
-extension RecipesViewController: UITableViewDataSource {
+extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return recipes.count
     }
@@ -73,6 +74,19 @@ extension RecipesViewController: UITableViewDataSource {
         cell.recipeImageView.image = recipe.image
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let detailAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
+            self?.performSegue(withIdentifier: "AddRecipeSegue", sender: indexPath)
+            completionHandler(true)
+        }
+        detailAction.backgroundColor = .orange
+
+        let configuration = UISwipeActionsConfiguration(actions: [detailAction])
+        configuration.performsFirstActionWithFullSwipe = true
+
+        return configuration
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
