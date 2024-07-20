@@ -14,7 +14,6 @@ class RecipesViewController: UIViewController {
     private var recipes: [Recipe] = [] {
         didSet {
             //emptyStateLabel.isHidden = !recipes.isEmpty // add in
-            recipesTableView.reloadData()
         }
     }
     
@@ -45,6 +44,7 @@ class RecipesViewController: UIViewController {
                let addRecipeViewController = addRecipeNavController.topViewController as? AddRecipeViewController {
                 addRecipeViewController.onAddRecipe = { [weak self] recipe in
                     self?.recipes.append(recipe)
+                    self?.recipesTableView.reloadData()
                 }
             }
         } 

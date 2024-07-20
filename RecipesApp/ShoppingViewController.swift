@@ -14,7 +14,6 @@ class ShoppingViewController: UIViewController {
     private var shopItems: [ShopItem] = [] {
         didSet {
             //emptyStateLabel.isHidden = !shopItems.isEmpty // add in
-            shoppingTableView.reloadData()
         }
     }
     

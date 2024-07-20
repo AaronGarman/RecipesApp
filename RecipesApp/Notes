@@ -8,11 +8,10 @@ RECHECK
 - fig add user pictures - unit 1 lab ios 102, make force square photo?
 
 HIGH
-- delete functionality not working after finished add functionality n others?
 - add functionality for shopping + update add UI
-- try camera functionality - pop up button?
+- pop up button for 2 pic options - take off green highlight, both button references remove? also button reg ref remove
 - org code + comments in/out - more extensions?
-- fill in varied custom data - add pic into proj assets to test
+- fill in varied custom data - add pic into proj assets to test, no do dirs yet though
 - adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc. fonts bold + sizes? make input more like forms. corner radius image view on add recipe? numeric keyboard mins? default n/a pic
 
 MEDIUM
@@ -22,7 +21,7 @@ MEDIUM
 LOW
 - fig update functionality - do after db?
 - fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too. can do user defaults or firebase if need
-- fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions?
+- fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions? Also add directions into mock data
 - fig UI constraints
 
 OPTIONAL/SMALL
