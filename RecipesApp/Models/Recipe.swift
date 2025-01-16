@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct Recipe {
+    let id: UUID = UUID()
     var name: String
     var prepTime: Int
     var image: UIImage?

@@ -39,38 +39,74 @@ class RecipesViewController: UIViewController {
         recipesTableView.reloadData() // still need after db load?
     }
     
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "AddRecipeSegue" {
+//            if let addRecipeNavController = segue.destination as? UINavigationController,
+//               let addRecipeViewController = addRecipeNavController.topViewController as? AddRecipeViewController {
+//                addRecipeViewController.recipeToEdit = sender as? Recipe // test if this needed
+//                addRecipeViewController.onAddRecipe = { [weak self] recipe in
+//                    
+//                    // if update, else add new
+//                    
+//                    if ((self?.recipes.firstIndex(where: {$0.name == recipe.name})) != nil) {
+//                        let index = Int((self?.recipes.firstIndex(where: {$0.name == recipe.name}) ?? self?.recipes.count)!)
+//                        // force unwrap above bad? do as if let?
+//                        // also will need diff identifier to edit, maybe when db? // do if let or guard let?
+//                        self?.recipes.remove(at: index)
+//                        self?.recipes.insert(recipe, at: index)
+//                    }
+//                    else {
+//                        self?.recipes.append(recipe)
+//                    }
+//                    
+//                    self?.recipesTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+//                    
+//                    //self?.recipes.append(recipe)
+//                    //self?.recipesTableView.reloadData()
+//                }
+//            }
+//        } 
+//        else if segue.identifier == "RecipeDetailSegue" { // keep if else style same line or put above?
+//            guard let selectedIndexPath = recipesTableView.indexPathForSelectedRow else {return}
+//            let selectedRecipe = recipes[selectedIndexPath.row]
+//            guard let recipeDetailViewController = segue.destination as? RecipeDetailViewController else {return}
+//            recipeDetailViewController.recipe = selectedRecipe
+//        }
+//    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "AddRecipeSegue" {
             if let addRecipeNavController = segue.destination as? UINavigationController,
                let addRecipeViewController = addRecipeNavController.topViewController as? AddRecipeViewController {
-                addRecipeViewController.recipeToEdit = sender as? Recipe // test if this needed
+                
+                // Passing recipe to edit if provided
+                if let recipeToEdit = sender as? Recipe {
+                    addRecipeViewController.recipeToEdit = recipeToEdit
+                }
+                
                 addRecipeViewController.onAddRecipe = { [weak self] recipe in
+                    guard let self = self else { return }
                     
-                    // if update, else add new
-                    
-                    if ((self?.recipes.firstIndex(where: {$0.name == recipe.name})) != nil) {
-                        let index = Int((self?.recipes.firstIndex(where: {$0.name == recipe.name}) ?? self?.recipes.count)!)
-                        // force unwrap above bad? do as if let?
-                        // also will need diff identifier to edit, maybe when db? // do if let or guard let?
-                        self?.recipes.remove(at: index)
-                        self?.recipes.insert(recipe, at: index)
-                    }
-                    else {
-                        self?.recipes.append(recipe)
+                    // Check if the recipe exists and determine action
+                    if let index = self.recipes.firstIndex(where: { $0.id == recipe.id }) {
+                        // Update existing recipe
+                        self.recipes[index] = recipe
+                    } else {
+                        // Add new recipe
+                        self.recipes.append(recipe)
                     }
                     
-                    self?.recipesTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-                    
-                    //self?.recipes.append(recipe)
-                    //self?.recipesTableView.reloadData()
+                    // Refresh the table view
+                    self.recipesTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                 }
             }
-        } 
-        else if segue.identifier == "RecipeDetailSegue" { // keep if else style same line or put above?
-            guard let selectedIndexPath = recipesTableView.indexPathForSelectedRow else {return}
-            let selectedRecipe = recipes[selectedIndexPath.row]
-            guard let recipeDetailViewController = segue.destination as? RecipeDetailViewController else {return}
-            recipeDetailViewController.recipe = selectedRecipe
+        } else if segue.identifier == "RecipeDetailSegue" {
+            guard let selectedIndexPath = recipesTableView.indexPathForSelectedRow,
+                  let recipeDetailViewController = segue.destination as? RecipeDetailViewController else {
+                return
+            }
+            // Pass the selected recipe
+            recipeDetailViewController.recipe = recipes[selectedIndexPath.row]
         }
     }
 }
@@ -92,6 +128,8 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
         
         return cell
     }
+
+// FIG ABOVE FIRST
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        guard let addRecipeViewController = segue.destination as? AddRecipeViewController else {return}
