@@ -61,10 +61,10 @@
 		2F8B9DD92C20A9AE005969CE /* RecipesApp */ = {
 			isa = PBXGroup;
 			children = (
-				2F3487332D39C19D00A9A990 /* View Controllers */,
-				2F3487322D39C18900A9A990 /* Models */,
 				2F8B9DDA2C20A9AE005969CE /* AppDelegate.swift */,
 				2F8B9DDC2C20A9AE005969CE /* SceneDelegate.swift */,
+				2F3487332D39C19D00A9A990 /* View Controllers */,
+				2F3487322D39C18900A9A990 /* Models */,
 				2F8B9DE02C20A9AE005969CE /* Main.storyboard */,
 				2F8B9DE32C20A9B0005969CE /* Assets.xcassets */,
 				2F8B9DE52C20A9B0005969CE /* LaunchScreen.storyboard */,
