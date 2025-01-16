@@ -10,12 +10,14 @@ import PhotosUI
 
 class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var prepTimeTextField: UITextField!
     @IBOutlet weak var attachPhotoButton: UIButton!
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var directionsTextView: UITextView!
     
+    var recipeToEdit: Recipe?
     var onAddRecipe: ((Recipe) -> Void)? = nil
     var recipeImage: UIImage?
     
@@ -38,8 +40,16 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     } */
          
         // Do any additional setup after loading the view.
+        if let recipe = recipeToEdit {
+            nameTextField.text = recipe.name
+            prepTimeTextField.text = "\(recipe.prepTime)" // does this affect stuff w/ not string?
+            recipeImageView.image = recipe.image
+            directionsTextView.text = recipe.directions
+            
+            self.title = "Edit Recipe"
+            addButton.title = "Done"
+        }
     }
-    
     
     // do these as extension? and do conformance inheritance in it too
     
@@ -48,11 +58,22 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         textField.resignFirstResponder()
         return true
     }
-    
+/*
     // Implement the delegate method to handle the Return key press
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
             textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+*/
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // Check if the replacement text is the newline character
+        if text == "\n" {
+            // Add a newline character to the text view
+            textView.text.append("\n")
+            // Prevent the default behavior of the Return key
             return false
         }
         return true
@@ -146,8 +167,20 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         else {
             newImage = UIImage(named: "pizza image") // make default image for no picture found - put in proj. also take out stock ones?
         }
+        
+        var recipe: Recipe // to top of func
+        
+        if let editedRecipe = recipeToEdit {
+            recipe = editedRecipe
+            
+            recipe.name = name
+            recipe.prepTime = prepTimeNum
+            recipe.image = recipeImageView.image // like this or diff?
+            recipe.directions = directions
+        } else {
+            recipe = Recipe(name: name, prepTime: prepTimeNum, image: newImage, directions: directions)
+        }
 
-        let recipe = Recipe(name: name, prepTime: prepTimeNum, image: newImage, directions: directions)
         onAddRecipe?(recipe)
         dismiss(animated: true)
     }
@@ -156,7 +189,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         let alertController = UIAlertController(
             title: "Error",
             message: "Name, Prep Time, and Directions fields must be filled out",
-            preferredStyle: .alert) // caps need?
+            preferredStyle: .alert) // caps need? just say all fields?
 
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
@@ -226,7 +259,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate {
             // need to do dispatch? check lab example
             DispatchQueue.main.async { [weak self] in
                 self?.recipeImage = image   // need "?" after image?
-                self?.attachPhotoButton.tintColor = .green
+                //self?.attachPhotoButton.tintColor = .green
                 self?.recipeImageView.image = image
 /*               // Set the picked image and location on the task
                 self?.task.set(image, with: location)
@@ -293,3 +326,7 @@ extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigation
 
 // put all photos stuff as extension? maybe show photo after pick?
 // feedback for after user uploads photo?
+
+// more funcs + extensions - alerts extension
+
+// take off edit for now?

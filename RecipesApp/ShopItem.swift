@@ -21,22 +21,18 @@ struct ShopItem {
 extension ShopItem {
     static var mockedShopItems: [ShopItem] {
         return [
-            ShopItem(name: "first", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "middle", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "bread", quantity: 1),
-            ShopItem(name: "last", quantity: 1)
+            ShopItem(name: "Milk", quantity: 1),
+            ShopItem(name: "Cheese", quantity: 1),
+            ShopItem(name: "Bread", quantity: 2),
+            ShopItem(name: "Dish Soap", quantity: 1),
+            ShopItem(name: "Eggs - dozen pack", quantity: 1),
+            ShopItem(name: "Apples", quantity: 4),
+            ShopItem(name: "Rice", quantity: 1),
+            ShopItem(name: "Ground Beef - 1 lb", quantity: 1),
+            ShopItem(name: "Carrots", quantity: 2),
+            ShopItem(name: "Water - 24 Pack", quantity: 1),
+            ShopItem(name: "Coffee", quantity: 1),
+            ShopItem(name: "Greek Yogurt", quantity: 3),
         ]
     }
 }

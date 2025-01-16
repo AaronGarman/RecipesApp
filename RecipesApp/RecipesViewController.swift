@@ -24,7 +24,7 @@ class RecipesViewController: UIViewController {
         
         //recipesTableView.tableHeaderView = UIView()
         recipesTableView.dataSource = self
-        recipesTableView.delegate = self
+        recipesTableView.delegate = self // need?
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -43,9 +43,26 @@ class RecipesViewController: UIViewController {
         if segue.identifier == "AddRecipeSegue" {
             if let addRecipeNavController = segue.destination as? UINavigationController,
                let addRecipeViewController = addRecipeNavController.topViewController as? AddRecipeViewController {
+                addRecipeViewController.recipeToEdit = sender as? Recipe // test if this needed
                 addRecipeViewController.onAddRecipe = { [weak self] recipe in
-                    self?.recipes.append(recipe)
-                    self?.recipesTableView.reloadData()
+                    
+                    // if update, else add new
+                    
+                    if ((self?.recipes.firstIndex(where: {$0.name == recipe.name})) != nil) {
+                        let index = Int((self?.recipes.firstIndex(where: {$0.name == recipe.name}) ?? self?.recipes.count)!)
+                        // force unwrap above bad? do as if let?
+                        // also will need diff identifier to edit, maybe when db? // do if let or guard let?
+                        self?.recipes.remove(at: index)
+                        self?.recipes.insert(recipe, at: index)
+                    }
+                    else {
+                        self?.recipes.append(recipe)
+                    }
+                    
+                    self?.recipesTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                    
+                    //self?.recipes.append(recipe)
+                    //self?.recipesTableView.reloadData()
                 }
             }
         } 
@@ -77,8 +94,11 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+//        guard let addRecipeViewController = segue.destination as? AddRecipeViewController else {return}
+//        addRecipeViewController.recipeToEdit = sender as? Recipe
         let detailAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
-            self?.performSegue(withIdentifier: "AddRecipeSegue", sender: indexPath)
+            let selectedRecipe = self?.recipes[indexPath.row] // maybe this above outside of closure?
+            self?.performSegue(withIdentifier: "AddRecipeSegue", sender: selectedRecipe)
             completionHandler(true)
         }
         detailAction.backgroundColor = .orange
@@ -90,7 +110,7 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
+        if editingStyle == .delete {
                 // Update the data model
                 recipes.remove(at: indexPath.row)
                 

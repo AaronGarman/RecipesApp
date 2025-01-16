@@ -45,6 +45,10 @@ class RecipeDetailViewController: UIViewController {
         nameLabel.text = recipe.name
         prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
         directionsTextView.text = recipe.directions
+        
+        directionsTextView.layer.borderColor = UIColor.black.cgColor
+        directionsTextView.layer.borderWidth = 1.0
+        directionsTextView.layer.cornerRadius = 5.0 // decide value?
 
     }
 }

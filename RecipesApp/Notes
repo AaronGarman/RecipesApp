@@ -21,11 +21,11 @@ MEDIUM
 LOW
 - fig update functionality - do after db?
 - fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too. can do user defaults or firebase if need
-- fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions? Also add directions into mock data
+- fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions? Also add directions into mock data - consraints on box width to keep text format?
 - fig UI constraints
 
 OPTIONAL/SMALL
-- red tab bar highlight
+- red tab bar highlight - tint color change as whole? or in it specifically?
 - decide if check button on shopping list, maybe also delete all button? how reload data? Just call reload data?
 - decide if do filter button for list (all, food, drink, dessert)
 - aspect fill all images
@@ -40,3 +40,30 @@ GENERAL
 - splash screen + app logo
 - org code at end
 - folders for files?
+
+Allow user click off text boxes n also return, but for directions do enter for newline
+Return for newline, but as stop w others
+Tap off too close keyboard
+Keyboard up methods or scrollview
+3 references rid? No green too
+Qty > 0 error check on shop item
+
+Button highlight out n some stuff, others keep. Delete button reference
+Maybe just keep code rn then? Adjust
+
+Take off green highlight n 3 references out w button pop up. Can do green off n that ref rn
+Just keep changes for now?
+
+Finish proj then db last?
+
+
+Mains left do:
+- camera pop up button
+- keyboard down after type or click off, keyboard no block screen too - scroll view?
+- shopping functionality add + update
+- constraints
+- borders n backgrounds
+- database: user auth, add, update, delete
+
+
+- do end editing as IBAction like in ios102 lab 2?
