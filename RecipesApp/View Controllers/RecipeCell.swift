@@ -25,4 +25,10 @@ class RecipeCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    func configure(with recipe: Recipe) {
+        nameLabel.text = recipe.name
+        prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
+        recipeImageView.image = recipe.image
+    }
 }

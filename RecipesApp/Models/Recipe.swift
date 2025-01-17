@@ -14,13 +14,7 @@ struct Recipe {
     var prepTime: Int
     var image: UIImage?
     var directions: String
-    
-    // add/delete more data items as need
-    
-    // need init or set?
 }
-
-// make all mock data unique
 
 extension Recipe {
     static var mockedRecipes: [Recipe] {
@@ -37,5 +31,4 @@ extension Recipe {
     }
 }
 
-// take off numbers in image names n extra images out - eventually all in db anyways
-// maybe navigation title do recipe name rather than below on detail?
+// take off numbers in image names n extra images out

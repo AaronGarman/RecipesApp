@@ -31,6 +31,7 @@ OPTIONAL/SMALL
 - aspect fill all images
 - empty holder text on both tableviews
 - ui background + colors, images any?
+// maybe navigation title do recipe name rather than below on detail?
 
 GENERAL
 - comments in + out
@@ -59,11 +60,16 @@ Finish proj then db last?
 
 Mains left do:
 - camera pop up button
-- keyboard down after type or click off, keyboard no block screen too - scroll view?
 - shopping functionality add + update
 - constraints
 - borders n backgrounds
+---
+- keyboard down after type or click off, keyboard no block screen too - scroll view?
+---
 - database: user auth, add, update, delete
 
 
 - do end editing as IBAction like in ios102 lab 2?
+
+
+3 files + org here + push

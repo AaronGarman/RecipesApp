@@ -13,7 +13,7 @@ class RecipesViewController: UIViewController {
     
     private var recipes: [Recipe] = [] {
         didSet {
-            //emptyStateLabel.isHidden = !recipes.isEmpty // add in
+            //emptyStateLabel.isHidden = !recipes.isEmpty // add in?
         }
     }
     
@@ -22,9 +22,9 @@ class RecipesViewController: UIViewController {
         
         recipes = Recipe.mockedRecipes
         
-        //recipesTableView.tableHeaderView = UIView()
+        //recipesTableView.tableHeaderView = UIView() // UI styling - try?
         recipesTableView.dataSource = self
-        recipesTableView.delegate = self // need?
+        recipesTableView.delegate = self
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -36,7 +36,7 @@ class RecipesViewController: UIViewController {
             recipesTableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
         
-        recipesTableView.reloadData() // still need after db load?
+        //recipesTableView.reloadData() // no need?
     }
     
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -119,17 +119,16 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = recipesTableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as! RecipeCell
-        let recipe = recipes[indexPath.row]
+        guard let cell = recipesTableView.dequeueReusableCell(withIdentifier: "RecipeCell", for: indexPath) as? RecipeCell else {
+            fatalError("Unable to dequeue Recipe Cell")
+        }
         
-        cell.nameLabel.text = recipe.name
-        cell.prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
-        cell.recipeImageView.image = recipe.image
-        
+        cell.configure(with: recipes[indexPath.row])
+
         return cell
     }
 
-// FIG ABOVE FIRST
+// FIG ABOVE FIRST - only prepare now?
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
 //        guard let addRecipeViewController = segue.destination as? AddRecipeViewController else {return}
