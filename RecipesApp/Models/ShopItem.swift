@@ -10,13 +10,9 @@ import Foundation
 struct ShopItem {
     let name: String
     let quantity: Int
-    
-    // add/delete more data items as need
-    
-    // need init or set?
 }
 
-// make all mock data unique
+// mock data for testing
 
 extension ShopItem {
     static var mockedShopItems: [ShopItem] {
@@ -36,4 +32,3 @@ extension ShopItem {
         ]
     }
 }
-
