@@ -18,6 +18,7 @@ SMALL
 - mock directions?
 - Aspect fill all images
 - more extensions n functions?
+- default image
 
 ----------
 
@@ -33,6 +34,7 @@ GENERAL
 - print out data? print v logs?
 - org code at end
 - folders for files? sep folders tableview cells?
+- no need reload data in view will appear? would be for after add?
 
 
 

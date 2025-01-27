@@ -11,18 +11,13 @@ class RecipesViewController: UIViewController {
 
     @IBOutlet weak var recipesTableView: UITableView!
     
-    private var recipes: [Recipe] = [] {
-        didSet {
-            //emptyStateLabel.isHidden = !recipes.isEmpty // add in?
-        }
-    }
+    private var recipes: [Recipe] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         recipes = Recipe.mockedRecipes
         
-        //recipesTableView.tableHeaderView = UIView() // UI styling - try?
         recipesTableView.dataSource = self
         recipesTableView.delegate = self
         
@@ -35,8 +30,6 @@ class RecipesViewController: UIViewController {
         if let selectedIndexPath = recipesTableView.indexPathForSelectedRow {
             recipesTableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
-        
-        //recipesTableView.reloadData() // no need?
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -50,20 +43,19 @@ class RecipesViewController: UIViewController {
                 }
                 
                 addRecipeViewController.onAddRecipe = { [weak self] recipe in
-                    guard let self = self else { return }
                     
                     // Check if the recipe exists and determine action
-                    if let index = self.recipes.firstIndex(where: { $0.id == recipe.id }) {
+                    if let index = self?.recipes.firstIndex(where: { $0.id == recipe.id }) {
                         // Update existing recipe
-                        self.recipes[index] = recipe
+                        self?.recipes[index] = recipe
                     }
                     else {
                         // Add new recipe
-                        self.recipes.append(recipe)
+                        self?.recipes.append(recipe)
                     }
                     
                     // Refresh the table view
-                    self.recipesTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+                    self?.recipesTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
                 }
             }
         }
@@ -92,14 +84,10 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
 
         return cell
     }
-
-// FIG ABOVE FIRST - only prepare now?
     
     func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-//        guard let addRecipeViewController = segue.destination as? AddRecipeViewController else {return}
-//        addRecipeViewController.recipeToEdit = sender as? Recipe
+        let selectedRecipe = recipes[indexPath.row]
         let detailAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
-            let selectedRecipe = self?.recipes[indexPath.row] // maybe this above outside of closure?
             self?.performSegue(withIdentifier: "AddRecipeSegue", sender: selectedRecipe)
             completionHandler(true)
         }
@@ -118,8 +106,6 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
                 
                 // Delete the row from the table view
                 tableView.deleteRows(at: [indexPath], with: .fade)
-                
-                print(recipes.count)
-            }
+        }
     }
 }
