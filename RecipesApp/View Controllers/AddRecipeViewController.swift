@@ -327,6 +327,6 @@ extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigation
 // put all photos stuff as extension? maybe show photo after pick?
 // feedback for after user uploads photo?
 
-// more funcs + extensions - alerts extension
+// more funcs + extensions all files - alerts extension
 
 // take off edit for now?

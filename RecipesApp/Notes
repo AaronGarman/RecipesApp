@@ -1,76 +1,58 @@
-RECHECK
-- check if view controller comment is in test proj
-- check tableview setup - unit 5 lab
-- check nav setup and to detail screen - unit 6 lab
-- tab bar: check unit 7
-- detail screen - constraints, mostly stack view. form or align center? Maybe no nav title or image put on top? name label on top of image or maybe even take out?
-- add screen (modal) + functionality and constraints - in viewWillAppear(), do tableview.reloaddata() - also look into 3 ways pass data back. make add screens more like forms w/ placeholder text over titles. also add empty placeholder texts for both add screens
-- fig add user pictures - unit 1 lab ios 102, make force square photo?
-
 HIGH
-- add functionality for shopping + update add UI
-- pop up button for 2 pic options - take off green highlight, both button references remove? also button reg ref remove
-- org code + comments in/out - more extensions?
-- fill in varied custom data - add pic into proj assets to test, no do dirs yet though
-- adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc. fonts bold + sizes? make input more like forms. corner radius image view on add recipe? numeric keyboard mins? default n/a pic
+- Camera pull down button for options
+- Borders + backgrounds + UI elements adjust, colors?
+- Shopping functionality - add + update - Qty > 0 error check on shop item
+- Refactor update functionality
+- Recheck code all - comments in + out
 
 MEDIUM
-- keyboard down after type + no block entry - scrollview or diff? also tap out of box keyboard down too?
-- fig user login - unit 2 lab ios 102
+- Constraints all - stack views
+- Keyboard down after type or click off, keyboard no block screen too - scroll view? end editing like IBAction in ios102 lab 2?
 
 LOW
-- fig update functionality - do after db?
-- fig parse database - unit 3 lab ios 102, update for all crud ops, delete out of db too. can do user defaults or firebase if need
-- fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions? Also add directions into mock data - consraints on box width to keep text format?
-- fig UI constraints
+- User auth
+- Parse Database - create, update, delete - worst case just do user defaults
 
-OPTIONAL/SMALL
-- red tab bar highlight - tint color change as whole? or in it specifically?
-- decide if check button on shopping list, maybe also delete all button? how reload data? Just call reload data?
-- decide if do filter button for list (all, food, drink, dessert)
-- aspect fill all images
-- empty holder text on both tableviews
-- ui background + colors, images any?
-// maybe navigation title do recipe name rather than below on detail?
-sep folder for tableview cells?
+SMALL
+- Maybe navigation title do recipe name rather than below on detail? or keep as is, or no nav title. image or name on top?
+- mock directions?
+- Aspect fill all images
+- more extensions n functions?
+
+----------
+
+OPTIONAL
+- Filter button for list (all, food, drink, dessert)
+- splash screen + app logo
+- fix constraint warnings
+- maybe directions as indiv strings n tableview?
+- Empty holder text on both tableviews
 
 GENERAL
 - comments in + out
 - print out data? print v logs?
-- fix constraint warnings
-- physical device test
-- splash screen + app logo
 - org code at end
-- folders for files?
+- folders for files? sep folders tableview cells?
+
+
+
+
+
+
+
+HIGH
+- pop up button for 2 pic options - take off green highlight, both button references remove? also button reg ref remove - 3 ref total rid
+- adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc. fonts bold + sizes? corner radius image view on add recipe? numeric keyboard mins? default n/a pic
+
+MEDIUM
+- keyboard down after type + no block entry - scrollview or diff? also tap out of box keyboard down too?
+
+LOW
+- fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions? Also add directions into mock data - consraints on box width to keep text format?
 
 Allow user click off text boxes n also return, but for directions do enter for newline
 Return for newline, but as stop w others
 Tap off too close keyboard
 Keyboard up methods or scrollview
-3 references rid? No green too
-Qty > 0 error check on shop item
 
 Button highlight out n some stuff, others keep. Delete button reference
-Maybe just keep code rn then? Adjust
-
-Take off green highlight n 3 references out w button pop up. Can do green off n that ref rn
-Just keep changes for now?
-
-Finish proj then db last?
-
-
-Mains left do:
-- camera pop up button
-- shopping functionality add + update
-- constraints
-- borders n backgrounds
----
-- keyboard down after type or click off, keyboard no block screen too - scroll view?
----
-- database: user auth, add, update, delete
-
-
-- do end editing as IBAction like in ios102 lab 2?
-
-
-3 files + org here + push
