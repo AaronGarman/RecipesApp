@@ -52,6 +52,9 @@ class AddShopItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        quantityStepper.value = 1
+        quantityStepper.minimumValue = 1
+        
         if let shopItem = shopItemToEdit {
             nameTextField.text = shopItem.name
             quantityLabel.text = ("\(shopItem.quantity)")

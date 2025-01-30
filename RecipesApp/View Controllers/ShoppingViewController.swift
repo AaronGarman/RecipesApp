@@ -19,7 +19,7 @@ class ShoppingViewController: UIViewController {
         shopItems = ShopItem.mockedShopItems
         
         shoppingTableView.dataSource = self
-        //shoppingTableView.delegate = self
+        shoppingTableView.delegate = self
         
         navigationController?.navigationBar.prefersLargeTitles = true
     }
@@ -72,7 +72,7 @@ class ShoppingViewController: UIViewController {
 
 // Methods for conformance to Table View Protocol
 
-extension ShoppingViewController: UITableViewDataSource {
+extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return shopItems.count
     }
@@ -87,6 +87,20 @@ extension ShoppingViewController: UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let selectedShopItem = shopItems[indexPath.row]
+        let detailAction = UIContextualAction(style: .normal, title: "Edit") { [weak self] (action, view, completionHandler) in
+            self?.performSegue(withIdentifier: "AddShopItemSegue", sender: selectedShopItem)
+            completionHandler(true)
+        }
+        detailAction.backgroundColor = .orange
+
+        let configuration = UISwipeActionsConfiguration(actions: [detailAction])
+        configuration.performsFirstActionWithFullSwipe = true
+
+        return configuration
+    }
+    
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
                 // Update the data model
@@ -97,3 +111,5 @@ extension ShoppingViewController: UITableViewDataSource {
         }
     }
 }
+
+// maybe refactor shopItem to just item?
