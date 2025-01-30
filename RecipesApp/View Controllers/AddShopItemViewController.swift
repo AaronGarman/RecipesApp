@@ -26,7 +26,9 @@ class AddShopItemViewController: UIViewController {
         guard let name = nameTextField.text,
               let quantity = quantityLabel.text,
                 !name.isEmpty,
-                !quantity.isEmpty else { return }
+                !quantity.isEmpty else {
+            showEmptyFieldsAlert()
+            return }
         
         guard let quantityNum = Int(quantity) else { return }
         
@@ -67,6 +69,18 @@ class AddShopItemViewController: UIViewController {
         }
 
         // Do any additional setup after loading the view.
+    }
+    
+    private func showEmptyFieldsAlert() {
+        let alertController = UIAlertController(
+            title: "Error",
+            message: "Name field must be filled out",
+            preferredStyle: .alert) // caps need? just say all fields?
+
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true)
     }
     
     // on add check value stepper > 0 (cast to int) and text input ok
