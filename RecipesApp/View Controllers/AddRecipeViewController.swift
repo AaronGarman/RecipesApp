@@ -13,7 +13,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var prepTimeTextField: UITextField!
-    @IBOutlet weak var attachPhotoButton: UIButton!
+    @IBOutlet weak var attachImageButton: UIButton! // vs attach photo?
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var directionsTextView: UITextView!
     
@@ -37,6 +37,17 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         nameTextField.delegate = self
         prepTimeTextField.delegate = self
         directionsTextView.delegate = self
+        
+        // keep "Choose an option"? title: "Choose an Option",
+        // Choose from photos v diff?
+        let menuItems = UIMenu(options: .displayInline, children: [
+            UIAction(title: "Choose From Photos", image: UIImage(systemName: "photo"), handler: { _ in self.attachImage() }),
+            UIAction(title: "Open Camera", image: UIImage(systemName: "camera"), handler: { _ in self.openCamera() })
+        ])
+        
+        // Assign menu to button
+        attachImageButton.menu = menuItems
+        attachImageButton.showsMenuAsPrimaryAction = true  // Enables direct menu display when tapped
     /*
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         directionsTextView.addGestureRecognizer(tapGesture)
@@ -52,6 +63,59 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             self.title = "Edit Recipe"
             addButton.title = "Done"
         }
+    }
+    
+    func attachImage() {
+        if PHPhotoLibrary.authorizationStatus(for: .readWrite) != .authorized {
+            // Request photo library access
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
+                switch status {
+                case .authorized:
+                    // The user authorized access to their photo library
+                    // show picker (on main thread)
+                    DispatchQueue.main.async {
+                        self?.showImagePicker()
+                    }
+                default:
+                    // show settings alert (on main thread)
+                    DispatchQueue.main.async {
+                        // Helper method to show settings alert
+                        self?.showGoToSettingsAlert()
+                    }
+                }
+            }
+        } else {
+            // Show photo picker
+            showImagePicker()
+        }
+    }
+    
+    // why do these 2 funcs actively change pic on image view? review why
+    
+    func openCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            print("❌📷 Camera not available")
+            return
+        }
+
+        // Instantiate the image picker
+        let imagePicker = UIImagePickerController()
+
+        // Shows the camera (vs the photo library)
+        imagePicker.sourceType = .camera
+
+        // Allows user to edit image within image picker flow (i.e. crop, etc.)
+        // If you don't want to allow editing, you can leave out this line as the default value of `allowsEditing` is false
+        imagePicker.allowsEditing = true
+
+        // The image picker (camera in this case) will return captured photos via it's delegate method to it's assigned delegate.
+        // Delegate assignee must conform and implement both `UIImagePickerControllerDelegate` and `UINavigationControllerDelegate`
+        imagePicker.delegate = self
+
+        // Present the image picker (camera)
+        present(imagePicker, animated: true)
+        
+        // do these as funcs? reorder funcs too
     }
     
     // do these as extension? and do conformance inheritance in it too
@@ -85,55 +149,6 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     // Dismiss the keyboard when the tap gesture is recognized
     @objc func dismissKeyboard() {
         view.endEditing(true)
-    }
-    
-    @IBAction func didTapAttachImageButton(_ sender: Any) {
-        if PHPhotoLibrary.authorizationStatus(for: .readWrite) != .authorized {
-            // Request photo library access
-            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
-                switch status {
-                case .authorized:
-                    // The user authorized access to their photo library
-                    // show picker (on main thread)
-                    DispatchQueue.main.async {
-                        self?.showImagePicker()
-                    }
-                default:
-                    // show settings alert (on main thread)
-                    DispatchQueue.main.async {
-                        // Helper method to show settings alert
-                        self?.showGoToSettingsAlert()
-                    }
-                }
-            }
-        } else {
-            // Show photo picker
-            showImagePicker()
-        }
-    }
-    
-    @IBAction func didTapOpenCameraButton(_ sender: Any) {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            print("❌📷 Camera not available")
-            return
-        }
-
-        // Instantiate the image picker
-        let imagePicker = UIImagePickerController()
-
-        // Shows the camera (vs the photo library)
-        imagePicker.sourceType = .camera
-
-        // Allows user to edit image within image picker flow (i.e. crop, etc.)
-        // If you don't want to allow editing, you can leave out this line as the default value of `allowsEditing` is false
-        imagePicker.allowsEditing = true
-
-        // The image picker (camera in this case) will return captured photos via it's delegate method to it's assigned delegate.
-        // Delegate assignee must conform and implement both `UIImagePickerControllerDelegate` and `UINavigationControllerDelegate`
-        imagePicker.delegate = self
-
-        // Present the image picker (camera)
-        present(imagePicker, animated: true)
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {

@@ -41,7 +41,6 @@ GENERAL
 
 
 HIGH
-- pop up button for 2 pic options - take off green highlight, both button references remove? also button reg ref remove - 3 ref total rid
 - adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc. fonts bold + sizes? corner radius image view on add recipe? numeric keyboard mins? default n/a pic
 
 MEDIUM
@@ -54,5 +53,3 @@ Allow user click off text boxes n also return, but for directions do enter for n
 Return for newline, but as stop w others
 Tap off too close keyboard
 Keyboard up methods or scrollview
-
-Button highlight out n some stuff, others keep. Delete button reference

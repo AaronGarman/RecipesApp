@@ -5,6 +5,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="UIMenu" message="Requires Xcode 11 or later." minToolsVersion="11.0" requiredIntegratedClassName="UICommandDiff"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -102,17 +103,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y8t-Ow-sf5">
-                                <rect key="frame" x="41" y="168" width="120" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Attach Image">
-                                    <fontDescription key="titleFontDescription" type="system" pointSize="16"/>
-                                </buttonConfiguration>
-                                <connections>
-                                    <action selector="didTapAttachImageButton:" destination="kGt-Ik-ASz" eventType="touchUpInside" id="4bJ-MA-2u4"/>
-                                </connections>
-                            </button>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fhQ-ll-bTg">
                                 <rect key="frame" x="16" y="477" width="360" height="250"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -131,14 +121,16 @@
                                 <rect key="frame" x="109" y="231" width="175" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Thy-dR-BSt">
-                                <rect key="frame" x="210" y="168" width="130" height="35"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oh4-R1-qha">
+                                <rect key="frame" x="144" y="170" width="91" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Open Camera"/>
-                                <connections>
-                                    <action selector="didTapOpenCameraButton:" destination="kGt-Ik-ASz" eventType="touchUpInside" id="uVa-Qg-kj4"/>
-                                </connections>
+                                <menu key="menu" id="9i9-GR-pM3">
+                                    <children>
+                                        <command title="Item 1" id="sBM-YX-3aT"/>
+                                        <command title="Item 2" id="gwt-sI-uuX"/>
+                                    </children>
+                                </menu>
+                                <state key="normal" title="Attach Image"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fMj-ij-sak"/>
@@ -158,7 +150,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="SIT-F7-kMC" id="kkz-Be-3CW"/>
-                        <outlet property="attachPhotoButton" destination="Y8t-Ow-sf5" id="CEQ-d0-LDh"/>
+                        <outlet property="attachImageButton" destination="Oh4-R1-qha" id="737-at-wsI"/>
                         <outlet property="directionsTextView" destination="fhQ-ll-bTg" id="r3o-an-hkV"/>
                         <outlet property="nameTextField" destination="Vxj-bx-vED" id="g0Z-6l-R8S"/>
                         <outlet property="prepTimeTextField" destination="mQf-ER-LKH" id="6fs-PI-4vY"/>
