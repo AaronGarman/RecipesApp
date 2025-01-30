@@ -24,6 +24,9 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // maybe border on image? default image?
+//        recipeImageView.layer.borderColor = UIColor.lightGray.cgColor
+//        recipeImageView.layer.borderWidth = 1.0
         recipeImageView.layer.cornerRadius = 5.0 // decide value?
         
         // Add border to the UITextView - keep v make as rules in storyboard? sends warning in console?
