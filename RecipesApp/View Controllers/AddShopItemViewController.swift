@@ -9,8 +9,10 @@ import UIKit
 
 class AddShopItemViewController: UIViewController {
 
+    @IBOutlet weak var addButton: UIBarButtonItem!
+    @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var quantityLabel: UILabel!
-    
+    @IBOutlet weak var quantityStepper: UIStepper!
     
     @IBAction func didTapQuantityStepper(_ sender: UIStepper) {
         quantityLabel.text = "\(Int(sender.value))"
@@ -20,11 +22,50 @@ class AddShopItemViewController: UIViewController {
         dismiss(animated: true)
     }
     
+    @IBAction func didTapAddButton(_ sender: Any) {
+        guard let name = nameTextField.text,
+              let quantity = quantityLabel.text,
+                !name.isEmpty,
+                !quantity.isEmpty else { return }
+        
+        guard let quantityNum = Int(quantity) else { return }
+        
+        var shopItem: ShopItem // maybe just call item?
+        
+        if let editedShopItem = shopItemToEdit {
+            shopItem = editedShopItem
+            
+            shopItem.name = name
+            shopItem.quantity = quantityNum
+        }
+        else {
+            shopItem = ShopItem(name: name, quantity: quantityNum)
+        }
+        
+        onAddShopItem?(shopItem)
+        dismiss(animated: true)
+    }
+    
+    var shopItemToEdit: ShopItem?
+    var onAddShopItem: ((ShopItem) -> Void)? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if let shopItem = shopItemToEdit {
+            nameTextField.text = shopItem.name
+            quantityLabel.text = ("\(shopItem.quantity)")
+            
+            // stepper value somehow?
+            quantityStepper.value = Double(shopItem.quantity)
+            
+            self.title = "Edit Shop Item"
+            addButton.title = "Done" // update? other one too
+        }
 
         // Do any additional setup after loading the view.
     }
     
     // on add check value stepper > 0 (cast to int) and text input ok
+    // fig alerts at end
 }

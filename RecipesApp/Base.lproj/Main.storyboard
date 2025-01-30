@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23094" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="482-PH-53Y">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="482-PH-53Y">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23084"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -272,7 +272,7 @@
                     <navigationItem key="navigationItem" title="Shopping" id="8zE-IU-UKn">
                         <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="vXO-3O-1eb">
                             <connections>
-                                <segue destination="1aY-Ou-5Qt" kind="presentation" id="zNt-ih-UZe"/>
+                                <segue destination="1aY-Ou-5Qt" kind="presentation" identifier="AddShopItemSegue" id="zNt-ih-UZe"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -329,10 +329,17 @@
                                 <action selector="didTapCancelButton:" destination="83L-cT-3Ob" id="TGq-49-e3F"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Add" id="cIS-ep-iyi"/>
+                        <barButtonItem key="rightBarButtonItem" title="Add" id="cIS-ep-iyi">
+                            <connections>
+                                <action selector="didTapAddButton:" destination="83L-cT-3Ob" id="DAK-Mf-BZk"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addButton" destination="cIS-ep-iyi" id="rva-aT-Ohl"/>
+                        <outlet property="nameTextField" destination="25r-BM-eZU" id="Flf-u7-bBr"/>
                         <outlet property="quantityLabel" destination="UuD-hk-zzR" id="l6W-Yq-ArG"/>
+                        <outlet property="quantityStepper" destination="rEg-El-QTx" id="EqZ-yF-Xed"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Rs-eE-2kf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -444,7 +451,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

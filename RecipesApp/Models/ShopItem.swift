@@ -8,8 +8,9 @@
 import Foundation
 
 struct ShopItem {
-    let name: String
-    let quantity: Int
+    let id: UUID = UUID()
+    var name: String
+    var quantity: Int
 }
 
 // mock data for testing
