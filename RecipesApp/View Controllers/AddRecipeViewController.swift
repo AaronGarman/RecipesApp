@@ -13,7 +13,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var prepTimeTextField: UITextField!
-    @IBOutlet weak var attachImageButton: UIButton! // vs attach photo?
+    @IBOutlet weak var attachPhotoButton: UIButton!
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var directionsTextView: UITextView!
     
@@ -46,8 +46,8 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         ])
         
         // Assign menu to button
-        attachImageButton.menu = menuItems
-        attachImageButton.showsMenuAsPrimaryAction = true  // Enables direct menu display when tapped
+        attachPhotoButton.menu = menuItems
+        attachPhotoButton.showsMenuAsPrimaryAction = true  // Enables direct menu display when tapped
     /*
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
         directionsTextView.addGestureRecognizer(tapGesture)

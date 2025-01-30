@@ -122,7 +122,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oh4-R1-qha">
-                                <rect key="frame" x="133" y="167" width="127" height="37"/>
+                                <rect key="frame" x="133" y="169" width="127" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <menu key="menu" id="9i9-GR-pM3">
                                     <children>
@@ -131,7 +131,7 @@
                                     </children>
                                 </menu>
                                 <state key="normal" title="Attach Image"/>
-                                <buttonConfiguration key="configuration" style="tinted" title="Attach Image"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Attach Photo"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fMj-ij-sak"/>
@@ -151,7 +151,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="SIT-F7-kMC" id="kkz-Be-3CW"/>
-                        <outlet property="attachImageButton" destination="Oh4-R1-qha" id="737-at-wsI"/>
+                        <outlet property="attachPhotoButton" destination="Oh4-R1-qha" id="p0s-JY-xYV"/>
                         <outlet property="directionsTextView" destination="fhQ-ll-bTg" id="r3o-an-hkV"/>
                         <outlet property="nameTextField" destination="Vxj-bx-vED" id="g0Z-6l-R8S"/>
                         <outlet property="prepTimeTextField" destination="mQf-ER-LKH" id="6fs-PI-4vY"/>
