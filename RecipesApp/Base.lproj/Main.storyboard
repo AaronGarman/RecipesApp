@@ -122,7 +122,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oh4-R1-qha">
-                                <rect key="frame" x="144" y="170" width="91" height="35"/>
+                                <rect key="frame" x="133" y="167" width="127" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <menu key="menu" id="9i9-GR-pM3">
                                     <children>
@@ -131,6 +131,7 @@
                                     </children>
                                 </menu>
                                 <state key="normal" title="Attach Image"/>
+                                <buttonConfiguration key="configuration" style="tinted" title="Attach Image"/>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fMj-ij-sak"/>
