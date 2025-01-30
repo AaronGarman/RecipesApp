@@ -1,11 +1,10 @@
 HIGH
-- Camera pull down button for options
-- Borders + backgrounds + UI elements adjust, colors?
-- Recheck code all - comments in + out
+- Borders + backgrounds + UI elements adjust, colors? sizes, fonts/sizes, colors, placements, styling, corner radius + borders
+- Recheck code all - comments in + out, more extensions + functions
 
 MEDIUM
 - Constraints all - stack views
-- Keyboard down after type or click off, keyboard no block screen too - scroll view? end editing like IBAction in ios102 lab 2?
+- Keyboard down - after type, tap off, enter (newline for dirs), keyboard up methods or scrollview or push up screen, for no block typing too? End editing like IBAction in ios102 lab 2? Constraints on box width to keep text format? for dirs, enter to end?
 
 LOW
 - User auth
@@ -15,8 +14,8 @@ SMALL
 - Maybe navigation title do recipe name rather than below on detail? or keep as is, or no nav title. image or name on top?
 - mock directions?
 - Aspect fill all images
-- more extensions n functions?
 - default image
+- numeric keyboard mins?
 
 ----------
 
@@ -24,7 +23,7 @@ OPTIONAL
 - Filter button for list (all, food, drink, dessert)
 - splash screen + app logo
 - fix constraint warnings
-- maybe directions as indiv strings n tableview?
+- maybe directions as indiv strings n tableview? like bullets?
 - Empty holder text on both tableviews
 
 GENERAL
@@ -33,23 +32,3 @@ GENERAL
 - org code at end
 - folders for files? sep folders tableview cells?
 - no need reload data in view will appear? would be for after add?
-
-
-
-
-
-
-
-HIGH
-- adjust tableview + ui elements based on mock data - row height, fonts, font sizes, ui element placements, etc. fonts bold + sizes? corner radius image view on add recipe? numeric keyboard mins? default n/a pic
-
-MEDIUM
-- keyboard down after type + no block entry - scrollview or diff? also tap out of box keyboard down too?
-
-LOW
-- fig text into directions - press enter? bullets? or add indiv directions or parse directions either for array of strings? or upload image of directions? Also add directions into mock data - consraints on box width to keep text format?
-
-Allow user click off text boxes n also return, but for directions do enter for newline
-Return for newline, but as stop w others
-Tap off too close keyboard
-Keyboard up methods or scrollview
