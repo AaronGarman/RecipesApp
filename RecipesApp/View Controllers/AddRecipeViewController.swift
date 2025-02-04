@@ -65,58 +65,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         }
     }
     
-    func attachImage() {
-        if PHPhotoLibrary.authorizationStatus(for: .readWrite) != .authorized {
-            // Request photo library access
-            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
-                switch status {
-                case .authorized:
-                    // The user authorized access to their photo library
-                    // show picker (on main thread)
-                    DispatchQueue.main.async {
-                        self?.showImagePicker()
-                    }
-                default:
-                    // show settings alert (on main thread)
-                    DispatchQueue.main.async {
-                        // Helper method to show settings alert
-                        self?.showGoToSettingsAlert()
-                    }
-                }
-            }
-        } else {
-            // Show photo picker
-            showImagePicker()
-        }
-    }
-    
-    // why do these 2 funcs actively change pic on image view? review why
-    
-    func openCamera() {
-        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
-            print("❌📷 Camera not available")
-            return
-        }
-
-        // Instantiate the image picker
-        let imagePicker = UIImagePickerController()
-
-        // Shows the camera (vs the photo library)
-        imagePicker.sourceType = .camera
-
-        // Allows user to edit image within image picker flow (i.e. crop, etc.)
-        // If you don't want to allow editing, you can leave out this line as the default value of `allowsEditing` is false
-        imagePicker.allowsEditing = true
-
-        // The image picker (camera in this case) will return captured photos via it's delegate method to it's assigned delegate.
-        // Delegate assignee must conform and implement both `UIImagePickerControllerDelegate` and `UINavigationControllerDelegate`
-        imagePicker.delegate = self
-
-        // Present the image picker (camera)
-        present(imagePicker, animated: true)
-        
-        // do these as funcs? reorder funcs too
-    }
+    // why do these 2 funcs actively change pic on image view? review why. camera n pic funcs
     
     // do these as extension? and do conformance inheritance in it too
     
@@ -202,50 +151,35 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         onAddRecipe?(recipe)
         dismiss(animated: true)
     }
-    
-    private func showEmptyFieldsAlert() {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: "Name, Prep Time, and Directions fields must be filled out",
-            preferredStyle: .alert) // caps need? just say all fields?
-
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(okAction)
-
-        present(alertController, animated: true)
-    }
-
-    private func showNotNumberAlert() {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: "Prep Time value must be a number",
-            preferredStyle: .alert) // caps need? diff wording? or even need if numerical input force?
-
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(okAction)
-
-        present(alertController, animated: true)
-    }
-
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
-// photo picker methods + conformance to photo picker delegate
+// photo picker & camera methods + conformance to protocols & delegates
 
-extension AddRecipeViewController: PHPickerViewControllerDelegate {
+extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    private func showImagePicker() {
+    // image picker methods
+    
+    func attachImage() {
+        if PHPhotoLibrary.authorizationStatus(for: .readWrite) != .authorized {
+            PHPhotoLibrary.requestAuthorization(for: .readWrite) { [weak self] status in
+                switch status {
+                case .authorized:
+                    DispatchQueue.main.async {
+                        self?.showImagePicker()
+                    }
+                default:
+                    DispatchQueue.main.async {
+                        self?.showGoToSettingsAlert()
+                    }
+                }
+            }
+        }
+        else {
+            showImagePicker()
+        }
+    }
+    
+    func showImagePicker() {
         var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         config.filter = .images
         config.preferredAssetRepresentationMode = .current
@@ -272,22 +206,46 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate {
             
             guard let image = object as? UIImage else { return }
             
-            print("🌉 We have an image!")
-            
-            // need to do dispatch? check lab example
-            DispatchQueue.main.async { [weak self] in
-                self?.recipeImage = image   // need "?" after image?
-                //self?.attachPhotoButton.tintColor = .green
+            DispatchQueue.main.async { [weak self] in  // need to do dispatch? check lab example, need "?" after image? print above "image is valid" ?
+                self?.recipeImage = image
                 self?.recipeImageView.image = image
-/*               // Set the picked image and location on the task
-                self?.task.set(image, with: location)
-                // Update the UI since we've updated the task
-                self?.updateUI()
-*/
             }
         }
     }
     
+    // camera methods
+    
+    func openCamera() {
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            print("Camera not available")
+            return
+        }
+
+        let imagePicker = UIImagePickerController()
+        
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true
+        imagePicker.delegate = self
+        
+        present(imagePicker, animated: true)
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+
+        guard let image = info[.editedImage] as? UIImage else {
+            print("Unable to get image")
+            return
+        }
+        // do i need dispatch queue here on in version w/ pick?
+        recipeImage = image
+        recipeImageView.image = image
+    }
+}
+
+// alerts methods
+
+extension AddRecipeViewController {
     func showGoToSettingsAlert() {
         let alertController = UIAlertController (
             title: "Photo Access Required",
@@ -309,7 +267,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate {
         present(alertController, animated: true, completion: nil)
     } // need 2nd alert func? change anything?
     
-    private func showAlert(for error: Error? = nil) {
+    private func showAlert(for error: Error? = nil) { // diff name? which funcs private v not?
         let alertController = UIAlertController(
             title: "Error",
             message: "\(error?.localizedDescription ?? "Please try again...")",
@@ -320,31 +278,29 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate {
 
         present(alertController, animated: true)
     }
-}
+    
+    private func showNotNumberAlert() {
+        let alertController = UIAlertController(
+            title: "Error",
+            message: "Prep Time value must be a number",
+            preferredStyle: .alert) // caps need? diff wording? or even need if numerical input force?
 
-// camera photo picker methods + conformance to camera picker delegates
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
 
-extension AddRecipeViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-        // Dismiss the image picker
-        picker.dismiss(animated: true)
-
-        // Get the edited image from the info dictionary (if `allowsEditing = true` for image picker config).
-        // Alternatively, to get the original image, use the `.originalImage` InfoKey instead.
-        guard let image = info[.editedImage] as? UIImage else {
-            print("❌📷 Unable to get image")
-            return
-        }
-        // do i need dispatch queue here on in version w/ pick?
-        recipeImage = image
-        recipeImageView.image = image
+        present(alertController, animated: true)
     }
+    
+    private func showEmptyFieldsAlert() {
+        let alertController = UIAlertController(
+            title: "Error",
+            message: "Name, Prep Time, and Directions fields must be filled out",
+            preferredStyle: .alert) // caps need? just say all fields?
+
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+
+        present(alertController, animated: true)
+    }
+
 }
-
-
-// put all photos stuff as extension? maybe show photo after pick?
-// feedback for after user uploads photo?
-
-// more funcs + extensions all files - alerts extension
-
-// take off edit for now?
