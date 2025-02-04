@@ -84,6 +84,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         return true
     }
 */
+    // need? check options on storyboard?
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         // Check if the replacement text is the newline character
         if text == "\n" {
@@ -302,5 +303,4 @@ extension AddRecipeViewController {
 
         present(alertController, animated: true)
     }
-
 }
