@@ -25,6 +25,7 @@ OPTIONAL
 - fix constraint warnings
 - maybe directions as indiv strings n tableview? like bullets?
 - Empty holder text on both tableviews
+- redo any constraints future? study more how w/ sizes of images n text views?
 
 GENERAL
 - comments in + out
