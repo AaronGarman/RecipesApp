@@ -19,11 +19,30 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     
     var recipeToEdit: Recipe?
     var onAddRecipe: ((Recipe) -> Void)? = nil
-    var recipeImage: UIImage?
+    var recipeImage: UIImage? // could possibly take this out?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        nameTextField.delegate = self
+        prepTimeTextField.delegate = self
+        directionsTextView.delegate = self
         
+        styleUI()
+        menuInit()
+        checkIsEdit()
+        gesturesInit()
+    }
+    
+    @IBAction func didTapCancelButton(_ sender: Any) {
+        dismiss(animated: true)
+    }
+    
+    @IBAction func didTapAddButton(_ sender: Any) {
+        addRecipe()
+    }
+    
+    func styleUI() {
         // maybe border on image? default image?
 //        recipeImageView.layer.borderColor = UIColor.lightGray.cgColor
 //        recipeImageView.layer.borderWidth = 1.0
@@ -33,11 +52,9 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         directionsTextView.layer.borderColor = UIColor.lightGray.cgColor
         directionsTextView.layer.borderWidth = 1.0
         directionsTextView.layer.cornerRadius = 5.0 // Optional, for rounded corners
-
-        nameTextField.delegate = self
-        prepTimeTextField.delegate = self
-        directionsTextView.delegate = self
-        
+    }
+    
+    func menuInit() {
         // keep "Choose an option"? title: "Choose an Option",
         // Choose from photos v diff?
         let menuItems = UIMenu(options: .displayInline, children: [
@@ -48,12 +65,9 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         // Assign menu to button
         attachPhotoButton.menu = menuItems
         attachPhotoButton.showsMenuAsPrimaryAction = true  // Enables direct menu display when tapped
-    /*
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-        directionsTextView.addGestureRecognizer(tapGesture)
-    } */
-         
-        // Do any additional setup after loading the view.
+    }
+    
+    func checkIsEdit() {
         if let recipe = recipeToEdit {
             nameTextField.text = recipe.name
             prepTimeTextField.text = "\(recipe.prepTime)" // does this affect stuff w/ not string?
@@ -65,51 +79,19 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         }
     }
     
-    // why do these 2 funcs actively change pic on image view? review why. camera n pic funcs
-    
-    // do these as extension? and do conformance inheritance in it too
-    
-    // Implement the delegate method to handle the Return key press
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-/*
-    // Implement the delegate method to handle the Return key press
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
-*/
-    // need? check options on storyboard?
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        // Check if the replacement text is the newline character
-        if text == "\n" {
-            // Add a newline character to the text view
-            textView.text.append("\n")
-            // Prevent the default behavior of the Return key
-            return false
-        }
-        return true
+    func gesturesInit() {
+        /*
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            directionsTextView.addGestureRecognizer(tapGesture)
+        } */
     }
     
-    // Dismiss the keyboard when the tap gesture is recognized
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-    
-    @IBAction func didTapCancelButton(_ sender: Any) {
-        dismiss(animated: true)
-    }
-    
-    // 2 print errors seen when clicking on input fields?
-    
-    @IBAction func didTapAddButton(_ sender: Any) {
+    func addRecipe() {
         
-        // still as int for time? numeric keyboard? work ok here?
+        // 2 print errors seen when clicking on input fields?
+        
+        var recipe: Recipe
+        var newImage: UIImage? // do this diff?
 
         guard let name = nameTextField.text,
               let prepTime = prepTimeTextField.text,
@@ -127,7 +109,6 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             return
         }
         
-        var newImage: UIImage? // do this diff?
         // change to pic once get - helper func for pic get?
         if let image = recipeImage {
             newImage = image
@@ -135,8 +116,6 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         else {
             newImage = UIImage(named: "pizza image") // make default image for no picture found - put in proj. also take out stock ones?
         }
-        
-        var recipe: Recipe // to top of func
         
         if let editedRecipe = recipeToEdit {
             recipe = editedRecipe
@@ -179,7 +158,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
             showImagePicker()
         }
     }
-    
+    // why do these 2 funcs actively change pic on image view? review why. camera n pic funcs
     func showImagePicker() {
         var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         config.filter = .images
@@ -207,7 +186,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
             
             guard let image = object as? UIImage else { return }
             
-            DispatchQueue.main.async { [weak self] in  // need to do dispatch? check lab example, need "?" after image? print above "image is valid" ?
+            DispatchQueue.main.async { [weak self] in  // need to do dispatch? check lab example, need "?" after image? print above "image is valid" ? allows it to be updated on spot?
                 self?.recipeImage = image
                 self?.recipeImageView.image = image
             }
@@ -244,6 +223,44 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
     }
 }
 
+// methods to control screen inputs
+
+extension AddRecipeViewController {
+    // do these as extension? and do conformance inheritance in it too
+    
+    // Implement the delegate method to handle the Return key press
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+/*
+    // Implement the delegate method to handle the Return key press
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
+    }
+*/
+    // need? check options on storyboard?
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        // Check if the replacement text is the newline character
+        if text == "\n" {
+            // Add a newline character to the text view
+            textView.text.append("\n")
+            // Prevent the default behavior of the Return key
+            return false
+        }
+        return true
+    }
+    
+    // Dismiss the keyboard when the tap gesture is recognized
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
 // alerts methods
 
 extension AddRecipeViewController {
@@ -268,7 +285,7 @@ extension AddRecipeViewController {
         present(alertController, animated: true, completion: nil)
     } // need 2nd alert func? change anything?
     
-    private func showAlert(for error: Error? = nil) { // diff name? which funcs private v not?
+    func showAlert(for error: Error? = nil) { // diff name? which funcs private v not?
         let alertController = UIAlertController(
             title: "Error",
             message: "\(error?.localizedDescription ?? "Please try again...")",
@@ -280,7 +297,7 @@ extension AddRecipeViewController {
         present(alertController, animated: true)
     }
     
-    private func showNotNumberAlert() {
+    func showNotNumberAlert() {
         let alertController = UIAlertController(
             title: "Error",
             message: "Prep Time value must be a number",
@@ -292,7 +309,7 @@ extension AddRecipeViewController {
         present(alertController, animated: true)
     }
     
-    private func showEmptyFieldsAlert() {
+    func showEmptyFieldsAlert() {
         let alertController = UIAlertController(
             title: "Error",
             message: "Name, Prep Time, and Directions fields must be filled out",
