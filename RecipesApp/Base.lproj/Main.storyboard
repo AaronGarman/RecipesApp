@@ -102,11 +102,10 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fhQ-ll-bTg">
-                                <rect key="frame" x="20" y="475" width="350" height="250"/>
+                                <rect key="frame" x="20" y="475" width="350" height="335"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="350" id="Gcz-3I-qAx"/>
-                                    <constraint firstAttribute="height" constant="250" id="eDj-sZ-NYC"/>
                                 </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -155,6 +154,7 @@
                             <constraint firstItem="mQf-ER-LKH" firstAttribute="leading" secondItem="fMj-ij-sak" secondAttribute="leading" constant="20" id="ZdT-El-Sz0"/>
                             <constraint firstItem="fMj-ij-sak" firstAttribute="trailing" secondItem="mQf-ER-LKH" secondAttribute="trailing" constant="20" id="azo-rc-TbO"/>
                             <constraint firstItem="fMj-ij-sak" firstAttribute="trailing" secondItem="fhQ-ll-bTg" secondAttribute="trailing" constant="20" id="hEN-cd-eWz"/>
+                            <constraint firstItem="fMj-ij-sak" firstAttribute="bottom" secondItem="fhQ-ll-bTg" secondAttribute="bottom" constant="32" id="ioj-Bp-UkF"/>
                             <constraint firstItem="Vxj-bx-vED" firstAttribute="leading" secondItem="fMj-ij-sak" secondAttribute="leading" constant="20" id="ndf-7y-QDJ"/>
                             <constraint firstItem="fhQ-ll-bTg" firstAttribute="top" secondItem="aCn-Ch-7AL" secondAttribute="bottom" constant="12" id="qlY-eH-F6Y"/>
                             <constraint firstItem="fhQ-ll-bTg" firstAttribute="leading" secondItem="fMj-ij-sak" secondAttribute="leading" constant="20" id="rp4-BH-qBf"/>

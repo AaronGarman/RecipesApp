@@ -15,7 +15,7 @@ SMALL
 - mock directions?
 - Aspect fill all images
 - default image
-- numeric keyboard mins?
+- numeric keyboard mins? diff error check?
 
 ----------
 
@@ -39,3 +39,12 @@ GENERAL
 Look into taking out not number alert
 Default image
 Error check mins > 0?
+Recipes gear top left w/ sign out button? pulldown?
+Adjust some constraints, side n text view bottom?
+
+Make text view dynamically size? Gpt
+1 file
+Finish constraints
+Small + plan
+
+org here + stuff do?
