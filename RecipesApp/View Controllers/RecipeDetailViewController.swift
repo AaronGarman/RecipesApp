@@ -9,7 +9,6 @@ import UIKit
 
 class RecipeDetailViewController: UIViewController {
 
-    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var recipeImageView: UIImageView!
     @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var directionsTextView: UITextView!
@@ -20,6 +19,7 @@ class RecipeDetailViewController: UIViewController {
         super.viewDidLoad()
         
         navigationItem.largeTitleDisplayMode = .never // no need if take out nav title?
+        navigationItem.title = recipe.name
         
         // make image bigger n text smaller?
         // more room for directions?
@@ -42,14 +42,12 @@ class RecipeDetailViewController: UIViewController {
         recipeImageView.layer.borderColor = UIColor.lightGray.cgColor
  */
         recipeImageView.image = recipe.image
-        nameLabel.text = recipe.name
         prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
         directionsTextView.text = recipe.directions
         
         directionsTextView.layer.borderColor = UIColor.black.cgColor
         directionsTextView.layer.borderWidth = 1.0
         directionsTextView.layer.cornerRadius = 5.0 // decide value?
-
     }
 }
 
