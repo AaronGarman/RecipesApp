@@ -10,6 +10,7 @@ import UIKit
 class RecipesViewController: UIViewController {
 
     @IBOutlet weak var recipesTableView: UITableView!
+    @IBOutlet weak var settingsButton: UIBarButtonItem!
     
     private var recipes: [Recipe] = []
     
@@ -22,6 +23,8 @@ class RecipesViewController: UIViewController {
         recipesTableView.delegate = self
         
         navigationController?.navigationBar.prefersLargeTitles = true
+        
+        menuInit()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -65,6 +68,15 @@ class RecipesViewController: UIViewController {
             guard let recipeDetailViewController = segue.destination as? RecipeDetailViewController else { return }
             recipeDetailViewController.recipe = selectedRecipe
         }
+    }
+    
+    func menuInit() { // "sign out vs log out", person v person.circle
+        let menuItems = UIMenu(options: .displayInline, children: [
+            UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in print("signing user out") })
+        ])
+        
+        // Assign menu to button
+        settingsButton.menu = menuItems
     }
 }
 

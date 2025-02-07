@@ -68,6 +68,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Recipes" id="pU6-QX-6bk">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="gearshape" catalog="system" id="BNy-mc-Uup"/>
                         <barButtonItem key="rightBarButtonItem" title="Add Button" image="plus" catalog="system" id="R3l-5r-ALD">
                             <connections>
                                 <segue destination="EDz-SF-wIo" kind="presentation" identifier="AddRecipeSegue" id="Sbe-H5-4xo"/>
@@ -76,6 +77,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="recipesTableView" destination="u5P-hs-pnA" id="0EH-Xb-NU3"/>
+                        <outlet property="settingsButton" destination="BNy-mc-Uup" id="qPL-Fp-2Uh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -483,6 +485,7 @@
     </scenes>
     <resources>
         <image name="fork.knife.circle" catalog="system" width="128" height="123"/>
+        <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="list.bullet.rectangle.portrait" catalog="system" width="115" height="128"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">

@@ -1,52 +1,26 @@
 HIGH
-- Borders + backgrounds + UI elements adjust, colors? sizes, fonts/sizes, colors, placements, styling, corner radius + borders
 - Recheck code all - comments in + out, more extensions + functions
+- Look into taking out not number alert - just error check mins > 0?
 
 MEDIUM
-- Constraints all - stack views
 - Keyboard down - after type, tap off, enter (newline for dirs), keyboard up methods or scrollview or push up screen, for no block typing too? End editing like IBAction in ios102 lab 2? Constraints on box width to keep text format? for dirs, enter to end?
 
 LOW
 - User auth
-- Parse Database - create, update, delete - worst case just do user defaults
+- Parse Database - create, query, update, delete - worst case just do user defaults
 
 SMALL
-- Maybe navigation title do recipe name rather than below on detail? or keep as is, or no nav title. image or name on top?
-- mock directions?
 
 ----------
 
 OPTIONAL
-- Filter button for list (all, food, drink, dessert)
-- splash screen + app logo
-- fix constraint warnings
-- maybe directions as indiv strings n tableview? like bullets?
-- Empty holder text on both tableviews
-- redo any constraints future? study more how w/ sizes of images n text views?
-- constraints on table view rows?
 
 GENERAL
 - comments in + out
 - print out data? print v logs?
 - org code at end
 - folders for files? sep folders tableview cells?
-- no need reload data in view will appear? would be for after add?
+- no need reload data in view will appear? would be for after add? any reload change once db?
 - gpt ask on comments stuff, like if need something
-
-
-Look into taking out not number alert
-Error check mins > 0?
-Recipes gear top left w/ sign out button? pulldown?
-Adjust some constraints, side n text view bottom?
-
-Make text view dynamically size? Gpt
-1 file
-Finish constraints
-Small + plan
-
-org here + stuff do?
-
-
-
-constraints finish
-org here
+- load in db + mock directions
+- maybe refactor to just item?
