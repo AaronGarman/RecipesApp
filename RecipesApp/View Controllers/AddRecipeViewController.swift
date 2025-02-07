@@ -114,7 +114,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             newImage = image
         }
         else {
-            newImage = UIImage(named: "pizza image") // make default image for no picture found - put in proj. also take out stock ones?
+            newImage = UIImage(named: "default-image") // make default image for no picture found - put in proj. also take out stock ones?
         }
         
         if let editedRecipe = recipeToEdit {
