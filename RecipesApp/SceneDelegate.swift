@@ -8,6 +8,12 @@
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
+    
+    private enum Constants {
+        static let signInNavigationControllerIdentifier = "SignInNavigationController"
+        static let feedTabBarControllerIdentifier = "FeedTabBarController"
+        static let storyboardIdentifier = "Main"
+    }
 
     var window: UIWindow?
 
@@ -17,7 +23,45 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name("signIn"), object: nil, queue: OperationQueue.main) { [weak self] _ in
+            self?.signIn()
+        }
+
+        NotificationCenter.default.addObserver(forName: Notification.Name("signOut"), object: nil, queue: OperationQueue.main) { [weak self] _ in
+            self?.signOut()
+        }
+        
+        // Check if a current user exists
+        if User.current != nil {
+            signIn()
+        }
     }
+    
+    func signIn() {
+        let storyboard = UIStoryboard(name: Constants.storyboardIdentifier, bundle: nil)
+        self.window?.rootViewController = storyboard.instantiateViewController(withIdentifier: Constants.feedTabBarControllerIdentifier)
+    }
+    
+   func signOut() {
+        
+        // This will also remove the session from the Keychain, log out of linked services and all future calls to current will return nil.
+        User.logout { [weak self] result in
+
+            switch result {
+            case .success:
+
+                DispatchQueue.main.async {
+                    let storyboard = UIStoryboard(name: Constants.storyboardIdentifier, bundle: nil)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: Constants.signInNavigationControllerIdentifier)
+                    self?.window?.rootViewController = viewController
+                }
+            case .failure(let error):
+                print("❌ Log out error: \(error)")
+            }
+        }
+    }
+
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
@@ -50,3 +94,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 }
 
+// private funcs? check names enums n stuff

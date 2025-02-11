@@ -72,11 +72,22 @@ class RecipesViewController: UIViewController {
     
     func menuInit() { // "sign out vs log out", person v person.circle
         let menuItems = UIMenu(options: .displayInline, children: [
-            UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in print("signing user out") })
+            UIAction(title: "Sign Out", image: UIImage(systemName: "rectangle.portrait.and.arrow.right"), handler: { _ in self.showConfirmLogoutAlert() })
         ])
         
         // Assign menu to button
         settingsButton.menu = menuItems
+    }
+    
+    func showConfirmLogoutAlert() {
+        let alertController = UIAlertController(title: "Sign Out of Your Account?", message: nil, preferredStyle: .alert)
+        let logOutAction = UIAlertAction(title: "Sign out", style: .destructive) { _ in
+            NotificationCenter.default.post(name: Notification.Name("signOut"), object: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(logOutAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
 }
 
