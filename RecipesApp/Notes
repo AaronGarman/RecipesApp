@@ -38,3 +38,5 @@ push
 steps 1-4 check user auth - finish all auth before db save
 skip step 5
 steps 6 & 7 for db, fig all CRUD - gpt see format?
+
+add border to details screen image?
