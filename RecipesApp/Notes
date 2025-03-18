@@ -8,7 +8,6 @@ MEDIUM
 - Keyboard down - after type, tap off, enter (newline for dirs), keyboard up methods or scrollview or push up screen, for no block typing too? End editing like IBAction in ios102 lab 2? Constraints on box width to keep text format? for dirs, enter to end?
 
 LOW
-- User auth - steps 1-4 check user auth - test all 4 work both devices, UI + constraints
 - Parse Database - create, query, update, delete - worst case just do user defaults - steps 6 & 7 for db, fig all CRUD - gpt see format?
 
 SMALL
