@@ -1,14 +1,11 @@
 HIGH
 - Recheck code all - comments in + out, more extensions + functions
-- Look into taking out not number alert - just error check mins > 0?
-- Match color directions text box add n details?
-- add border to details screen image?
 
 MEDIUM
 - Keyboard down - after type, tap off, enter (newline for dirs), keyboard up methods or scrollview or push up screen, for no block typing too? End editing like IBAction in ios102 lab 2? Constraints on box width to keep text format? for dirs, enter to end?
 
 LOW
-- Parse Database - create, query, update, delete - worst case just do user defaults - steps 6 & 7 for db, fig all CRUD - gpt see format?
+- Parse Database - create, query, update, delete - worst case just do user defaults - steps 6 & 7 for db, fig all CRUD - gpt see format? pull each time or update own array?
 
 SMALL
 

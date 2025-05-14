@@ -103,11 +103,11 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             return
         }
         
-        // maybe numeric later so no need this?
-        guard let prepTimeNum = Int(prepTime) else {
-            showNotNumberAlert()
+        // maybe error check prep time number > 0? use any code from before? change in line 120 below on recipe.prepTime = this number checked here?
+        guard let prepTimeNum = Int(prepTime), prepTimeNum > 0 else {
+            showInvalidNumberAlert()
             return
-        }
+        } // right place or diff?
         
         // change to pic once get - helper func for pic get?
         if let image = recipeImage {
@@ -297,11 +297,11 @@ extension AddRecipeViewController {
         present(alertController, animated: true)
     }
     
-    func showNotNumberAlert() {
+    func showEmptyFieldsAlert() {
         let alertController = UIAlertController(
             title: "Error",
-            message: "Prep Time value must be a number",
-            preferredStyle: .alert) // caps need? diff wording? or even need if numerical input force?
+            message: "Name, Prep Time, and Directions fields must be filled out",
+            preferredStyle: .alert) // caps need? just say all fields?
 
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
@@ -309,10 +309,10 @@ extension AddRecipeViewController {
         present(alertController, animated: true)
     }
     
-    func showEmptyFieldsAlert() {
+    func showInvalidNumberAlert() {
         let alertController = UIAlertController(
             title: "Error",
-            message: "Name, Prep Time, and Directions fields must be filled out",
+            message: "Prep Time must be a valid number",
             preferredStyle: .alert) // caps need? just say all fields?
 
         let okAction = UIAlertAction(title: "OK", style: .default)

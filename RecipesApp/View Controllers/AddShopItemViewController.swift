@@ -48,7 +48,7 @@ class AddShopItemViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    var shopItemToEdit: ShopItem?
+    var shopItemToEdit: ShopItem? // vars at top?
     var onAddShopItem: ((ShopItem) -> Void)? = nil
     
     override func viewDidLoad() {
