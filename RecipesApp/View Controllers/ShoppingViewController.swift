@@ -30,6 +30,8 @@ class ShoppingViewController: UIViewController {
         if let selectedIndexPath = shoppingTableView.indexPathForSelectedRow {
             shoppingTableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
+        
+        /// query db here, also reload table view? query and remove parallel v just query each time?
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -105,6 +107,8 @@ extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
             if editingStyle == .delete {
                 // Update the data model
                 shopItems.remove(at: indexPath.row)
+                
+                /// remove from db here
                 
                 // Delete the row from the table view
                 tableView.deleteRows(at: [indexPath], with: .fade)

@@ -33,6 +33,8 @@ class RecipesViewController: UIViewController {
         if let selectedIndexPath = recipesTableView.indexPathForSelectedRow {
             recipesTableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
+        
+        /// query db here, also reload table view? query and remove parallel v just query each time?
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -126,6 +128,8 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
         if editingStyle == .delete {
                 // Update the data model
                 recipes.remove(at: indexPath.row)
+            
+                /// remove from db here
                 
                 // Delete the row from the table view
                 tableView.deleteRows(at: [indexPath], with: .fade)

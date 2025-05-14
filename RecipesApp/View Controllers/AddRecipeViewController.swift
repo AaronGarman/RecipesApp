@@ -128,7 +128,8 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             recipe = Recipe(name: name, prepTime: prepTimeNum, image: newImage, directions: directions)
         }
 
-        onAddRecipe?(recipe)
+        onAddRecipe?(recipe) // still need if db query later on view will appear?
+        /// add/update to db here - sep func? make recipe on class scope if so?
         dismiss(animated: true)
     }
 }

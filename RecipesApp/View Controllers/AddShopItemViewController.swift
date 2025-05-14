@@ -72,6 +72,7 @@ class AddShopItemViewController: UIViewController {
         }
         
         onAddShopItem?(shopItem)
+        /// add/update to db here - sep func? make shopItem on class scope if so?
         dismiss(animated: true)
     }
     
