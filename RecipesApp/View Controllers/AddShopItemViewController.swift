@@ -22,30 +22,8 @@ class AddShopItemViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func didTapAddButton(_ sender: Any) {
-        guard let name = nameTextField.text,
-              let quantity = quantityLabel.text,
-                !name.isEmpty,
-                !quantity.isEmpty else {
-            showEmptyFieldsAlert()
-            return }
-        
-        guard let quantityNum = Int(quantity) else { return }
-        
-        var shopItem: ShopItem // maybe just call item?
-        
-        if let editedShopItem = shopItemToEdit {
-            shopItem = editedShopItem
-            
-            shopItem.name = name
-            shopItem.quantity = quantityNum
-        }
-        else {
-            shopItem = ShopItem(name: name, quantity: quantityNum)
-        }
-        
-        onAddShopItem?(shopItem)
-        dismiss(animated: true)
+    @IBAction func didTapAddButton(_ sender: Any) { // refactor these to funcs rather than in button, also all funcs private?
+        addShopItem()
     }
     
     var shopItemToEdit: ShopItem? // vars at top?
@@ -69,6 +47,32 @@ class AddShopItemViewController: UIViewController {
         }
 
         // Do any additional setup after loading the view.
+    }
+    
+    func addShopItem() {
+        guard let name = nameTextField.text,
+              let quantity = quantityLabel.text,
+                !name.isEmpty,
+                !quantity.isEmpty else {
+            showEmptyFieldsAlert()
+            return }
+        
+        guard let quantityNum = Int(quantity) else { return }
+        
+        var shopItem: ShopItem // maybe just call item?
+        
+        if let editedShopItem = shopItemToEdit {
+            shopItem = editedShopItem
+            
+            shopItem.name = name
+            shopItem.quantity = quantityNum
+        }
+        else {
+            shopItem = ShopItem(name: name, quantity: quantityNum)
+        }
+        
+        onAddShopItem?(shopItem)
+        dismiss(animated: true)
     }
     
     private func showEmptyFieldsAlert() {
