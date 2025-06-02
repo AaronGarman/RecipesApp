@@ -6,11 +6,22 @@
 //
 
 import Foundation
+import ParseSwift
 
-struct ShopItem {
-    let id: UUID = UUID()
-    var name: String
-    var quantity: Int
+struct ShopItem: ParseObject {
+    // Required by ParseObject
+    
+    var objectId: String?
+    var createdAt: Date?
+    var updatedAt: Date?
+    var ACL: ParseACL?
+    var originalData: Data?
+    
+    // Custom properties
+    
+    var user: User?
+    var name: String = ""
+    var quantity: Int = 0
 }
 
 // mock data for testing
