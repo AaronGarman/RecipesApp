@@ -69,6 +69,19 @@ extension ShoppingViewController {
             print(error.localizedDescription)
         }
     }
+    
+    private func deleteShopItem(at indexPath: IndexPath) {
+        let item = shopItems[indexPath.row]
+        
+        item.delete { [weak self] result in
+            switch result {
+            case .success:
+                self?.queryShopItems()
+            case .failure(let error):
+                self?.showFailedDeleteAlert(description: "Failed to delete item: \(error.localizedDescription)")
+            }
+        }
+    }
 }
 
 // Table View data + delegate methods
@@ -106,9 +119,7 @@ extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            shopItems.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            /// remove from db here, take out array stuff? call func here, put in other ext
+            deleteShopItem(at: indexPath)
         }
     }
 }
@@ -118,6 +129,13 @@ extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
 extension ShoppingViewController {
     private func showFailedQueryAlert(description: String? = nil) {
         let alertController = UIAlertController(title: "Error loading shopping list items.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+    
+    private func showFailedDeleteAlert(description: String? = nil) {
+        let alertController = UIAlertController(title: "Error deleting shopping list item.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
         present(alertController, animated: true)
