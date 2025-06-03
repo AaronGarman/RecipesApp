@@ -14,6 +14,15 @@ class AddShopItemViewController: UIViewController {
     @IBOutlet weak var quantityLabel: UILabel!
     @IBOutlet weak var quantityStepper: UIStepper!
     
+    var shopItemToEdit: ShopItem?
+    var onAddShopItem: (() -> Void)? = nil
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        initUI()
+    }
+    
     @IBAction func didTapQuantityStepper(_ sender: UIStepper) {
         quantityLabel.text = "\(Int(sender.value))"
     }
@@ -22,72 +31,84 @@ class AddShopItemViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func didTapAddButton(_ sender: Any) { // refactor these to funcs rather than in button, also all funcs private?
+    @IBAction func didTapAddButton(_ sender: Any) {
         addShopItem()
     }
     
-    var shopItemToEdit: ShopItem? // vars at top?
-    var onAddShopItem: ((ShopItem) -> Void)? = nil
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        quantityStepper.value = 1
+    private func initUI() {
         quantityStepper.minimumValue = 1
+        quantityStepper.value = 1
         
+        initEdit()
+        
+        quantityLabel.text = ("\(Int(quantityStepper.value))")
+    }
+    
+    private func initEdit() {
         if let shopItem = shopItemToEdit {
             nameTextField.text = shopItem.name
-            quantityLabel.text = ("\(shopItem.quantity)")
-            
-            // stepper value somehow?
             quantityStepper.value = Double(shopItem.quantity)
             
             self.title = "Edit Shop Item"
-            addButton.title = "Done" // update? other one too
+            addButton.title = "Done"
+        }
+    }
+    
+    private func addShopItem() {
+        guard let name = nameTextField.text, !name.isEmpty else {
+            showEmptyNameFieldAlert()
+            return
         }
 
-        // Do any additional setup after loading the view.
+        let quantityNum = Int(quantityStepper.value)
+        
+        var shopItem = shopItemToEdit ?? ShopItem()
+        shopItem.name = name
+        shopItem.quantity = quantityNum
+        shopItem.user = User.current
+        
+        saveShopItem(shopItem: shopItem)
     }
-    
-    func addShopItem() {
-        guard let name = nameTextField.text,
-              let quantity = quantityLabel.text,
-                !name.isEmpty,
-                !quantity.isEmpty else {
-            showEmptyFieldsAlert()
-            return }
-        
-        guard let quantityNum = Int(quantity) else { return }
-        
-        var shopItem: ShopItem // maybe just call item?
-        
-        if let editedShopItem = shopItemToEdit {
-            shopItem = editedShopItem
-            
-            shopItem.name = name
-            shopItem.quantity = quantityNum
-        }
-        else {
-            shopItem = ShopItem(name: name, quantity: quantityNum)
-        }
-        
-        onAddShopItem?(shopItem)
-        /// add/update to db here - sep func? make shopItem on class scope if so?
-        dismiss(animated: true)
+}
+
+// Database operations
+
+extension AddShopItemViewController {
+    private func saveShopItem(shopItem: ShopItem) {
+        shopItem.save { [weak self] result in
+             DispatchQueue.main.async {
+                 switch result {
+                 case .success(let shopItem):
+                     print("ShopItem Saved! \(shopItem)")
+                     self?.onAddShopItem?()
+                     self?.dismiss(animated: true)
+                 case .failure(let error):
+                     self?.showFailedSaveAlert(description: error.localizedDescription)
+                     print("shopItem not saved - error")
+                 }
+             }
+         }
     }
-    
-    private func showEmptyFieldsAlert() {
+}
+
+// Error messages
+
+extension AddShopItemViewController {
+    private func showEmptyNameFieldAlert() {
         let alertController = UIAlertController(
             title: "Error",
-            message: "Name field must be filled out",
-            preferredStyle: .alert) // caps need? just say all fields?
-
+            message: "Name field must be filled out.",
+            preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
 
         present(alertController, animated: true)
     }
     
-    // on add check value stepper > 0 (cast to int) and text input ok
-    // fig alerts at end
+    private func showFailedSaveAlert(description: String? = nil) {
+        let alertController = UIAlertController(title: "Error saving item.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
 }
