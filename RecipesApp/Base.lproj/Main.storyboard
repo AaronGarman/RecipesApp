@@ -433,8 +433,8 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wu5-PK-OAU" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Shopping" image="list.bullet.rectangle.portrait" catalog="system" id="LtG-iU-bcc"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="szW-jx-aU2">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="szW-jx-aU2">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

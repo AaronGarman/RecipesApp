@@ -23,3 +23,39 @@ GENERAL
 - load in db + mock directions
 - maybe refactor to just item?
 - more folders for diff types of stuff? sign in, cells, etc
+
+no use my default image, use pre built one?
+pics own folder on github? gpt ask?
+refactor buttons code to funcs rather than in button, also all funcs private?
+also do funcs in view did load over code there - if in func or out
+vars at top
+periods in alerts
+more stuff as funcs
+vars before ibactions?
+private funcs all?
+
+full files ask gpt?
+
+top to bottom: outlets, member data, lifecycle, actions, methods - here + yahtzee
+
+// maybe refactor shopItem to just item?
+// clean up db files - id take out since no use w/ parse, parse id maps to id
+// func to load db? change mock data any? put user.current here or on mock data? prob here in shop vc?
+
+// extra nav controllers for modal formatting w/ top buttons? see gpt?
+
+more folders for stuff? move pics to folders on github too
+
+comments all files after finish
+
+Org, test, comments - push indiv files
+Finish 2 files first + do delete - test all
+Re-query only, or ever manual update?
+use MARK for any ext or section labels?
+
+
+
+finish shop vc
+fig delete
+org here
+more folders - cells, auth, etc, split by recipe/shopitem v no? also fig pictures github folder
