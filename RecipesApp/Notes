@@ -53,7 +53,7 @@ Finish 2 files first + do delete - test all
 Re-query only, or ever manual update?
 use MARK for any ext or section labels?
 
-
+ever do a did set instead of always call reload data?
 
 finish shop vc
 fig delete

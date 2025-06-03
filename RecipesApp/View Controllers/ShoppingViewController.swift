@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ParseSwift
 
 class ShoppingViewController: UIViewController {
 
@@ -16,63 +17,61 @@ class ShoppingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        shopItems = ShopItem.mockedShopItems
+        // shopItems = ShopItem.mockedShopItems // out for testing db
         
         shoppingTableView.dataSource = self
         shoppingTableView.delegate = self
         
-        navigationController?.navigationBar.prefersLargeTitles = true
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if let selectedIndexPath = shoppingTableView.indexPathForSelectedRow {
-            shoppingTableView.deselectRow(at: selectedIndexPath, animated: animated)
-        }
-        
-        /// query db here, also reload table view? query and remove parallel v just query each time?
+        queryShopItems()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "AddShopItemSegue" { // where is all this + UI any? name segues here n below? no need the if now?
-            if let addShopItemNavController = segue.destination as? UINavigationController,
-               let addShopItemViewController = addShopItemNavController.topViewController as? AddShopItemViewController {
-                
-                // Passing recipe to edit if provided
-                if let shopItemToEdit = sender as? ShopItem {
-                    addShopItemViewController.shopItemToEdit = shopItemToEdit
-                }
-                
-                addShopItemViewController.onAddShopItem = { [weak self] shopItem in
-                    
-                    // Check if the recipe exists and determine action
-                    if let index = self?.shopItems.firstIndex(where: { $0.id == shopItem.id }) {
-                        // Update existing recipe
-                        self?.shopItems[index] = shopItem
-                    }
-                    else {
-                        // Add new recipe
-                        self?.shopItems.append(shopItem)
-                    }
-                    
-                    // Refresh the table view
-                    self?.shoppingTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
-                }
+        if let addShopItemNavController = segue.destination as? UINavigationController,
+           let addShopItemViewController = addShopItemNavController.topViewController as? AddShopItemViewController {
+            
+            if let shopItemToEdit = sender as? ShopItem {
+                addShopItemViewController.shopItemToEdit = shopItemToEdit
+            }
+
+            addShopItemViewController.onAddShopItem = { [weak self] in
+                self?.queryShopItems()
             }
         }
-//        else if segue.identifier == "ShopItemDetailSegue" { // no do this?
-//            guard let selectedIndexPath = shoppingTableView.indexPathForSelectedRow else { return }
-//            let selectedShopItem = shopItems[selectedIndexPath.row]
-//            guard let shopItemDetailViewController = segue.destination as? ShopItemDetailViewController else { return }
-//            shopItemDetailViewController.shopItem = selectedShopItem
-//        }
     }
-    
-    // prepare + delegate above, delegate method below too
 }
 
-// Methods for conformance to Table View Protocol
+// Database operations
+
+extension ShoppingViewController {
+    private func queryShopItems() {
+        guard let currentUser = User.current else {
+            print("No current user found.")
+            return
+        }
+        
+        do {
+            let query = try ShopItem.query()
+                .where("user" == currentUser)
+                .order([.ascending("createdAt")])
+            
+            query.find { [weak self] result in
+                switch result {
+                case .success(let shopItems):
+                    self?.shopItems = shopItems
+                    self?.shoppingTableView.reloadData()
+                case .failure(let error):
+                    self?.showFailedQueryAlert(description: error.localizedDescription)
+                    print(error.localizedDescription)
+                }
+            }
+        } catch {
+            showFailedQueryAlert(description: error.localizedDescription)
+            print(error.localizedDescription)
+        }
+    }
+}
+
+// Table View data + delegate methods
 
 extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -81,7 +80,8 @@ extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = shoppingTableView.dequeueReusableCell(withIdentifier: "ShopItemCell", for: indexPath) as? ShopItemCell else {
-            fatalError("Unable to dequeue ShopItemCell")
+            print("Unable to dequeue ShopItemCell")
+            return UITableViewCell()
         }
         
         cell.configure(with: shopItems[indexPath.row])
@@ -95,25 +95,31 @@ extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
             self?.performSegue(withIdentifier: "AddShopItemSegue", sender: selectedShopItem)
             completionHandler(true)
         }
+        
         detailAction.backgroundColor = .orange
-
+        
         let configuration = UISwipeActionsConfiguration(actions: [detailAction])
         configuration.performsFirstActionWithFullSwipe = true
-
+        
         return configuration
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-            if editingStyle == .delete {
-                // Update the data model
-                shopItems.remove(at: indexPath.row)
-                
-                /// remove from db here
-                
-                // Delete the row from the table view
-                tableView.deleteRows(at: [indexPath], with: .fade)
+        if editingStyle == .delete {
+            shopItems.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+            /// remove from db here, take out array stuff? call func here, put in other ext
         }
     }
 }
 
-// maybe refactor shopItem to just item?
+// Error messages
+
+extension ShoppingViewController {
+    private func showFailedQueryAlert(description: String? = nil) {
+        let alertController = UIAlertController(title: "Error loading shopping list items.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+}

@@ -106,7 +106,7 @@ extension AddShopItemViewController {
     }
     
     private func showFailedSaveAlert(description: String? = nil) {
-        let alertController = UIAlertController(title: "Error saving item.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error saving shopping list item.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
         present(alertController, animated: true)
