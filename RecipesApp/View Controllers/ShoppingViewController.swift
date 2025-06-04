@@ -26,16 +26,15 @@ class ShoppingViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let addShopItemNavController = segue.destination as? UINavigationController,
-           let addShopItemViewController = addShopItemNavController.topViewController as? AddShopItemViewController {
+        guard let addShopItemNavController = segue.destination as? UINavigationController,
+              let addShopItemViewController = addShopItemNavController.topViewController as? AddShopItemViewController else { return }
             
-            if let shopItemToEdit = sender as? ShopItem {
-                addShopItemViewController.shopItemToEdit = shopItemToEdit
-            }
-
-            addShopItemViewController.onAddShopItem = { [weak self] in
-                self?.queryShopItems()
-            }
+        if let shopItemToEdit = sender as? ShopItem {
+            addShopItemViewController.shopItemToEdit = shopItemToEdit
+        }
+        
+        addShopItemViewController.onAddShopItem = { [weak self] in
+            self?.queryShopItems()
         }
     }
 }

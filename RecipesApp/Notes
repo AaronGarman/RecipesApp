@@ -66,3 +66,9 @@ more folders - cells, auth, etc, split by recipe/shopitem v no? also fig picture
 
 // check error messages + parameters - on 2 shop item files, redundant any?
 // query v 2 remove? only for animation + overhead of re-querying?
+
+
+        /// query db here, also reload table view? query and remove parallel v just query each time?
+        /// remove from db here
+        
+spacing on alert funcs?
