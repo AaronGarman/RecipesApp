@@ -72,3 +72,6 @@ more folders - cells, auth, etc, split by recipe/shopitem v no? also fig picture
         /// remove from db here
         
 spacing on alert funcs?
+
+
+maybe refactor errors into own class? just take params?

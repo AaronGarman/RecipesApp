@@ -17,12 +17,14 @@ class RecipesViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        recipes = Recipe.mockedRecipes // out for testing db
+        // recipes = Recipe.mockedRecipes // out for testing db
         
         recipesTableView.dataSource = self
         recipesTableView.delegate = self
         
         menuInit()
+        
+        queryRecipes()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -42,15 +44,8 @@ class RecipesViewController: UIViewController {
                 addRecipeViewController.recipeToEdit = recipeToEdit
             }
             
-            addRecipeViewController.onAddRecipe = { [weak self] recipe in
-                if let index = self?.recipes.firstIndex(where: { $0.id == recipe.id }) {
-                    self?.recipes[index] = recipe
-                }
-                else {
-                    self?.recipes.append(recipe)
-                }
-                
-                self?.recipesTableView.reloadSections(IndexSet(integer: 0), with: .automatic)
+            addRecipeViewController.onAddRecipe = { [weak self] in
+                self?.queryRecipes()
             }
         }
         else if segue.identifier == "RecipeDetailSegue" { // maybe do if let? gpt?
@@ -68,20 +63,21 @@ class RecipesViewController: UIViewController {
         
         settingsButton.menu = menuItems
     }
+}
+
+// Database operations
+
+extension RecipesViewController {
+    private func queryRecipes() {
+        
+    }
     
-    private func showConfirmLogoutAlert() {
-        let alertController = UIAlertController(title: "Sign out of your account?", message: nil, preferredStyle: .alert)
-        let logOutAction = UIAlertAction(title: "Sign out", style: .destructive) { _ in
-            NotificationCenter.default.post(name: Notification.Name("signOut"), object: nil)
-        }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        alertController.addAction(logOutAction)
-        alertController.addAction(cancelAction)
-        present(alertController, animated: true)
+    private func deleteRecipe(at indexPath: IndexPath) {
+        
     }
 }
 
-// Methods for conformance to Table View Protocol
+// Table View data + delegate methods
 
 extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -119,5 +115,34 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
                 recipes.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
         }
+    }
+}
+
+// Alerts + error messages
+
+extension RecipesViewController {
+    private func showFailedQueryAlert(description: String? = nil) {
+        let alertController = UIAlertController(title: "Error loading recipes.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+    
+    private func showFailedDeleteAlert(description: String? = nil) {
+        let alertController = UIAlertController(title: "Error deleting recipe.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        present(alertController, animated: true)
+    }
+    
+    private func showConfirmLogoutAlert() {
+        let alertController = UIAlertController(title: "Sign out of your account?", message: nil, preferredStyle: .alert)
+        let logOutAction = UIAlertAction(title: "Sign out", style: .destructive) { _ in
+            NotificationCenter.default.post(name: Notification.Name("signOut"), object: nil)
+        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        alertController.addAction(logOutAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true)
     }
 }

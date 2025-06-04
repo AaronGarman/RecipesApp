@@ -18,7 +18,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     @IBOutlet weak var directionsTextView: UITextView!
     
     var recipeToEdit: Recipe?
-    var onAddRecipe: ((Recipe) -> Void)? = nil
+    var onAddRecipe: (() -> Void)? = nil
     var recipeImage: UIImage? // could possibly take this out?
     
     override func viewDidLoad() {
@@ -265,7 +265,7 @@ extension AddRecipeViewController {
 // alerts methods
 
 extension AddRecipeViewController {
-    func showGoToSettingsAlert() {
+    func showGoToSettingsAlert() { // titles caps or no?
         let alertController = UIAlertController (
             title: "Photo Access Required",
             message: "In order to upload a photo for a recipe, we need access to your photo library. You can allow access in Settings",

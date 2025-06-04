@@ -123,7 +123,7 @@ extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-// Error messages
+// Alerts + error messages
 
 extension ShoppingViewController {
     private func showFailedQueryAlert(description: String? = nil) {
