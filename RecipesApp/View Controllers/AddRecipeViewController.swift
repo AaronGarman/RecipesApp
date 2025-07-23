@@ -80,11 +80,6 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     }
     
     func addRecipe() {
-        
-        
-        //var recipe: Recipe
-        var newImage: UIImage? // do this diff?
-
         guard let name = nameTextField.text,
               let prepTime = prepTimeTextField.text,
               let directions = directionsTextView.text,
@@ -95,37 +90,15 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             return
         }
         
-        // maybe error check prep time number > 0? use any code from before? change in line 120 below on recipe.prepTime = this number checked here?
         guard let prepTimeNum = Int(prepTime), prepTimeNum > 0 else {
-            showInvalidNumberAlert() // take off if keyboard good?
+            showInvalidNumberAlert()
             return
-        } // right place or diff?
-        
-        // change to pic once get - helper func for pic get?
-        if let image = recipeImage {
-            newImage = image
         }
-        else {
-            newImage = UIImage(named: "default-image") // make default image for no picture found - put in proj. also take out stock ones?
-        }
-        
-//        if let editedRecipe = recipeToEdit {
-//            recipe = editedRecipe
-//            
-//            recipe.name = name
-//            recipe.prepTime = prepTimeNum
-//            recipe.image = recipeImageView.image // like this or diff?
-//            recipe.directions = directions
-//        } else {
-//            recipe = Recipe(name: name, prepTime: prepTimeNum, image: newImage, directions: directions)
-//        }
-        
-        // BREAK
-        
+
         var recipe = recipeToEdit ?? Recipe()
         recipe.name = name
         recipe.prepTime = prepTimeNum
-        recipe.image = recipeImageView.image // don't use UI?
+        recipe.image = recipeImage ?? UIImage(named: "default-image") // change to pic once get - helper func for pic get?
         recipe.directions = directions
         
         saveRecipe()
@@ -326,11 +299,11 @@ extension AddRecipeViewController {
         present(alertController, animated: true)
     }
     
-    func showInvalidNumberAlert() { // maybe no need if do number input?
+    func showInvalidNumberAlert() {
         let alertController = UIAlertController(
             title: "Error",
             message: "Prep time must be a valid number",
-            preferredStyle: .alert) // caps need? just say all fields?
+            preferredStyle: .alert)
 
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
