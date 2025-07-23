@@ -74,4 +74,5 @@ more folders - cells, auth, etc, split by recipe/shopitem v no? also fig picture
 spacing on alert funcs?
 
 
-maybe refactor errors into own class? just take params?
+maybe refactor errors into own class? just take params? maybe do static methods?
+take top part off all files? like w/ name n date

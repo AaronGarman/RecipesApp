@@ -10,10 +10,10 @@ import UIKit
 
 struct Recipe {
     let id: UUID = UUID()
-    var name: String
-    var prepTime: Int
+    var name: String = ""
+    var prepTime: Int = 0
     var image: UIImage?
-    var directions: String
+    var directions: String = ""
 }
 
 // mock data for testing

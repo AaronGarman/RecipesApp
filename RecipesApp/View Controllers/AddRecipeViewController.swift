@@ -24,7 +24,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameTextField.delegate = self
+        nameTextField.delegate = self // move these to below?
         prepTimeTextField.delegate = self
         directionsTextView.delegate = self
         
@@ -67,7 +67,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         attachPhotoButton.showsMenuAsPrimaryAction = true  // Enables direct menu display when tapped
     }
     
-    func checkIsEdit() {
+    func checkIsEdit() { // name same as other?
         if let recipe = recipeToEdit {
             nameTextField.text = recipe.name
             prepTimeTextField.text = "\(recipe.prepTime)" // does this affect stuff w/ not string?
@@ -79,18 +79,10 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         }
     }
     
-    func gesturesInit() {
-        /*
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-            directionsTextView.addGestureRecognizer(tapGesture)
-        } */
-    }
-    
     func addRecipe() {
         
-        // 2 print errors seen when clicking on input fields?
         
-        var recipe: Recipe
+        //var recipe: Recipe
         var newImage: UIImage? // do this diff?
 
         guard let name = nameTextField.text,
@@ -105,7 +97,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         
         // maybe error check prep time number > 0? use any code from before? change in line 120 below on recipe.prepTime = this number checked here?
         guard let prepTimeNum = Int(prepTime), prepTimeNum > 0 else {
-            showInvalidNumberAlert()
+            showInvalidNumberAlert() // take off if keyboard good?
             return
         } // right place or diff?
         
@@ -117,24 +109,30 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             newImage = UIImage(named: "default-image") // make default image for no picture found - put in proj. also take out stock ones?
         }
         
-        if let editedRecipe = recipeToEdit {
-            recipe = editedRecipe
-            
-            recipe.name = name
-            recipe.prepTime = prepTimeNum
-            recipe.image = recipeImageView.image // like this or diff?
-            recipe.directions = directions
-        } else {
-            recipe = Recipe(name: name, prepTime: prepTimeNum, image: newImage, directions: directions)
-        }
-
-        onAddRecipe?() // still need if db query later on view will appear?
-        /// add/update to db here - sep func? make recipe on class scope if so?
-        dismiss(animated: true)
+//        if let editedRecipe = recipeToEdit {
+//            recipe = editedRecipe
+//            
+//            recipe.name = name
+//            recipe.prepTime = prepTimeNum
+//            recipe.image = recipeImageView.image // like this or diff?
+//            recipe.directions = directions
+//        } else {
+//            recipe = Recipe(name: name, prepTime: prepTimeNum, image: newImage, directions: directions)
+//        }
+        
+        // BREAK
+        
+        var recipe = recipeToEdit ?? Recipe()
+        recipe.name = name
+        recipe.prepTime = prepTimeNum
+        recipe.image = recipeImageView.image // don't use UI?
+        recipe.directions = directions
+        
+        saveRecipe()
     }
 }
 
-// photo picker & camera methods + conformance to protocols & delegates
+// photo picker & camera methods
 
 extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -159,7 +157,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
             showImagePicker()
         }
     }
-    // why do these 2 funcs actively change pic on image view? review why. camera n pic funcs
+    
     func showImagePicker() {
         var config = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         config.filter = .images
@@ -187,7 +185,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
             
             guard let image = object as? UIImage else { return }
             
-            DispatchQueue.main.async { [weak self] in  // need to do dispatch? check lab example, need "?" after image? print above "image is valid" ? allows it to be updated on spot?
+            DispatchQueue.main.async { [weak self] in  // need to do dispatch? check lab example, need "?" after image? print above "image is valid" ? allows it to be updated on spot? dispactch since updating UI?
                 self?.recipeImage = image
                 self?.recipeImageView.image = image
             }
@@ -224,10 +222,28 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
     }
 }
 
-// methods to control screen inputs
+// Database operations - caps comments?
 
 extension AddRecipeViewController {
+    private func saveRecipe() {
+        onAddRecipe?()
+        dismiss(animated: true)
+    }
+}
+
+// methods to control screen inputs
+
+extension AddRecipeViewController { // any delegates move here?
     // do these as extension? and do conformance inheritance in it too
+    
+    // 2 print errors seen when clicking on input fields?
+    
+    func gesturesInit() {
+        /*
+            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+            directionsTextView.addGestureRecognizer(tapGesture)
+        } */
+    }
     
     // Implement the delegate method to handle the Return key press
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -256,7 +272,7 @@ extension AddRecipeViewController {
         return true
     }
     
-    // Dismiss the keyboard when the tap gesture is recognized
+    // Dismiss the keyboard when the tap gesture is recognized - do one from lab 2 instead?
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
@@ -310,10 +326,10 @@ extension AddRecipeViewController {
         present(alertController, animated: true)
     }
     
-    func showInvalidNumberAlert() {
+    func showInvalidNumberAlert() { // maybe no need if do number input?
         let alertController = UIAlertController(
             title: "Error",
-            message: "Prep Time must be a valid number",
+            message: "Prep time must be a valid number",
             preferredStyle: .alert) // caps need? just say all fields?
 
         let okAction = UIAlertAction(title: "OK", style: .default)
