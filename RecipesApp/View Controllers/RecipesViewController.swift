@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ParseSwift
 
 class RecipesViewController: UIViewController {
 
@@ -68,8 +69,35 @@ class RecipesViewController: UIViewController {
 // Database operations
 
 extension RecipesViewController {
+//    private func queryRecipes() {
+//        print("recipes query")
+//    }
+    
     private func queryRecipes() {
-        print("recipes query")
+        guard let currentUser = User.current else {
+            print("No current user found.")
+            return
+        }
+        
+        do {
+            let query = try Recipe.query()
+                .where("user" == currentUser)
+                .order([.ascending("createdAt")])
+            
+            query.find { [weak self] result in
+                switch result {
+                case .success(let recipes):
+                    self?.recipes = recipes
+                    self?.recipesTableView.reloadData()
+                case .failure(let error):
+                    self?.showFailedQueryAlert(description: error.localizedDescription)
+                    print(error.localizedDescription)
+                }
+            }
+        } catch {
+            showFailedQueryAlert(description: error.localizedDescription)
+            print(error.localizedDescription)
+        }
     }
     
     private func deleteRecipe(at indexPath: IndexPath) {
