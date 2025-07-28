@@ -79,7 +79,7 @@ extension AddShopItemViewController {
              DispatchQueue.main.async {
                  switch result {
                  case .success(let shopItem):
-                     print("ShopItem Saved! \(shopItem)")
+                     print("ShopItem saved! \(shopItem)")
                      self?.onAddShopItem?()
                      self?.dismiss(animated: true)
                  case .failure(let error):

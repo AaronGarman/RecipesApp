@@ -41,7 +41,7 @@ class RecipeDetailViewController: UIViewController {
         recipeImageView.layer.borderWidth = 1.0
         recipeImageView.layer.borderColor = UIColor.lightGray.cgColor
  */
-        recipeImageView.image = recipe.image
+        //recipeImageView.image = recipe.image // Fix for query db
         prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
         directionsTextView.text = recipe.directions
         

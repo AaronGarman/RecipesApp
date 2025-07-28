@@ -69,7 +69,7 @@ class RecipesViewController: UIViewController {
 
 extension RecipesViewController {
     private func queryRecipes() {
-        
+        print("recipes query")
     }
     
     private func deleteRecipe(at indexPath: IndexPath) {

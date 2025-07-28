@@ -16,6 +16,6 @@ class RecipeCell: UITableViewCell {
     func configure(with recipe: Recipe) {
         nameLabel.text = recipe.name
         prepTimeLabel.text = "Prep Time: \(recipe.prepTime) mins"
-        recipeImageView.image = recipe.image
+        //recipeImageView.image = recipe.image // Fix for query db
     }
 }

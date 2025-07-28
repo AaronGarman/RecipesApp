@@ -7,6 +7,7 @@
 
 import UIKit
 import PhotosUI
+import ParseSwift
 
 class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
 
@@ -71,7 +72,7 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         if let recipe = recipeToEdit {
             nameTextField.text = recipe.name
             prepTimeTextField.text = "\(recipe.prepTime)" // does this affect stuff w/ not string?
-            recipeImageView.image = recipe.image
+            // recipeImageView.image = recipe.image // fig this for edit? how load image? loads ok if replaced?
             directionsTextView.text = recipe.directions
             
             self.title = "Edit Recipe"
@@ -94,14 +95,32 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
             showInvalidNumberAlert()
             return
         }
+        
+        // any diff?
+        // error msg for failure?
+        // compare w/ lab 2 + shop item vc
+        
+        let pickedImage = recipeImage ?? UIImage(named: "default-image") // save default or just do nil? if nil, make image as default on list
+        
+        guard let image = pickedImage,
+                // Create and compress image data (jpeg) from UIImage
+                let imageData = image.jpegData(compressionQuality: 0.1) else {
+            return
+        } // why optional here? espec on first one
+        
+        let imageFile = ParseFile(name: "image.jpg", data: imageData)
+        
 
         var recipe = recipeToEdit ?? Recipe()
         recipe.name = name
         recipe.prepTime = prepTimeNum
-        recipe.image = recipeImage ?? UIImage(named: "default-image") // change to pic once get - helper func for pic get?
+        // recipe.image = recipeImage ?? UIImage(named: "default-image") // change to pic once get - helper func for pic get?
+        recipe.imageFile = imageFile // Actual fill in
         recipe.directions = directions
         
-        saveRecipe()
+        recipe.user = User.current
+
+        saveRecipe(recipe: recipe)
     }
 }
 
@@ -198,9 +217,25 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
 // Database operations - caps comments?
 
 extension AddRecipeViewController {
-    private func saveRecipe() {
-        onAddRecipe?()
-        dismiss(animated: true)
+//    private func saveRecipe() {
+//        onAddRecipe?() // match what this does w/ shop item
+//        dismiss(animated: true)
+//    }
+    
+    private func saveRecipe(recipe: Recipe) {
+        recipe.save { [weak self] result in
+             DispatchQueue.main.async {
+                 switch result {
+                 case .success(let recipe): // diff name here n shop item?
+                     print("Recipe saved! \(recipe)")
+                     self?.onAddRecipe?() // match what this does w/ shop item
+                     self?.dismiss(animated: true)
+                 case .failure(let error):
+                     self?.showFailedSaveAlert(description: error.localizedDescription)
+                     print("recipe not saved - error")
+                 }
+             }
+         }
     }
 }
 
@@ -210,6 +245,8 @@ extension AddRecipeViewController { // any delegates move here?
     // do these as extension? and do conformance inheritance in it too
     
     // 2 print errors seen when clicking on input fields?
+    
+    // use lab 2 way to dismiss editing some stuff?
     
     func gesturesInit() {
         /*
@@ -308,6 +345,13 @@ extension AddRecipeViewController {
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
 
+        present(alertController, animated: true)
+    }
+    
+    private func showFailedSaveAlert(description: String? = nil) { // description on both of these?
+        let alertController = UIAlertController(title: "Error saving recipe.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) // upper v lower k?
+        alertController.addAction(okAction)
         present(alertController, animated: true)
     }
 }
