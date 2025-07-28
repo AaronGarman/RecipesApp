@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class RecipeDetailViewController: UIViewController {
 
@@ -48,6 +50,22 @@ class RecipeDetailViewController: UIViewController {
         directionsTextView.layer.borderColor = UIColor.black.cgColor
         directionsTextView.layer.borderWidth = 1.0
         directionsTextView.layer.cornerRadius = 5.0 // decide value?
+        
+        
+        if let imageFile = recipe.imageFile,
+           let imageUrl = imageFile.url {
+            
+            // Use AlamofireImage helper to fetch remote image from URL
+            AF.request(imageUrl).responseImage { [weak self] response in
+                switch response.result {
+                case .success(let image):
+                    self?.recipeImageView.image = image
+                case .failure(let error):
+                    print("Error fetching image: \(error.localizedDescription)")
+                    break
+                }
+            }
+        }
     }
 }
 
