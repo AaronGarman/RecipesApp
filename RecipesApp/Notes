@@ -1,107 +1,44 @@
 HIGH
+- try new cell card like panera one - how tap on cell n not highlight? Also nav link on cell v image? update pic github
 
 MEDIUM
+- recheck/org code all - comments in + out, more extensions + functions
 
 LOW
+- keyboard push up or scrollview to not block dirs input?
 
 SMALL
+- private funcs all? private set member data any?
+- take top part off all files? like w/ name n date
+- pics own folder on github? gpt ask?
+- more folders for diff types of stuff? sign in, cells, etc. Split by recipe/shopitem v no?
+- periods in alerts?
+- capitalize section comments? also use mark any?
+- re-fig mock data vs just take out? image files instead?
+- spacing on alert funcs?
+- touch off keypad/others return - see lab 2, also enter key use any, not for dirs tho
 
 ----------
 
 GENERAL
+- full files ask gpt?
+- comments all files in + out
+- more funcs + extensions?
+- top to bottom: outlets, member data, lifecycle, actions, methods, extensions - use mark to divide sections? see pic 7/29
+- print out data? print v logs? or take prints out?
+- check all end
 
 OPTIONAL
-
-
-
-
-
-
-
-
-
-
-HIGH
-- Recheck code all - comments in + out, more extensions + functions
-
-MEDIUM
-- Keyboard down - after type, tap off, enter (newline for dirs), keyboard up methods or scrollview or push up screen, for no block typing too? End editing like IBAction in ios102 lab 2? Constraints on box width to keep text format? for dirs, enter to end?
-
-LOW
-- Parse Database - create, query, update, delete - worst case just do user defaults - steps 6 & 7 for db, fig all CRUD - gpt see format? pull each time or update own array?
-
-SMALL
+- manage array + tableview separately than db so can do animations on add/edit + delete? over re-query
+- how improve UI more?
+- maybe refactor shopItem to just item?
+- maybe refactor errors into own class? just take params? maybe do static methods?
+- ever do a did set instead of always call reload data? would conflict w/ animations if do?
+- default image own vs pre built one? prob own. also image as optional or not, default image save or no?
+- load db func make? over mock? how do image file? put user.current on mock?
+- check error messages + parameters - on 2 shop item files, redundant any?
+- constraints on box width to keep text format? for dirs
 
 ----------
 
-OPTIONAL
-
-GENERAL
-- comments in + out
-- print out data? print v logs?
-- org code at end
-- folders for files? sep folders tableview cells?
-- no need reload data in view will appear? would be for after add? any reload change once db?
-- gpt ask on comments stuff, like if need something
-- load in db + mock directions
-- maybe refactor to just item?
-- more folders for diff types of stuff? sign in, cells, etc
-
-no use my default image, use pre built one?
-pics own folder on github? gpt ask?
-refactor buttons code to funcs rather than in button, also all funcs private?
-also do funcs in view did load over code there - if in func or out
-vars at top
-periods in alerts
-more stuff as funcs
-vars before ibactions?
-private funcs all?
-
-full files ask gpt?
-
-top to bottom: outlets, member data, lifecycle, actions, methods - here + yahtzee
-
-// maybe refactor shopItem to just item?
-// clean up db files - id take out since no use w/ parse, parse id maps to id
-// func to load db? change mock data any? put user.current here or on mock data? prob here in shop vc?
-
-// extra nav controllers for modal formatting w/ top buttons? see gpt?
-
-more folders for stuff? move pics to folders on github too
-
-comments all files after finish
-
-Org, test, comments - push indiv files
-Finish 2 files first + do delete - test all
-Re-query only, or ever manual update?
-use MARK for any ext or section labels?
-
-ever do a did set instead of always call reload data?
-
-
-
-
-
-
-org here
-more folders - cells, auth, etc, split by recipe/shopitem v no? also fig pictures github folder
-
-
-// check error messages + parameters - on 2 shop item files, redundant any?
-// query v 2 remove? only for animation + overhead of re-querying?
-
-
-        /// query db here, also reload table view? query and remove parallel v just query each time?
-        /// remove from db here
-        
-spacing on alert funcs?
-
-
-maybe refactor errors into own class? just take params? maybe do static methods?
-take top part off all files? like w/ name n date
-
-Fig recipe edit + delete?
-Touch off keypad return on recipes?
-How tap on cell n not highlight? Also nav link on cell v image?
-Improve UI on apps
-fig cell like panera one?
+***Update proj on resume + portfolio + pics once done***
