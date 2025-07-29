@@ -98,6 +98,9 @@ class AddRecipeViewController: UIViewController {
     }
     
     func addRecipe() {
+        // space here?
+        // validate text entries
+        
         guard let name = nameTextField.text,
               let prepTime = prepTimeTextField.text,
               let directions = directionsTextView.text,
@@ -113,29 +116,29 @@ class AddRecipeViewController: UIViewController {
             return
         }
         
-        // any diff?
-        // error msg for failure?
-        // compare w/ lab 2 + shop item vc
+        // create image file
         
-        let pickedImage = recipeImage ?? UIImage(named: "default-image") // save default or just do nil? if nil, make image as default on list
+        let pickedImage = recipeImage ?? UIImage(named: "default-image") // save default or just do nil? if nil, make image as default on list. or make image not optional?
         
         guard let image = pickedImage,
-                // Create and compress image data (jpeg) from UIImage
-                let imageData = image.jpegData(compressionQuality: 0.1) else {
+              let imageData = image.jpegData(compressionQuality: 0.1) else {
+            print("error creating image data")
             return
-        } // why optional here? espec on first one
+        }
         
         let imageFile = ParseFile(name: "image.jpg", data: imageData)
         
+        // create recipe
 
         var recipe = recipeToEdit ?? Recipe()
+        // space here?
         recipe.name = name
         recipe.prepTime = prepTimeNum
-        // recipe.image = recipeImage ?? UIImage(named: "default-image") // change to pic once get - helper func for pic get?
-        recipe.imageFile = imageFile // Actual fill in
+        recipe.imageFile = imageFile
         recipe.directions = directions
-        
         recipe.user = User.current
+        
+        // save recipe to database
 
         saveRecipe(recipe: recipe)
     }
