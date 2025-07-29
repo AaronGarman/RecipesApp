@@ -101,7 +101,16 @@ extension RecipesViewController {
     }
     
     private func deleteRecipe(at indexPath: IndexPath) {
+        let recipe = recipes[indexPath.row]
         
+        recipe.delete { [weak self] result in
+            switch result {
+            case .success:
+                self?.queryRecipes()
+            case .failure(let error):
+                self?.showFailedDeleteAlert(description: "Failed to delete item: \(error.localizedDescription)")
+            }
+        }
     }
 }
 
@@ -140,8 +149,9 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-                recipes.remove(at: indexPath.row)
-                tableView.deleteRows(at: [indexPath], with: .fade)
+//                recipes.remove(at: indexPath.row)
+//                tableView.deleteRows(at: [indexPath], with: .fade)
+            deleteRecipe(at: indexPath)
         }
     }
 }
