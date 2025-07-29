@@ -1,4 +1,27 @@
 HIGH
+
+MEDIUM
+
+LOW
+
+SMALL
+
+----------
+
+GENERAL
+
+OPTIONAL
+
+
+
+
+
+
+
+
+
+
+HIGH
 - Recheck code all - comments in + out, more extensions + functions
 
 MEDIUM
@@ -76,3 +99,9 @@ spacing on alert funcs?
 
 maybe refactor errors into own class? just take params? maybe do static methods?
 take top part off all files? like w/ name n date
+
+Fig recipe edit + delete?
+Touch off keypad return on recipes?
+How tap on cell n not highlight? Also nav link on cell v image?
+Improve UI on apps
+fig cell like panera one?

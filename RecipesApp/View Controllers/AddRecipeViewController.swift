@@ -8,8 +8,10 @@
 import UIKit
 import PhotosUI
 import ParseSwift
+import Alamofire
+import AlamofireImage // need? other places too?
 
-class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate {
+class AddRecipeViewController: UIViewController {
 
     @IBOutlet weak var addButton: UIBarButtonItem!
     @IBOutlet weak var nameTextField: UITextField!
@@ -20,12 +22,12 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
     
     var recipeToEdit: Recipe?
     var onAddRecipe: (() -> Void)? = nil
-    var recipeImage: UIImage? // could possibly take this out?
+    var recipeImage: UIImage?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        nameTextField.delegate = self // move these to below?
+        nameTextField.delegate = self
         prepTimeTextField.delegate = self
         directionsTextView.delegate = self
         
@@ -72,8 +74,23 @@ class AddRecipeViewController: UIViewController, UITextFieldDelegate, UITextView
         if let recipe = recipeToEdit {
             nameTextField.text = recipe.name
             prepTimeTextField.text = "\(recipe.prepTime)" // does this affect stuff w/ not string?
-            // recipeImageView.image = recipe.image // fig this for edit? how load image? loads ok if replaced?
             directionsTextView.text = recipe.directions
+            
+            if let imageFile = recipe.imageFile,
+               let imageUrl = imageFile.url {
+                
+                // Use AlamofireImage helper to fetch remote image from URL
+                AF.request(imageUrl).responseImage { [weak self] response in
+                    switch response.result {
+                    case .success(let image):
+                        self?.recipeImage = image
+                        self?.recipeImageView.image = image
+                    case .failure(let error):
+                        print("Error fetching image: \(error.localizedDescription)")
+                        break
+                    }
+                }
+            }
             
             self.title = "Edit Recipe"
             addButton.title = "Done"
@@ -241,7 +258,7 @@ extension AddRecipeViewController {
 
 // methods to control screen inputs
 
-extension AddRecipeViewController { // any delegates move here?
+extension AddRecipeViewController: UITextFieldDelegate, UITextViewDelegate { // any delegates move here?
     // do these as extension? and do conformance inheritance in it too
     
     // 2 print errors seen when clicking on input fields?
