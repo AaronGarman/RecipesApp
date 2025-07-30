@@ -35,6 +35,11 @@ class AddRecipeViewController: UIViewController {
         checkIsEdit()
     }
     
+    @IBAction func onViewTapped(_ sender: Any) {
+        // Dismiss keyboard
+        view.endEditing(true)
+    }
+    
     @IBAction func didTapCancelButton(_ sender: Any) {
         dismiss(animated: true)
     }

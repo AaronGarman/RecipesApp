@@ -141,6 +141,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fMj-ij-sak"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="fhQ-ll-bTg" firstAttribute="centerX" secondItem="Q4D-Nt-4pm" secondAttribute="centerX" id="6Pk-Zt-RGi"/>
                             <constraint firstItem="Vxj-bx-vED" firstAttribute="top" secondItem="fMj-ij-sak" secondAttribute="top" constant="20" id="GMu-pP-7uY"/>
@@ -158,6 +159,9 @@
                             <constraint firstItem="fhQ-ll-bTg" firstAttribute="top" secondItem="aCn-Ch-7AL" secondAttribute="bottom" constant="12" id="qlY-eH-F6Y"/>
                             <constraint firstItem="fhQ-ll-bTg" firstAttribute="leading" secondItem="fMj-ij-sak" secondAttribute="leading" constant="20" id="rp4-BH-qBf"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="ddb-MT-ZWo" appends="YES" id="EmW-Xl-GLz"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="New Recipe" id="6Od-MK-FUX">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="Qe3-wi-6la">
@@ -181,6 +185,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9dU-cx-4NX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ddb-MT-ZWo">
+                    <connections>
+                        <action selector="onViewTapped:" destination="kGt-Ik-ASz" id="u8l-u5-YxJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2843.5114503816794" y="-730.28169014084506"/>
         </scene>
@@ -675,13 +684,13 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
