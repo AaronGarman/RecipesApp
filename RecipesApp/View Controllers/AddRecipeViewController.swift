@@ -29,12 +29,12 @@ class AddRecipeViewController: UIViewController {
 
         nameTextField.delegate = self
         prepTimeTextField.delegate = self
-        directionsTextView.delegate = self
+        //directionsTextView.delegate = self
         
         styleUI()
         menuInit()
         checkIsEdit()
-        gesturesInit()
+        //gesturesInit()
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
@@ -261,6 +261,17 @@ extension AddRecipeViewController {
 
 // methods to control screen inputs
 
+extension AddRecipeViewController: UITextFieldDelegate {
+    // return key dismisses keyboard on text fields
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+/*
+// methods to control screen inputs
+
 extension AddRecipeViewController: UITextFieldDelegate, UITextViewDelegate { // any delegates move here?
     // do these as extension? and do conformance inheritance in it too
     
@@ -307,6 +318,8 @@ extension AddRecipeViewController: UITextFieldDelegate, UITextViewDelegate { // 
         view.endEditing(true)
     }
 }
+
+ */
 
 // alerts methods
 
