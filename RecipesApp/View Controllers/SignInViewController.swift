@@ -19,6 +19,9 @@ class SignInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     func signIn() {
@@ -65,5 +68,16 @@ class SignInViewController: UIViewController {
     }
 }
 
+// methods to control screen inputs
+
+extension SignInViewController: UITextFieldDelegate {
+    // return key dismisses keyboard on text fields
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
 
 // add actual UI here too
+// do alerts as ext?

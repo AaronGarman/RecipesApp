@@ -20,6 +20,8 @@ class AddShopItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        nameTextField.delegate = self
+        
         initUI()
     }
     
@@ -88,6 +90,16 @@ extension AddShopItemViewController {
                  }
              }
          }
+    }
+}
+
+// methods to control screen inputs
+
+extension AddShopItemViewController: UITextFieldDelegate {
+    // return key dismisses keyboard on text fields
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 

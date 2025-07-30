@@ -17,6 +17,10 @@ class SignUpViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        usernameTextField.delegate = self
+        emailTextField.delegate = self
+        passwordTextField.delegate = self
     }
     
     @IBAction func onSignUpTapped(_ sender: Any) {
@@ -72,6 +76,16 @@ class SignUpViewController: UIViewController {
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
         present(alertController, animated: true)
+    }
+}
+
+// methods to control screen inputs
+
+extension SignUpViewController: UITextFieldDelegate {
+    // return key dismisses keyboard on text fields
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
 
