@@ -19,6 +19,7 @@ SMALL
 - diff names in db func closures for recipe n shop item? like in the let w/ cases so not redundant
 - decide 5 v 25 on corner radius both images
 - update github images of all new?
+- save default image or just do nil? if nil, make image as default on list. or make image not optional? or assign as default in struct init? could not save to db but display default image?
 
 ----------
 
@@ -42,6 +43,7 @@ OPTIONAL
 - check error messages + parameters - on 2 shop item files, redundant any?
 - constraints on box width to keep text format? for dirs
 - image border add n details? recipeImageView.layer.borderColor = UIColor.lightGray.cgColor & recipeImageView.layer.borderWidth = 1.0
+- space at top of funcs or no? prob not
 
 ----------
 

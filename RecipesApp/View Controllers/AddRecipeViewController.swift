@@ -96,9 +96,8 @@ class AddRecipeViewController: UIViewController {
             addButton.title = "Done"
         }
     }
-// ABOVE GOOD
+
     func addRecipe() {
-        // space here?
         // validate text entries
         
         guard let name = nameTextField.text,
@@ -118,7 +117,7 @@ class AddRecipeViewController: UIViewController {
         
         // create image file
         
-        let pickedImage = recipeImage ?? UIImage(named: "default-image") // save default or just do nil? if nil, make image as default on list. or make image not optional?
+        let pickedImage = recipeImage ?? UIImage(named: "default-image")
         
         guard let image = pickedImage,
               let imageData = image.jpegData(compressionQuality: 0.1) else {
@@ -131,7 +130,7 @@ class AddRecipeViewController: UIViewController {
         // create recipe
 
         var recipe = recipeToEdit ?? Recipe()
-        // space here?
+        
         recipe.name = name
         recipe.prepTime = prepTimeNum
         recipe.imageFile = imageFile
@@ -143,7 +142,7 @@ class AddRecipeViewController: UIViewController {
         saveRecipe(recipe: recipe)
     }
 }
-// BELOW GOOD
+
 // photo picker & camera methods
 
 extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {

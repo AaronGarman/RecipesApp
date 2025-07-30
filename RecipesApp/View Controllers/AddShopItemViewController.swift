@@ -70,6 +70,7 @@ class AddShopItemViewController: UIViewController {
         let quantityNum = Int(quantityStepper.value)
         
         var shopItem = shopItemToEdit ?? ShopItem()
+        
         shopItem.name = name
         shopItem.quantity = quantityNum
         shopItem.user = User.current
