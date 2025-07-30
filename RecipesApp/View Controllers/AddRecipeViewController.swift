@@ -32,7 +32,7 @@ class AddRecipeViewController: UIViewController {
         
         styleUI()
         menuInit()
-        checkIsEdit()
+        setupEditMode()
     }
     
     @IBAction func onViewTapped(_ sender: Any) {
@@ -62,28 +62,24 @@ class AddRecipeViewController: UIViewController {
     }
     
     func menuInit() {
-        // keep "Choose an option"? title: "Choose an Option",
-        // Choose from photos v diff?
         let menuItems = UIMenu(options: .displayInline, children: [
             UIAction(title: "Choose From Photos", image: UIImage(systemName: "photo"), handler: { _ in self.attachImage() }),
             UIAction(title: "Open Camera", image: UIImage(systemName: "camera"), handler: { _ in self.openCamera() })
         ])
         
-        // Assign menu to button
         attachPhotoButton.menu = menuItems
-        attachPhotoButton.showsMenuAsPrimaryAction = true  // Enables direct menu display when tapped
+        attachPhotoButton.showsMenuAsPrimaryAction = true
     }
-    
-    func checkIsEdit() { // name same as other?
+
+    func setupEditMode() {
         if let recipe = recipeToEdit {
             nameTextField.text = recipe.name
-            prepTimeTextField.text = "\(recipe.prepTime)" // does this affect stuff w/ not string?
+            prepTimeTextField.text = "\(recipe.prepTime)"
             directionsTextView.text = recipe.directions
             
             if let imageFile = recipe.imageFile,
                let imageUrl = imageFile.url {
                 
-                // Use AlamofireImage helper to fetch remote image from URL
                 AF.request(imageUrl).responseImage { [weak self] response in
                     switch response.result {
                     case .success(let image):
@@ -100,7 +96,7 @@ class AddRecipeViewController: UIViewController {
             addButton.title = "Done"
         }
     }
-    
+// ABOVE GOOD
     func addRecipe() {
         // space here?
         // validate text entries
@@ -147,7 +143,7 @@ class AddRecipeViewController: UIViewController {
         saveRecipe(recipe: recipe)
     }
 }
-
+// BELOW GOOD
 // photo picker & camera methods
 
 extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {

@@ -46,12 +46,12 @@ class AddShopItemViewController: UIViewController {
         quantityStepper.minimumValue = 1
         quantityStepper.value = 1
         
-        initEdit()
+        setupEditMode()
         
         quantityLabel.text = ("\(Int(quantityStepper.value))")
     }
     
-    private func initEdit() {
+    private func setupEditMode() {
         if let shopItem = shopItemToEdit {
             nameTextField.text = shopItem.name
             quantityStepper.value = Double(shopItem.quantity)
