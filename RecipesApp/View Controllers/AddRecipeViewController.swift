@@ -29,12 +29,10 @@ class AddRecipeViewController: UIViewController {
 
         nameTextField.delegate = self
         prepTimeTextField.delegate = self
-        //directionsTextView.delegate = self
         
         styleUI()
         menuInit()
         checkIsEdit()
-        //gesturesInit()
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
@@ -268,58 +266,6 @@ extension AddRecipeViewController: UITextFieldDelegate {
         return true
     }
 }
-
-/*
-// methods to control screen inputs
-
-extension AddRecipeViewController: UITextFieldDelegate, UITextViewDelegate { // any delegates move here?
-    // do these as extension? and do conformance inheritance in it too
-    
-    // 2 print errors seen when clicking on input fields?
-    
-    // use lab 2 way to dismiss editing some stuff?
-    
-    func gesturesInit() {
-        /*
-            let tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
-            directionsTextView.addGestureRecognizer(tapGesture)
-        } */
-    }
-    
-    // Implement the delegate method to handle the Return key press
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
-/*
-    // Implement the delegate method to handle the Return key press
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
-    }
-*/
-    // need? check options on storyboard?
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        // Check if the replacement text is the newline character
-        if text == "\n" {
-            // Add a newline character to the text view
-            textView.text.append("\n")
-            // Prevent the default behavior of the Return key
-            return false
-        }
-        return true
-    }
-    
-    // Dismiss the keyboard when the tap gesture is recognized - do one from lab 2 instead?
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
-
- */
 
 // alerts methods
 

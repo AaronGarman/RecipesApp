@@ -16,8 +16,7 @@ SMALL
 - capitalize section comments? also use mark any?
 - re-fig mock data vs just take out? image files instead?
 - spacing on alert funcs?
-- touch off keypad/others return - see lab 2, also enter key use any, not for dirs tho - Tap gesture recognizer on vc lab 2
-- enable return key for login n sign up screens, maybe do on shop add too? do tap gesture + enable return key for all? 4 screens
+- touch off keypad/others return - see lab 2, also enter key use any, not for dirs tho - Tap gesture recognizer on vc lab 2 - do for 4 screens
 
 ----------
 
