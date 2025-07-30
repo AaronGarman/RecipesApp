@@ -23,6 +23,11 @@ class SignUpViewController: UIViewController {
         passwordTextField.delegate = self
     }
     
+    @IBAction func onViewTapped(_ sender: Any) {
+        // Dismiss keyboard
+        view.endEditing(true)
+    }
+    
     @IBAction func onSignUpTapped(_ sender: Any) {
         signUp()
     }

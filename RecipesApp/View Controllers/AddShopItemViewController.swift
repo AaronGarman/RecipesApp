@@ -25,6 +25,11 @@ class AddShopItemViewController: UIViewController {
         initUI()
     }
     
+    @IBAction func onViewTapped(_ sender: Any) {
+        // Dismiss keyboard
+        view.endEditing(true)
+    }
+    
     @IBAction func didTapQuantityStepper(_ sender: UIStepper) {
         quantityLabel.text = "\(Int(sender.value))"
     }

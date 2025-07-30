@@ -367,6 +367,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="5hl-jx-Uc9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="CWg-Hf-2Vb" firstAttribute="centerX" secondItem="Qxg-ao-ETt" secondAttribute="centerX" id="T5l-OE-1nf"/>
                             <constraint firstItem="25r-BM-eZU" firstAttribute="top" secondItem="5hl-jx-Uc9" secondAttribute="top" constant="20" id="b99-1D-apG"/>
@@ -374,6 +375,9 @@
                             <constraint firstItem="25r-BM-eZU" firstAttribute="leading" secondItem="5hl-jx-Uc9" secondAttribute="leading" constant="20" id="g2y-Sb-eiQ"/>
                             <constraint firstItem="5hl-jx-Uc9" firstAttribute="trailing" secondItem="25r-BM-eZU" secondAttribute="trailing" constant="20" id="iBr-vm-EHs"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="iJZ-2U-2xj" appends="YES" id="tet-gM-azM"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Add Item" id="IJJ-aZ-qaR">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="UGV-Io-XJq">
@@ -395,6 +399,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Rs-eE-2kf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="iJZ-2U-2xj">
+                    <connections>
+                        <action selector="onViewTapped:" destination="83L-cT-3Ob" id="Jdg-VU-3PS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2843.5114503816794" y="1488.7323943661972"/>
         </scene>
@@ -519,6 +528,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="kGi-Wt-4Lh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="GFk-fH-mSo" firstAttribute="leading" secondItem="kGi-Wt-4Lh" secondAttribute="leading" constant="20" id="0s5-DQ-Afe"/>
                             <constraint firstItem="D6a-AU-Qx2" firstAttribute="top" secondItem="GFk-fH-mSo" secondAttribute="bottom" constant="28" id="1Si-0K-zNy"/>
@@ -536,6 +546,9 @@
                             <constraint firstItem="kGi-Wt-4Lh" firstAttribute="trailing" secondItem="0AW-nL-kfX" secondAttribute="trailing" constant="20" id="ovb-3S-unD"/>
                             <constraint firstItem="D6a-AU-Qx2" firstAttribute="centerX" secondItem="Tlm-ym-5nT" secondAttribute="centerX" id="u8u-Rw-D8b"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="liL-QX-YLI" appends="YES" id="X2X-jt-UIf"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="0gh-zY-ss4"/>
                     <connections>
@@ -544,6 +557,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="R9m-Wf-kjC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="liL-QX-YLI">
+                    <connections>
+                        <action selector="onViewTapped:" destination="dFu-Ca-tGC" id="0sa-Qk-rIw"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="983.96946564885491" y="-1451.4084507042255"/>
         </scene>
@@ -590,6 +608,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="QBG-mt-zlf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="riB-s9-ldR" firstAttribute="top" secondItem="lNx-j4-CDE" secondAttribute="bottom" constant="8" id="3j1-s3-K55"/>
                             <constraint firstItem="5Kf-tx-S7I" firstAttribute="leading" secondItem="QBG-mt-zlf" secondAttribute="leading" constant="20" id="A2P-uL-TKW"/>
@@ -607,6 +626,9 @@
                             <constraint firstItem="5Kf-tx-S7I" firstAttribute="top" secondItem="riB-s9-ldR" secondAttribute="bottom" constant="8" id="sRM-bm-FZi"/>
                             <constraint firstItem="QBG-mt-zlf" firstAttribute="trailing" secondItem="5Kf-tx-S7I" secondAttribute="trailing" constant="20" id="wCg-Sg-lc8"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="sdD-eY-8lJ" appends="YES" id="wWx-C0-tbK"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="Kdv-Qq-FcC"/>
                     <connections>
@@ -616,6 +638,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QkB-kX-qwF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="sdD-eY-8lJ">
+                    <connections>
+                        <action selector="onViewTapped:" destination="gcR-1M-qBb" id="zFv-LR-K42"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1910.6870229007632" y="-1451.4084507042255"/>
         </scene>

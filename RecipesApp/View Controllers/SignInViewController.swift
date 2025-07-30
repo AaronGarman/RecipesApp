@@ -13,6 +13,11 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
+    @IBAction func onViewTapped(_ sender: Any) {
+        // Dismiss keyboard
+        view.endEditing(true)
+    }
+    
     @IBAction func onSignInTapped(_ sender: Any) {
         signIn()
     }
