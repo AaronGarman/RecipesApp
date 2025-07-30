@@ -9,7 +9,7 @@ import UIKit
 import PhotosUI
 import ParseSwift
 import Alamofire
-import AlamofireImage // need? other places too?
+import AlamofireImage
 
 class AddRecipeViewController: UIViewController {
 
@@ -36,8 +36,7 @@ class AddRecipeViewController: UIViewController {
     }
     
     @IBAction func onViewTapped(_ sender: Any) {
-        // Dismiss keyboard
-        view.endEditing(true)
+        view.endEditing(true) // dismiss keyboard - put in ext?
     }
     
     @IBAction func didTapCancelButton(_ sender: Any) {
@@ -49,15 +48,17 @@ class AddRecipeViewController: UIViewController {
     }
     
     func styleUI() {
-        // maybe border on image? default image?
-//        recipeImageView.layer.borderColor = UIColor.lightGray.cgColor
-//        recipeImageView.layer.borderWidth = 1.0
-        recipeImageView.layer.cornerRadius = 5.0 // decide value?
         
-        // Add border to the UITextView - keep v make as rules in storyboard? sends warning in console?
+        // image view styling
+        
+        recipeImageView.image = UIImage(named: "default-image")
+        recipeImageView.layer.cornerRadius = 25.0
+        
+        // text view styling
+        
         directionsTextView.layer.borderColor = UIColor.lightGray.cgColor
         directionsTextView.layer.borderWidth = 1.0
-        directionsTextView.layer.cornerRadius = 5.0 // Optional, for rounded corners
+        directionsTextView.layer.cornerRadius = 5.0
     }
     
     func menuInit() {

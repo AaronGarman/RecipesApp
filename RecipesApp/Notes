@@ -17,6 +17,8 @@ SMALL
 - re-fig mock data vs just take out? image files instead?
 - spacing on alert funcs?
 - diff names in db func closures for recipe n shop item? like in the let w/ cases so not redundant
+- decide 5 v 25 on corner radius both images
+- update github images of all new?
 
 ----------
 
@@ -39,6 +41,7 @@ OPTIONAL
 - load db func make? over mock? how do image file? put user.current on mock?
 - check error messages + parameters - on 2 shop item files, redundant any?
 - constraints on box width to keep text format? for dirs
+- image border add n details? recipeImageView.layer.borderColor = UIColor.lightGray.cgColor & recipeImageView.layer.borderWidth = 1.0
 
 ----------
 

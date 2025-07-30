@@ -30,7 +30,7 @@ class RecipeDetailViewController: UIViewController {
 // try border?
         //recipeImageView.layer.borderColor = UIColor.black.cgColor
         //recipeImageView.layer.borderWidth = 1.0
-        recipeImageView.layer.cornerRadius = 5.0 // decide value?
+        recipeImageView.layer.cornerRadius = 25.0 // decide value?
 
 /* try shadow effect?
         recipeImageView.layer.shadowColor = UIColor.black.cgColor
