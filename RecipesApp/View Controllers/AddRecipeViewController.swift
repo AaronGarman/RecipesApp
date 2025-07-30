@@ -195,12 +195,12 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
         provider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
             
             if let error = error {
-                DispatchQueue.main.async { [weak self] in self?.showAlert(for:error) }
+                DispatchQueue.main.async { [weak self] in self?.showLoadImageErrorAlert(for:error) }
             }
             
             guard let image = object as? UIImage else { return }
             
-            DispatchQueue.main.async { [weak self] in  // need to do dispatch? check lab example, need "?" after image? print above "image is valid" ? allows it to be updated on spot? dispactch since updating UI?
+            DispatchQueue.main.async { [weak self] in
                 self?.recipeImage = image
                 self?.recipeImageView.image = image
             }
@@ -212,6 +212,7 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
     func openCamera() {
         guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
             print("Camera not available")
+            showCameraUnavailableAlert()
             return
         }
 
@@ -231,27 +232,22 @@ extension AddRecipeViewController: PHPickerViewControllerDelegate, UIImagePicker
             print("Unable to get image")
             return
         }
-        // do i need dispatch queue here on in version w/ pick?
+       
         recipeImage = image
         recipeImageView.image = image
     }
 }
 
-// Database operations - caps comments?
+// database operations
 
 extension AddRecipeViewController {
-//    private func saveRecipe() {
-//        onAddRecipe?() // match what this does w/ shop item
-//        dismiss(animated: true)
-//    }
-    
     private func saveRecipe(recipe: Recipe) {
         recipe.save { [weak self] result in
              DispatchQueue.main.async {
                  switch result {
-                 case .success(let recipe): // diff name here n shop item?
+                 case .success(let recipe):
                      print("Recipe saved! \(recipe)")
-                     self?.onAddRecipe?() // match what this does w/ shop item
+                     self?.onAddRecipe?()
                      self?.dismiss(animated: true)
                  case .failure(let error):
                      self?.showFailedSaveAlert(description: error.localizedDescription)
@@ -275,7 +271,7 @@ extension AddRecipeViewController: UITextFieldDelegate {
 // alerts methods
 
 extension AddRecipeViewController {
-    func showGoToSettingsAlert() { // titles caps or no?
+    func showGoToSettingsAlert() {
         let alertController = UIAlertController (
             title: "Photo Access Required",
             message: "In order to upload a photo for a recipe, we need access to your photo library. You can allow access in Settings",
@@ -294,9 +290,21 @@ extension AddRecipeViewController {
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true, completion: nil)
-    } // need 2nd alert func? change anything?
+    }
     
-    func showAlert(for error: Error? = nil) { // diff name? which funcs private v not?
+    func showCameraUnavailableAlert() {
+        let alertController = UIAlertController(
+            title: "Camera Unavailable",
+            message: "Your device does not support camera access.",
+            preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+
+        present(alertController, animated: true)
+    }
+    
+    func showLoadImageErrorAlert(for error: Error? = nil) {
         let alertController = UIAlertController(
             title: "Error",
             message: "\(error?.localizedDescription ?? "Please try again...")",
@@ -312,7 +320,7 @@ extension AddRecipeViewController {
         let alertController = UIAlertController(
             title: "Error",
             message: "Name, Prep Time, and Directions fields must be filled out",
-            preferredStyle: .alert) // caps need? just say all fields?
+            preferredStyle: .alert)
 
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
@@ -332,9 +340,9 @@ extension AddRecipeViewController {
         present(alertController, animated: true)
     }
     
-    private func showFailedSaveAlert(description: String? = nil) { // description on both of these?
+    private func showFailedSaveAlert(description: String? = nil) {
         let alertController = UIAlertController(title: "Error saving recipe.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default) // upper v lower k?
+        let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
         present(alertController, animated: true)
     }
