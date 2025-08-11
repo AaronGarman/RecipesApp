@@ -10,7 +10,6 @@ import ParseSwift // need? check lab 2
 
 class SignUpViewController: UIViewController {
     
-    
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -24,7 +23,7 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func onViewTapped(_ sender: Any) {
-        // Dismiss keyboard
+        // Dismiss keyboard when tap off input boxes // caps on comments v no?
         view.endEditing(true)
     }
     
@@ -34,7 +33,7 @@ class SignUpViewController: UIViewController {
     
     func signUp() {
         
-        // Make sure all fields are non-nil and non-empty
+        // make sure all fields are non-nil and non-empty
         
         guard let username = usernameTextField.text,
               let email = emailTextField.text,
@@ -47,12 +46,18 @@ class SignUpViewController: UIViewController {
             return
         }
         
+        // create new user + save to db
+        
         var newUser = User()
         
         newUser.username = username
         newUser.email = email
         newUser.password = password
-
+        
+        saveUser(newUser: newUser)
+    }
+    
+    func saveUser(newUser: User) {
         newUser.signup { [weak self] result in
 
             switch result {
@@ -63,24 +68,9 @@ class SignUpViewController: UIViewController {
                 NotificationCenter.default.post(name: Notification.Name("signIn"), object: nil)
 
             case .failure(let error):
-                self?.showAlert(description: error.localizedDescription)
+                self?.showSignUpErrorAlert(description: error.localizedDescription)
             }
         }
-
-    }
-
-   func showAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Sign Up", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-
-    func showMissingFieldsAlert() {
-        let alertController = UIAlertController(title: "Error", message: "All fields must be filled out to sign in", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
     }
 }
 
@@ -94,5 +84,20 @@ extension SignUpViewController: UITextFieldDelegate {
     }
 }
 
-// make UI n actual outlets - test in step 1 directions
-// abstract out to sign up func for action
+// error messages
+
+extension SignUpViewController {
+    func showSignUpErrorAlert(description: String?) {
+         let alertController = UIAlertController(title: "Unable to Sign Up", message: description ?? "Unknown error", preferredStyle: .alert)
+         let action = UIAlertAction(title: "OK", style: .default)
+         alertController.addAction(action)
+         present(alertController, animated: true)
+     }
+
+     func showMissingFieldsAlert() {
+         let alertController = UIAlertController(title: "Error", message: "All fields must be filled out to sign in", preferredStyle: .alert)
+         let action = UIAlertAction(title: "OK", style: .default)
+         alertController.addAction(action)
+         present(alertController, animated: true)
+     }
+}
