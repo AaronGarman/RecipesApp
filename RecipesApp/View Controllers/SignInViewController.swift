@@ -31,7 +31,7 @@ class SignInViewController: UIViewController {
     
     func signIn() {
         
-        // Make sure all fields are non-nil and non-empty
+        // make sure all fields are non-nil and non-empty
         
         guard let username = usernameTextField.text,
               let password = passwordTextField.text,
@@ -41,9 +41,13 @@ class SignInViewController: UIViewController {
             showMissingFieldsAlert()
             return
         }
-
-        // Log in the parse user
         
+        // log in user
+        
+        signInUser(username: username, password: password)
+    }
+    
+    func signInUser(username: String, password: String) {
         User.login(username: username, password: password) { [weak self] result in
 
             switch result {
@@ -53,23 +57,9 @@ class SignInViewController: UIViewController {
                 NotificationCenter.default.post(name: Notification.Name("signIn"), object: nil)
 
             case .failure(let error):
-                self?.showAlert(description: error.localizedDescription)
+                self?.showSignInErrorAlert(description: error.localizedDescription)
             }
         }
-    }
-
-    func showAlert(description: String?) {
-        let alertController = UIAlertController(title: "Unable to Sign In", message: description ?? "Unknown error", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-
-    func showMissingFieldsAlert() {
-        let alertController = UIAlertController(title: "Error", message: "All fields must be filled out to sign in", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
     }
 }
 
@@ -83,6 +73,20 @@ extension SignInViewController: UITextFieldDelegate {
     }
 }
 
+// error messages
 
-// add actual UI here too
-// do alerts as ext?
+extension SignInViewController {
+    func showSignInErrorAlert(description: String?) {
+        let alertController = UIAlertController(title: "Unable to Sign In", message: description ?? "Unknown error", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+
+    func showMissingFieldsAlert() {
+        let alertController = UIAlertController(title: "Error", message: "All fields must be filled out to sign in", preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(action)
+        present(alertController, animated: true)
+    }
+}

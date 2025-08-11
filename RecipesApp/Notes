@@ -9,12 +9,11 @@ LOW
 
 SMALL
 - private funcs all? private set member data any?
-- take top part off all files? like w/ name n date
 - pics own folder on github? gpt ask?
 - more folders for diff types of stuff? sign in, cells, etc. Split by recipe/shopitem v no?
 - periods in alerts? Also capitalize all words v no? change wording any? say specific fields or just all fields? OK vs Ok? also need display errors descriptions in some v all? Use format from gpt camera one
-- capitalize section comments? also use mark any?
-- re-fig mock data vs just take out? image files instead?
+- capitalize section comments? also use mark any? maybe mark for exts?
+- re-fig mock data vs just take out? image files instead? fill db func?
 - spacing on alert funcs?
 - diff names in db func closures for recipe n shop item? like in the let w/ cases so not redundant
 - decide 5 v 25 on corner radius both images
