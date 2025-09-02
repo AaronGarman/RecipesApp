@@ -1,24 +1,24 @@
 HIGH
-- try new cell card like panera one - how tap on cell n not highlight? Also nav link on cell v image or view? update pic github. do as view within it n do shadow or diff color?
+- try new cell card like panera one - how tap on cell n not highlight? Also nav link on cell v image or view? update pic github. do as view within it n do shadow or diff color? see old example
 
 MEDIUM
 - recheck/org code all - comments in + out, more extensions + functions
 
 LOW
-- keyboard push up or scrollview to not block dirs input? Try scrollview + push up, only for dirs tho?
+- keyboard push up or scrollview to not block dirs input? Try scrollview + push up, only for dirs tho? see scrollview vid
 
 SMALL
 - private funcs all? private set member data any?
 - pics own folder on github? gpt ask?
 - more folders for diff types of stuff? sign in, cells, etc. Split by recipe/shopitem v no?
 - periods in alerts? Also capitalize all words v no? change wording any? say specific fields or just all fields? OK vs Ok? also need display errors descriptions in some v all? Use format from gpt camera one
-- capitalize section comments? also use mark any? maybe mark for exts?
+- capitalize section comments? also use mark any? maybe mark for exts? or any other sections?
 - re-fig mock data vs just take out? image files instead? fill db func?
 - spacing on alert funcs?
 - diff names in db func closures for recipe n shop item? like in the let w/ cases so not redundant
 - decide 5 v 25 on corner radius both images
 - update github images of all new?
-- save default image or just do nil? if nil, make image as default on list. or make image not optional? or assign as default in struct init? could not save to db but display default image?
+- save default image or just do nil? if nil, make image as default on list. or make image not optional? or assign as default in struct init? could not save to db but display default image? prob nil n just make image view as default image
 
 ----------
 
