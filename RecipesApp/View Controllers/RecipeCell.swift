@@ -29,7 +29,6 @@ class RecipeCell: UITableViewCell {
             imageDataRequest = AF.request(imageUrl).responseImage { [weak self] response in
                 switch response.result {
                 case .success(let image):
-                    // Set image view image with fetched image
                     self?.recipeImageView.image = image
                 case .failure(let error):
                     print("Error fetching image: \(error.localizedDescription)")
@@ -42,8 +41,7 @@ class RecipeCell: UITableViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        recipeImageView.image = nil
         imageDataRequest?.cancel()
-
+        recipeImageView.image = UIImage(named: "default-image")
     }
 }

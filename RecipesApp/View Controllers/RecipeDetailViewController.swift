@@ -15,7 +15,7 @@ class RecipeDetailViewController: UIViewController {
     @IBOutlet weak var prepTimeLabel: UILabel!
     @IBOutlet weak var directionsTextView: UITextView!
     
-    var recipe: Recipe!
+    var recipe: Recipe! // do sep func n do guard let or if let so as optional?
     
     override func viewDidLoad() {
         super.viewDidLoad()

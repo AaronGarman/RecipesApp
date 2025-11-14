@@ -51,7 +51,6 @@ class AddRecipeViewController: UIViewController {
         
         // image view styling
         
-        recipeImageView.image = UIImage(named: "default-image")
         recipeImageView.layer.cornerRadius = 25.0
         
         // text view styling
@@ -115,27 +114,24 @@ class AddRecipeViewController: UIViewController {
             return
         }
         
-        // create image file
-        
-        let pickedImage = recipeImage ?? UIImage(named: "default-image")
-        
-        guard let image = pickedImage,
-              let imageData = image.jpegData(compressionQuality: 0.1) else {
-            print("error creating image data")
-            return
-        }
-        
-        let imageFile = ParseFile(name: "image.jpg", data: imageData)
-        
         // create recipe
 
         var recipe = recipeToEdit ?? Recipe()
         
         recipe.name = name
         recipe.prepTime = prepTimeNum
-        recipe.imageFile = imageFile
         recipe.directions = directions
         recipe.user = User.current
+        
+        // create image file if image exists
+        
+        if let image = recipeImage,
+           let imageData = image.jpegData(compressionQuality: 0.1) {
+            recipe.imageFile = ParseFile(name: "image.jpg", data: imageData)
+        }
+        else {
+            print("image is nil")
+        }
         
         // save recipe to database
 
