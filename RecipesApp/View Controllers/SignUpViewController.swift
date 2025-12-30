@@ -89,15 +89,19 @@ extension SignUpViewController: UITextFieldDelegate {
 extension SignUpViewController {
     func showSignUpErrorAlert(description: String?) {
          let alertController = UIAlertController(title: "Unable to Sign Up", message: description ?? "Unknown error", preferredStyle: .alert)
+        
          let action = UIAlertAction(title: "OK", style: .default)
          alertController.addAction(action)
+        
          present(alertController, animated: true)
      }
 
      func showMissingFieldsAlert() {
          let alertController = UIAlertController(title: "Error", message: "All fields must be filled out to sign in", preferredStyle: .alert)
+         
          let action = UIAlertAction(title: "OK", style: .default)
          alertController.addAction(action)
+         
          present(alertController, animated: true)
      }
 }

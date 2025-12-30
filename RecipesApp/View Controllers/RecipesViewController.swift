@@ -161,26 +161,33 @@ extension RecipesViewController: UITableViewDataSource, UITableViewDelegate {
 extension RecipesViewController {
     private func showFailedQueryAlert(description: String? = nil) {
         let alertController = UIAlertController(title: "Error loading recipes.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
+        
         present(alertController, animated: true)
     }
     
     private func showFailedDeleteAlert(description: String? = nil) {
         let alertController = UIAlertController(title: "Error deleting recipe.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
+        
         present(alertController, animated: true)
     }
     
     private func showConfirmLogoutAlert() {
         let alertController = UIAlertController(title: "Sign out of your account?", message: nil, preferredStyle: .alert)
+        
         let logOutAction = UIAlertAction(title: "Sign out", style: .destructive) { _ in
             NotificationCenter.default.post(name: Notification.Name("signOut"), object: nil)
         }
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        
         alertController.addAction(logOutAction)
         alertController.addAction(cancelAction)
+        
         present(alertController, animated: true)
     }
 }

@@ -128,15 +128,19 @@ extension ShoppingViewController: UITableViewDataSource, UITableViewDelegate {
 extension ShoppingViewController {
     private func showFailedQueryAlert(description: String? = nil) {
         let alertController = UIAlertController(title: "Error loading shopping list items.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
+        
         present(alertController, animated: true)
     }
     
     private func showFailedDeleteAlert(description: String? = nil) {
         let alertController = UIAlertController(title: "Error deleting shopping list item.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
+        
         present(alertController, animated: true)
     }
 }

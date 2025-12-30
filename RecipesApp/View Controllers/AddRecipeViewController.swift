@@ -264,10 +264,7 @@ extension AddRecipeViewController: UITextFieldDelegate {
 
 extension AddRecipeViewController {
     func showGoToSettingsAlert() {
-        let alertController = UIAlertController (
-            title: "Photo Access Required",
-            message: "In order to upload a photo for a recipe, we need access to your photo library. You can allow access in Settings",
-            preferredStyle: .alert)
+        let alertController = UIAlertController (title: "Photo Access Required", message: "In order to upload a photo for a recipe, we need access to your photo library. You can allow access in Settings", preferredStyle: .alert)
 
         let settingsAction = UIAlertAction(title: "Settings", style: .default) { _ in
             guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else { return }
@@ -276,19 +273,16 @@ extension AddRecipeViewController {
                 UIApplication.shared.open(settingsUrl)
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 
         alertController.addAction(settingsAction)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         alertController.addAction(cancelAction)
 
         present(alertController, animated: true, completion: nil)
     }
     
     func showCameraUnavailableAlert() {
-        let alertController = UIAlertController(
-            title: "Camera Unavailable",
-            message: "Your device does not support camera access.",
-            preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Camera Unavailable", message: "Your device does not support camera access.", preferredStyle: .alert)
 
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
@@ -297,10 +291,7 @@ extension AddRecipeViewController {
     }
     
     func showLoadImageErrorAlert(for error: Error? = nil) {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: "\(error?.localizedDescription ?? "Please try again...")",
-            preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: "\(error?.localizedDescription ?? "Please try again...")", preferredStyle: .alert)
 
         let action = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(action)
@@ -309,10 +300,7 @@ extension AddRecipeViewController {
     }
     
     func showEmptyFieldsAlert() {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: "Name, Prep Time, and Directions fields must be filled out",
-            preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: "Name, Prep Time, and Directions fields must be filled out", preferredStyle: .alert)
 
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
@@ -321,10 +309,7 @@ extension AddRecipeViewController {
     }
     
     func showInvalidNumberAlert() {
-        let alertController = UIAlertController(
-            title: "Error",
-            message: "Prep time must be a valid number",
-            preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Error", message: "Prep time must be a valid number", preferredStyle: .alert)
 
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
@@ -334,8 +319,10 @@ extension AddRecipeViewController {
     
     private func showFailedSaveAlert(description: String? = nil) {
         let alertController = UIAlertController(title: "Error saving recipe.", message: "\(description ?? "Unknown error")", preferredStyle: .alert)
+        
         let okAction = UIAlertAction(title: "OK", style: .default)
         alertController.addAction(okAction)
+        
         present(alertController, animated: true)
     }
 }

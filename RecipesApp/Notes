@@ -11,10 +11,10 @@ SMALL
 - private funcs all? private set member data any?
 - pics own folder on github? gpt ask?
 - more folders for diff types of stuff? sign in, cells, etc. Split by recipe/shopitem v no?
-- periods in alerts? Also capitalize all words v no? change wording any? say specific fields or just all fields? OK vs Ok? also need display errors descriptions in some v all? Use format from gpt camera one
+- periods in alerts? Also capitalize all words v no? change wording any? say specific fields or just all fields? OK vs Ok? also need display errors descriptions in some v all? Use format from gpt camera one - see path examples
 - capitalize section comments? also use mark any? maybe mark for exts? or any other sections?
 - re-fig mock data vs just take out? image files instead? fill db func?
-- spacing on alert funcs?
+- spacing on alert funcs? see path examples
 - diff names in db func closures for recipe n shop item? like in the let w/ cases so not redundant
 - decide 5 v 25 on corner radius both images
 - update github images of all new? espec now w/ liquid glass
@@ -32,7 +32,7 @@ GENERAL
 - check all end
 
 OPTIONAL
-- manage array + tableview separately than db so can do animations on add/edit + delete? over re-query
+- manage array + tableview separately than db so can do animations on add/edit + delete? over re-query - try load db sections one gpt?
 - how improve UI more?
 - maybe refactor shopItem to just item?
 - maybe refactor errors into own class? just take params? maybe do static methods?
@@ -42,7 +42,7 @@ OPTIONAL
 - check error messages + parameters - on 2 shop item files, redundant any?
 - constraints on box width to keep text format? for dirs
 - image border add n details? recipeImageView.layer.borderColor = UIColor.lightGray.cgColor & recipeImageView.layer.borderWidth = 1.0
-- space at top of funcs or no? prob not
+- space at top of funcs or no? prob not - see path examples
 - add image button same width as image?
 
 ----------
